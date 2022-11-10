@@ -1,0 +1,21 @@
+# - - - - - - - - - -
+
+# General
+.DS_Store
+
+# - - - - - - - - - -
+
+# CocoaPods 
+Pods/
+
+# - - - - - - - - - -
+
+# Project
+*/xcuserdata/*
+
+*.moved-aside
+*.xcworkspace
+*.xcuserstate
+*.xccheckout
+
+# - - - - - - - - - -
