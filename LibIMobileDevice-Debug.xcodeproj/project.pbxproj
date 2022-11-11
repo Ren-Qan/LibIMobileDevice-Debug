@@ -8,15 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		C716B588291D351E00C93BD6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C716B587291D351E00C93BD6 /* main.c */; };
-		C716B593291D3DC500C93BD6 /* libusbmuxd.c in Sources */ = {isa = PBXBuildFile; fileRef = C716B592291D3DC500C93BD6 /* libusbmuxd.c */; };
 		C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E6291DF5EE0040F03A /* libplist-2.0.a */; };
 		C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E9291DF5EF0040F03A /* libplist-2.0.a */; };
 		C79998EE291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998EA291DF5EF0040F03A /* libimobiledevice-glue-1.0.a */; };
+		C7999C80291E29780040F03A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C7999C7F291E29780040F03A /* main.c */; };
+		C7999C8A291E2B910040F03A /* libusbmuxd.c in Sources */ = {isa = PBXBuildFile; fileRef = C7999C89291E2B910040F03A /* libusbmuxd.c */; };
+		C7999C92291E2C040040F03A /* activation.c in Sources */ = {isa = PBXBuildFile; fileRef = C7999C90291E2C040040F03A /* activation.c */; };
+		C7999CBE291E2CC80040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999CBB291E2CC80040F03A /* libplist-2.0.a */; };
+		C7999CBF291E2CC80040F03A /* libimobiledevice-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999CBC291E2CC80040F03A /* libimobiledevice-1.0.a */; };
+		C7999CC0291E2CC80040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999CBD291E2CC80040F03A /* libimobiledevice-glue-1.0.a */; };
+		C7999CC5291E2F010040F03A /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999CC2291E2F010040F03A /* libusbmuxd-2.0.a */; };
+		C7999CC6291E2F010040F03A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999CC3291E2F010040F03A /* libcrypto.a */; };
+		C7999CC8291E2F940040F03A /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999CC7291E2F940040F03A /* libssl.a */; };
+		C7999CD2291E35F10040F03A /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999CD1291E35F10040F03A /* libcurl.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C716B583291D351E00C93BD6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		C7999C7B291E29780040F03A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -30,7 +48,6 @@
 /* Begin PBXFileReference section */
 		C716B585291D351E00C93BD6 /* libusbmuxd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libusbmuxd; sourceTree = BUILT_PRODUCTS_DIR; };
 		C716B587291D351E00C93BD6 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		C716B592291D3DC500C93BD6 /* libusbmuxd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libusbmuxd.c; sourceTree = "<group>"; };
 		C775A659291DECA9004F8618 /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		C775A65B291DECA9004F8618 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C775A65C291DECA9004F8618 /* opack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opack.h; sourceTree = "<group>"; };
@@ -40,12 +57,60 @@
 		C775A660291DECA9004F8618 /* collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collection.h; sourceTree = "<group>"; };
 		C775A661291DECA9004F8618 /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
 		C775A662291DECA9004F8618 /* tlv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tlv.h; sourceTree = "<group>"; };
-		C775A664291DECA9004F8618 /* usbmuxd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbmuxd.h; sourceTree = "<group>"; };
-		C775A665291DECA9004F8618 /* usbmuxd-proto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "usbmuxd-proto.h"; sourceTree = "<group>"; };
 		C79998E6291DF5EE0040F03A /* libplist-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist-2.0.a"; sourceTree = "<group>"; };
 		C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
 		C79998E9291DF5EF0040F03A /* libplist-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist-2.0.a"; sourceTree = "<group>"; };
 		C79998EA291DF5EF0040F03A /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
+		C7999C7D291E29780040F03A /* libideviceactivation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libideviceactivation; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7999C7F291E29780040F03A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		C7999C86291E2B910040F03A /* usbmuxd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbmuxd.h; sourceTree = "<group>"; };
+		C7999C87291E2B910040F03A /* usbmuxd-proto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "usbmuxd-proto.h"; sourceTree = "<group>"; };
+		C7999C89291E2B910040F03A /* libusbmuxd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libusbmuxd.c; sourceTree = "<group>"; };
+		C7999C8E291E2C040040F03A /* libideviceactivation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libideviceactivation.h; sourceTree = "<group>"; };
+		C7999C90291E2C040040F03A /* activation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = activation.c; sourceTree = "<group>"; };
+		C7999C94291E2CC10040F03A /* installation_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = installation_proxy.h; sourceTree = "<group>"; };
+		C7999C95291E2CC10040F03A /* companion_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = companion_proxy.h; sourceTree = "<group>"; };
+		C7999C96291E2CC10040F03A /* notification_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notification_proxy.h; sourceTree = "<group>"; };
+		C7999C97291E2CC10040F03A /* restore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = restore.h; sourceTree = "<group>"; };
+		C7999C98291E2CC10040F03A /* mobilebackup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mobilebackup.h; sourceTree = "<group>"; };
+		C7999C99291E2CC10040F03A /* misagent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misagent.h; sourceTree = "<group>"; };
+		C7999C9A291E2CC10040F03A /* property_list_service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property_list_service.h; sourceTree = "<group>"; };
+		C7999C9B291E2CC10040F03A /* service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service.h; sourceTree = "<group>"; };
+		C7999C9C291E2CC10040F03A /* mobileactivation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mobileactivation.h; sourceTree = "<group>"; };
+		C7999C9D291E2CC10040F03A /* screenshotr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = screenshotr.h; sourceTree = "<group>"; };
+		C7999C9E291E2CC10040F03A /* file_relay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_relay.h; sourceTree = "<group>"; };
+		C7999C9F291E2CC10040F03A /* heartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = heartbeat.h; sourceTree = "<group>"; };
+		C7999CA0291E2CC10040F03A /* preboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preboard.h; sourceTree = "<group>"; };
+		C7999CA1291E2CC10040F03A /* mobilebackup2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mobilebackup2.h; sourceTree = "<group>"; };
+		C7999CA2291E2CC10040F03A /* mobile_image_mounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mobile_image_mounter.h; sourceTree = "<group>"; };
+		C7999CA3291E2CC10040F03A /* bt_packet_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bt_packet_logger.h; sourceTree = "<group>"; };
+		C7999CA4291E2CC10040F03A /* lockdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lockdown.h; sourceTree = "<group>"; };
+		C7999CA5291E2CC10040F03A /* syslog_relay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = syslog_relay.h; sourceTree = "<group>"; };
+		C7999CA6291E2CC10040F03A /* webinspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webinspector.h; sourceTree = "<group>"; };
+		C7999CA7291E2CC10040F03A /* libimobiledevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libimobiledevice.h; sourceTree = "<group>"; };
+		C7999CA8291E2CC10040F03A /* debugserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debugserver.h; sourceTree = "<group>"; };
+		C7999CA9291E2CC10040F03A /* sbservices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sbservices.h; sourceTree = "<group>"; };
+		C7999CAA291E2CC10040F03A /* reverse_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reverse_proxy.h; sourceTree = "<group>"; };
+		C7999CAB291E2CC10040F03A /* diagnostics_relay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diagnostics_relay.h; sourceTree = "<group>"; };
+		C7999CAC291E2CC10040F03A /* afc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afc.h; sourceTree = "<group>"; };
+		C7999CAD291E2CC10040F03A /* mobilesync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mobilesync.h; sourceTree = "<group>"; };
+		C7999CAE291E2CC10040F03A /* house_arrest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = house_arrest.h; sourceTree = "<group>"; };
+		C7999CB0291E2CC10040F03A /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		C7999CB1291E2CC10040F03A /* opack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opack.h; sourceTree = "<group>"; };
+		C7999CB2291E2CC10040F03A /* termcolors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = termcolors.h; sourceTree = "<group>"; };
+		C7999CB3291E2CC10040F03A /* cbuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cbuf.h; sourceTree = "<group>"; };
+		C7999CB4291E2CC10040F03A /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
+		C7999CB5291E2CC10040F03A /* collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collection.h; sourceTree = "<group>"; };
+		C7999CB6291E2CC10040F03A /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
+		C7999CB7291E2CC10040F03A /* tlv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tlv.h; sourceTree = "<group>"; };
+		C7999CB9291E2CC10040F03A /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
+		C7999CBB291E2CC80040F03A /* libplist-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist-2.0.a"; sourceTree = "<group>"; };
+		C7999CBC291E2CC80040F03A /* libimobiledevice-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-1.0.a"; sourceTree = "<group>"; };
+		C7999CBD291E2CC80040F03A /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
+		C7999CC2291E2F010040F03A /* libusbmuxd-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusbmuxd-2.0.a"; sourceTree = "<group>"; };
+		C7999CC3291E2F010040F03A /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		C7999CC7291E2F940040F03A /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		C7999CD1291E35F10040F03A /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +125,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C7999C7A291E29780040F03A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7999CD2291E35F10040F03A /* libcurl.tbd in Frameworks */,
+				C7999CC5291E2F010040F03A /* libusbmuxd-2.0.a in Frameworks */,
+				C7999CC6291E2F010040F03A /* libcrypto.a in Frameworks */,
+				C7999CC8291E2F940040F03A /* libssl.a in Frameworks */,
+				C7999CC0291E2CC80040F03A /* libimobiledevice-glue-1.0.a in Frameworks */,
+				C7999CBE291E2CC80040F03A /* libplist-2.0.a in Frameworks */,
+				C7999CBF291E2CC80040F03A /* libimobiledevice-1.0.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -67,20 +146,11 @@
 			isa = PBXGroup;
 			children = (
 				C716B587291D351E00C93BD6 /* main.c */,
+				C7999C84291E2B910040F03A /* Debug */,
 				C775A657291DECA9004F8618 /* Headers */,
-				C775A663291DECA9004F8618 /* include */,
 				C775A666291DECA9004F8618 /* Libraries */,
-				C716B58F291D3D6A00C93BD6 /* src */,
 			);
 			path = libusbmuxd;
-			sourceTree = "<group>";
-		};
-		C716B58F291D3D6A00C93BD6 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				C716B592291D3DC500C93BD6 /* libusbmuxd.c */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		C775A657291DECA9004F8618 /* Headers */ = {
@@ -115,15 +185,6 @@
 			path = "libimobiledevice-glue";
 			sourceTree = "<group>";
 		};
-		C775A663291DECA9004F8618 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				C775A664291DECA9004F8618 /* usbmuxd.h */,
-				C775A665291DECA9004F8618 /* usbmuxd-proto.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		C775A666291DECA9004F8618 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +198,9 @@
 			isa = PBXGroup;
 			children = (
 				C716B586291D351E00C93BD6 /* libusbmuxd */,
+				C7999C7E291E29780040F03A /* libideviceactivation */,
 				C779DC44291D2D7C0002564C /* Products */,
+				C7999CC9291E31FA0040F03A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				C716B585291D351E00C93BD6 /* libusbmuxd */,
+				C7999C7D291E29780040F03A /* libideviceactivation */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +231,164 @@
 			path = Apple;
 			sourceTree = "<group>";
 		};
+		C7999C7E291E29780040F03A /* libideviceactivation */ = {
+			isa = PBXGroup;
+			children = (
+				C7999C7F291E29780040F03A /* main.c */,
+				C7999C8C291E2C040040F03A /* Debug */,
+				C7999C91291E2C040040F03A /* Headers */,
+				C7999C8B291E2C040040F03A /* Libiaries */,
+			);
+			path = libideviceactivation;
+			sourceTree = "<group>";
+		};
+		C7999C84291E2B910040F03A /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				C7999C85291E2B910040F03A /* include */,
+				C7999C88291E2B910040F03A /* src */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		C7999C85291E2B910040F03A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C7999C86291E2B910040F03A /* usbmuxd.h */,
+				C7999C87291E2B910040F03A /* usbmuxd-proto.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		C7999C88291E2B910040F03A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C7999C89291E2B910040F03A /* libusbmuxd.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		C7999C8B291E2C040040F03A /* Libiaries */ = {
+			isa = PBXGroup;
+			children = (
+				C7999CBA291E2CC80040F03A /* Intel */,
+			);
+			path = Libiaries;
+			sourceTree = "<group>";
+		};
+		C7999C8C291E2C040040F03A /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				C7999C8D291E2C040040F03A /* include */,
+				C7999C8F291E2C040040F03A /* src */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		C7999C8D291E2C040040F03A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C7999C8E291E2C040040F03A /* libideviceactivation.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		C7999C8F291E2C040040F03A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C7999C90291E2C040040F03A /* activation.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		C7999C91291E2C040040F03A /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				C7999C93291E2CC10040F03A /* libimobiledevice */,
+				C7999CAF291E2CC10040F03A /* libimobiledevice-glue */,
+				C7999CB8291E2CC10040F03A /* plist */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		C7999C93291E2CC10040F03A /* libimobiledevice */ = {
+			isa = PBXGroup;
+			children = (
+				C7999C94291E2CC10040F03A /* installation_proxy.h */,
+				C7999C95291E2CC10040F03A /* companion_proxy.h */,
+				C7999C96291E2CC10040F03A /* notification_proxy.h */,
+				C7999C97291E2CC10040F03A /* restore.h */,
+				C7999C98291E2CC10040F03A /* mobilebackup.h */,
+				C7999C99291E2CC10040F03A /* misagent.h */,
+				C7999C9A291E2CC10040F03A /* property_list_service.h */,
+				C7999C9B291E2CC10040F03A /* service.h */,
+				C7999C9C291E2CC10040F03A /* mobileactivation.h */,
+				C7999C9D291E2CC10040F03A /* screenshotr.h */,
+				C7999C9E291E2CC10040F03A /* file_relay.h */,
+				C7999C9F291E2CC10040F03A /* heartbeat.h */,
+				C7999CA0291E2CC10040F03A /* preboard.h */,
+				C7999CA1291E2CC10040F03A /* mobilebackup2.h */,
+				C7999CA2291E2CC10040F03A /* mobile_image_mounter.h */,
+				C7999CA3291E2CC10040F03A /* bt_packet_logger.h */,
+				C7999CA4291E2CC10040F03A /* lockdown.h */,
+				C7999CA5291E2CC10040F03A /* syslog_relay.h */,
+				C7999CA6291E2CC10040F03A /* webinspector.h */,
+				C7999CA7291E2CC10040F03A /* libimobiledevice.h */,
+				C7999CA8291E2CC10040F03A /* debugserver.h */,
+				C7999CA9291E2CC10040F03A /* sbservices.h */,
+				C7999CAA291E2CC10040F03A /* reverse_proxy.h */,
+				C7999CAB291E2CC10040F03A /* diagnostics_relay.h */,
+				C7999CAC291E2CC10040F03A /* afc.h */,
+				C7999CAD291E2CC10040F03A /* mobilesync.h */,
+				C7999CAE291E2CC10040F03A /* house_arrest.h */,
+			);
+			path = libimobiledevice;
+			sourceTree = "<group>";
+		};
+		C7999CAF291E2CC10040F03A /* libimobiledevice-glue */ = {
+			isa = PBXGroup;
+			children = (
+				C7999CB0291E2CC10040F03A /* utils.h */,
+				C7999CB1291E2CC10040F03A /* opack.h */,
+				C7999CB2291E2CC10040F03A /* termcolors.h */,
+				C7999CB3291E2CC10040F03A /* cbuf.h */,
+				C7999CB4291E2CC10040F03A /* thread.h */,
+				C7999CB5291E2CC10040F03A /* collection.h */,
+				C7999CB6291E2CC10040F03A /* socket.h */,
+				C7999CB7291E2CC10040F03A /* tlv.h */,
+			);
+			path = "libimobiledevice-glue";
+			sourceTree = "<group>";
+		};
+		C7999CB8291E2CC10040F03A /* plist */ = {
+			isa = PBXGroup;
+			children = (
+				C7999CB9291E2CC10040F03A /* plist.h */,
+			);
+			path = plist;
+			sourceTree = "<group>";
+		};
+		C7999CBA291E2CC80040F03A /* Intel */ = {
+			isa = PBXGroup;
+			children = (
+				C7999CC7291E2F940040F03A /* libssl.a */,
+				C7999CC3291E2F010040F03A /* libcrypto.a */,
+				C7999CC2291E2F010040F03A /* libusbmuxd-2.0.a */,
+				C7999CBB291E2CC80040F03A /* libplist-2.0.a */,
+				C7999CBC291E2CC80040F03A /* libimobiledevice-1.0.a */,
+				C7999CBD291E2CC80040F03A /* libimobiledevice-glue-1.0.a */,
+			);
+			path = Intel;
+			sourceTree = "<group>";
+		};
+		C7999CC9291E31FA0040F03A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C7999CD1291E35F10040F03A /* libcurl.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -187,6 +409,23 @@
 			productReference = C716B585291D351E00C93BD6 /* libusbmuxd */;
 			productType = "com.apple.product-type.tool";
 		};
+		C7999C7C291E29780040F03A /* libideviceactivation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7999C83291E29780040F03A /* Build configuration list for PBXNativeTarget "libideviceactivation" */;
+			buildPhases = (
+				C7999C79291E29780040F03A /* Sources */,
+				C7999C7A291E29780040F03A /* Frameworks */,
+				C7999C7B291E29780040F03A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libideviceactivation;
+			productName = libideviceactivation;
+			productReference = C7999C7D291E29780040F03A /* libideviceactivation */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -197,6 +436,9 @@
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					C716B584291D351E00C93BD6 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					C7999C7C291E29780040F03A = {
 						CreatedOnToolsVersion = 14.1;
 					};
 				};
@@ -215,6 +457,7 @@
 			projectRoot = "";
 			targets = (
 				C716B584291D351E00C93BD6 /* libusbmuxd */,
+				C7999C7C291E29780040F03A /* libideviceactivation */,
 			);
 		};
 /* End PBXProject section */
@@ -224,8 +467,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C716B593291D3DC500C93BD6 /* libusbmuxd.c in Sources */,
+				C7999C8A291E2B910040F03A /* libusbmuxd.c in Sources */,
 				C716B588291D351E00C93BD6 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7999C79291E29780040F03A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7999C80291E29780040F03A /* main.c in Sources */,
+				C7999C92291E2C040040F03A /* activation.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +633,39 @@
 			};
 			name = Release;
 		};
+		C7999C81291E29780040F03A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 88JVP7LE4V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libideviceactivation/Headers";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libideviceactivation/Libiaries/Intel",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		C7999C82291E29780040F03A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 88JVP7LE4V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libideviceactivation/Headers";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libideviceactivation/Libiaries/Intel",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -398,6 +683,15 @@
 			buildConfigurations = (
 				C779DC48291D2D7C0002564C /* Debug */,
 				C779DC49291D2D7C0002564C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7999C83291E29780040F03A /* Build configuration list for PBXNativeTarget "libideviceactivation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7999C81291E29780040F03A /* Debug */,
+				C7999C82291E29780040F03A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
