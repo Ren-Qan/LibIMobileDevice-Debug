@@ -3,7 +3,7 @@ debug libimobiledevice components with xcode
 
 #### 踩坑日记
 
-前提：因为俺有两台的电脑，处理器分别为 `Apple` 和 `Inter`。
+- 前提：因为俺有两台的电脑，处理器分别为 `Apple(arm64)` 和 `Intel(x86)`。
 
 ##### 编译依赖库的报错：
 
