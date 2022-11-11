@@ -483,7 +483,7 @@
 		C775A666291DECA9004F8618 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				C79998E5291DF5EE0040F03A /* Intel */,
+				C79998E5291DF5EE0040F03A /* Inter */,
 				C79998E8291DF5EF0040F03A /* Apple */,
 			);
 			path = Libraries;
@@ -510,13 +510,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C79998E5291DF5EE0040F03A /* Intel */ = {
+		C79998E5291DF5EE0040F03A /* Inter */ = {
 			isa = PBXGroup;
 			children = (
 				C79998E6291DF5EE0040F03A /* libplist-2.0.a */,
 				C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */,
 			);
-			path = Intel;
+			path = Inter;
 			sourceTree = "<group>";
 		};
 		C79998E8291DF5EF0040F03A /* Apple */ = {
@@ -1189,10 +1189,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libusbmuxd/Headers";
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/libusbmuxd/Libraries",
 					"$(inherited)",
-					"$(PROJECT_DIR)/libusbmuxd/Libraries/Intel",
-					"$(PROJECT_DIR)/libusbmuxd/Libraries/M1",
+					"$(PROJECT_DIR)/libusbmuxd/Libraries/Inter",
+					"$(PROJECT_DIR)/libusbmuxd/Libraries/Apple",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1208,10 +1207,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libusbmuxd/Headers";
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/libusbmuxd/Libraries",
 					"$(inherited)",
-					"$(PROJECT_DIR)/libusbmuxd/Libraries/Intel",
-					"$(PROJECT_DIR)/libusbmuxd/Libraries/M1",
+					"$(PROJECT_DIR)/libusbmuxd/Libraries/Inter",
+					"$(PROJECT_DIR)/libusbmuxd/Libraries/Apple",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
