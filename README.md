@@ -17,4 +17,4 @@ debug libimobiledevice components with xcode
 
 ##### 引入头文件`openssl`报错
 
-编译`libimobiledevice`的时候引入了`openssl`但是`xcode`不存在这个库，所以手动导入并且修改了一些头文件配置。
+- 编译`libimobiledevice`的时候引入了`openssl`但是`xcode`不存在这个库，所以手动导入并且修改了一些头文件配置。
