@@ -17,10 +17,13 @@ int main(int argc, const char * argv[]) {
     count = usbmuxd_get_device_list(list);
 
     usbmuxd_device_info_t * device = NULL;
+    char net[4] = "NET";
+    char usb[4] = "USB";
+    
     for (int i = 0; i < count; i++) {
         device = list[i];
         if (device != NULL) {
-            printf("[CONNECTT] - [%d] - [UUID] - [%s]\n", device -> conn_type, device -> udid);
+            printf("[CONNECT] - [%s] - [UUID] - [%s]\n", device -> conn_type == CONNECTION_TYPE_NETWORK ? net : usb, device -> udid);
         }
     }
     

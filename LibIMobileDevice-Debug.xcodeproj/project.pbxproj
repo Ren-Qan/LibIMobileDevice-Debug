@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C716B588291D351E00C93BD6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C716B587291D351E00C93BD6 /* main.c */; };
 		C716B593291D3DC500C93BD6 /* libusbmuxd.c in Sources */ = {isa = PBXBuildFile; fileRef = C716B592291D3DC500C93BD6 /* libusbmuxd.c */; };
-		C779DC47291D2D7C0002564C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C779DC46291D2D7C0002564C /* main.c */; };
 		C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E6291DF5EE0040F03A /* libplist-2.0.a */; };
 		C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E9291DF5EF0040F03A /* libplist-2.0.a */; };
@@ -18,15 +17,6 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C716B583291D351E00C93BD6 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-		C779DC41291D2D7C0002564C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -52,8 +42,6 @@
 		C775A662291DECA9004F8618 /* tlv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tlv.h; sourceTree = "<group>"; };
 		C775A664291DECA9004F8618 /* usbmuxd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbmuxd.h; sourceTree = "<group>"; };
 		C775A665291DECA9004F8618 /* usbmuxd-proto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "usbmuxd-proto.h"; sourceTree = "<group>"; };
-		C779DC43291D2D7C0002564C /* LibIMobileDevice-Debug */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "LibIMobileDevice-Debug"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C779DC46291D2D7C0002564C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		C79998E6291DF5EE0040F03A /* libplist-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist-2.0.a"; sourceTree = "<group>"; };
 		C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
 		C79998E9291DF5EF0040F03A /* libplist-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist-2.0.a"; sourceTree = "<group>"; };
@@ -69,13 +57,6 @@
 				C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */,
 				C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */,
 				C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C779DC40291D2D7C0002564C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +136,6 @@
 		C779DC3A291D2D7C0002564C = {
 			isa = PBXGroup;
 			children = (
-				C779DC45291D2D7C0002564C /* LibIMobileDevice-Debug */,
 				C716B586291D351E00C93BD6 /* libusbmuxd */,
 				C779DC44291D2D7C0002564C /* Products */,
 			);
@@ -164,18 +144,9 @@
 		C779DC44291D2D7C0002564C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C779DC43291D2D7C0002564C /* LibIMobileDevice-Debug */,
 				C716B585291D351E00C93BD6 /* libusbmuxd */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		C779DC45291D2D7C0002564C /* LibIMobileDevice-Debug */ = {
-			isa = PBXGroup;
-			children = (
-				C779DC46291D2D7C0002564C /* main.c */,
-			);
-			path = "LibIMobileDevice-Debug";
 			sourceTree = "<group>";
 		};
 		C79998E5291DF5EE0040F03A /* Intel */ = {
@@ -216,23 +187,6 @@
 			productReference = C716B585291D351E00C93BD6 /* libusbmuxd */;
 			productType = "com.apple.product-type.tool";
 		};
-		C779DC42291D2D7C0002564C /* LibIMobileDevice-Debug */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C779DC4A291D2D7C0002564C /* Build configuration list for PBXNativeTarget "LibIMobileDevice-Debug" */;
-			buildPhases = (
-				C779DC3F291D2D7C0002564C /* Sources */,
-				C779DC40291D2D7C0002564C /* Frameworks */,
-				C779DC41291D2D7C0002564C /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "LibIMobileDevice-Debug";
-			productName = "LibIMobileDevice-Debug";
-			productReference = C779DC43291D2D7C0002564C /* LibIMobileDevice-Debug */;
-			productType = "com.apple.product-type.tool";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -243,9 +197,6 @@
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					C716B584291D351E00C93BD6 = {
-						CreatedOnToolsVersion = 14.1;
-					};
-					C779DC42291D2D7C0002564C = {
 						CreatedOnToolsVersion = 14.1;
 					};
 				};
@@ -263,7 +214,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C779DC42291D2D7C0002564C /* LibIMobileDevice-Debug */,
 				C716B584291D351E00C93BD6 /* libusbmuxd */,
 			);
 		};
@@ -276,14 +226,6 @@
 			files = (
 				C716B593291D3DC500C93BD6 /* libusbmuxd.c in Sources */,
 				C716B588291D351E00C93BD6 /* main.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C779DC3F291D2D7C0002564C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C779DC47291D2D7C0002564C /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,26 +381,6 @@
 			};
 			name = Release;
 		};
-		C779DC4B291D2D7C0002564C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 88JVP7LE4V;
-				ENABLE_HARDENED_RUNTIME = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		C779DC4C291D2D7C0002564C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 88JVP7LE4V;
-				ENABLE_HARDENED_RUNTIME = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -476,15 +398,6 @@
 			buildConfigurations = (
 				C779DC48291D2D7C0002564C /* Debug */,
 				C779DC49291D2D7C0002564C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C779DC4A291D2D7C0002564C /* Build configuration list for PBXNativeTarget "LibIMobileDevice-Debug" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C779DC4B291D2D7C0002564C /* Debug */,
-				C779DC4C291D2D7C0002564C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
