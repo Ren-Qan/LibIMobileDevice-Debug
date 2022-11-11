@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		C716B588291D351E00C93BD6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C716B587291D351E00C93BD6 /* main.c */; };
+		C716B5BA291E988700C93BD6 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B5291E988700C93BD6 /* libcrypto.a */; };
+		C716B5BB291E988700C93BD6 /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B6291E988700C93BD6 /* libplist-2.0.a */; };
+		C716B5BC291E988700C93BD6 /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B7291E988700C93BD6 /* libimobiledevice-glue-1.0.a */; };
+		C716B5BD291E988700C93BD6 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B8291E988700C93BD6 /* libusbmuxd-2.0.a */; };
+		C716B5BE291E988700C93BD6 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B9291E988700C93BD6 /* libssl.a */; };
 		C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E6291DF5EE0040F03A /* libplist-2.0.a */; };
 		C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E9291DF5EF0040F03A /* libplist-2.0.a */; };
@@ -94,6 +99,11 @@
 /* Begin PBXFileReference section */
 		C716B585291D351E00C93BD6 /* libusbmuxd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libusbmuxd; sourceTree = BUILT_PRODUCTS_DIR; };
 		C716B587291D351E00C93BD6 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		C716B5B5291E988700C93BD6 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		C716B5B6291E988700C93BD6 /* libplist-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist-2.0.a"; sourceTree = "<group>"; };
+		C716B5B7291E988700C93BD6 /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
+		C716B5B8291E988700C93BD6 /* libusbmuxd-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusbmuxd-2.0.a"; sourceTree = "<group>"; };
+		C716B5B9291E988700C93BD6 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		C775A659291DECA9004F8618 /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		C775A65B291DECA9004F8618 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C775A65C291DECA9004F8618 /* opack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opack.h; sourceTree = "<group>"; };
@@ -426,10 +436,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C716B5BE291E988700C93BD6 /* libssl.a in Frameworks */,
+				C716B5BC291E988700C93BD6 /* libimobiledevice-glue-1.0.a in Frameworks */,
 				C7999D85291E43BF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */,
 				C7999D86291E43BF0040F03A /* libusbmuxd-2.0.a in Frameworks */,
+				C716B5BA291E988700C93BD6 /* libcrypto.a in Frameworks */,
 				C7999D87291E43BF0040F03A /* libcrypto.a in Frameworks */,
 				C7999D82291E43BF0040F03A /* libplist-2.0.a in Frameworks */,
+				C716B5BB291E988700C93BD6 /* libplist-2.0.a in Frameworks */,
+				C716B5BD291E988700C93BD6 /* libusbmuxd-2.0.a in Frameworks */,
 				C7999D84291E43BF0040F03A /* libssl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,6 +461,25 @@
 				C775A666291DECA9004F8618 /* Libraries */,
 			);
 			path = libusbmuxd;
+			sourceTree = "<group>";
+		};
+		C716B5A5291E95EA00C93BD6 /* Apple */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Apple;
+			sourceTree = "<group>";
+		};
+		C716B5B4291E988700C93BD6 /* Apple */ = {
+			isa = PBXGroup;
+			children = (
+				C716B5B5291E988700C93BD6 /* libcrypto.a */,
+				C716B5B6291E988700C93BD6 /* libplist-2.0.a */,
+				C716B5B7291E988700C93BD6 /* libimobiledevice-glue-1.0.a */,
+				C716B5B8291E988700C93BD6 /* libusbmuxd-2.0.a */,
+				C716B5B9291E988700C93BD6 /* libssl.a */,
+			);
+			path = Apple;
 			sourceTree = "<group>";
 		};
 		C775A657291DECA9004F8618 /* Headers */ = {
@@ -492,9 +526,9 @@
 		C779DC3A291D2D7C0002564C = {
 			isa = PBXGroup;
 			children = (
+				C7999CD8291E3DC60040F03A /* libimobiledevice */,
 				C716B586291D351E00C93BD6 /* libusbmuxd */,
 				C7999C7E291E29780040F03A /* libideviceactivation */,
-				C7999CD8291E3DC60040F03A /* libimobiledevice */,
 				C779DC44291D2D7C0002564C /* Products */,
 				C7999CC9291E31FA0040F03A /* Frameworks */,
 			);
@@ -679,7 +713,8 @@
 		C7999CDE291E3E7D0040F03A /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				C7999D65291E3F100040F03A /* Intel */,
+				C716B5B4291E988700C93BD6 /* Apple */,
+				C7999D65291E3F100040F03A /* Inter */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -816,12 +851,13 @@
 		C7999D57291E3EAC0040F03A /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				C7999D58291E3EAC0040F03A /* Intel */,
+				C716B5A5291E95EA00C93BD6 /* Apple */,
+				C7999D58291E3EAC0040F03A /* Inter */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
 		};
-		C7999D58291E3EAC0040F03A /* Intel */ = {
+		C7999D58291E3EAC0040F03A /* Inter */ = {
 			isa = PBXGroup;
 			children = (
 				C7999D59291E3EAC0040F03A /* libcrypto.a */,
@@ -831,10 +867,10 @@
 				C7999D5D291E3EAC0040F03A /* libusbmuxd-2.0.a */,
 				C7999D5E291E3EAC0040F03A /* libssl.a */,
 			);
-			path = Intel;
+			path = Inter;
 			sourceTree = "<group>";
 		};
-		C7999D65291E3F100040F03A /* Intel */ = {
+		C7999D65291E3F100040F03A /* Inter */ = {
 			isa = PBXGroup;
 			children = (
 				C7999D81291E43BE0040F03A /* libcrypto.a */,
@@ -843,7 +879,7 @@
 				C7999D7E291E43BE0040F03A /* libssl.a */,
 				C7999D80291E43BE0040F03A /* libusbmuxd-2.0.a */,
 			);
-			path = Intel;
+			path = Inter;
 			sourceTree = "<group>";
 		};
 		C7999D6A291E3F6E0040F03A /* libimobiledevice-glue */ = {
@@ -1190,8 +1226,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libusbmuxd/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libusbmuxd/Libraries/Inter",
 					"$(PROJECT_DIR)/libusbmuxd/Libraries/Apple",
+					"$(PROJECT_DIR)/libusbmuxd/Libraries/Inter",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1208,8 +1244,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libusbmuxd/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libusbmuxd/Libraries/Inter",
 					"$(PROJECT_DIR)/libusbmuxd/Libraries/Apple",
+					"$(PROJECT_DIR)/libusbmuxd/Libraries/Inter",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1338,6 +1374,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/libideviceactivation/Libiaries/Intel",
 					"$(PROJECT_DIR)/libideviceactivation/Libraries/Intel",
+					"$(PROJECT_DIR)/libideviceactivation/Libraries/Apple",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1356,6 +1393,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/libideviceactivation/Libiaries/Intel",
 					"$(PROJECT_DIR)/libideviceactivation/Libraries/Intel",
+					"$(PROJECT_DIR)/libideviceactivation/Libraries/Apple",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1371,7 +1409,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libimobiledevice/Libraries/Intel",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/Apple",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/Inter",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1391,7 +1430,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libimobiledevice/Libraries/Intel",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/Apple",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/Inter",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = (

@@ -15,6 +15,8 @@ debug libimobiledevice components with xcode
 
 - 确定引入的`.a`文件是否齐全，有些库存在不明显的依赖。
 
+- 对应不同的`CPU`架构，切换不同的`Library Search Paths`的查找顺序
+
 ##### 引入头文件`openssl`报错
 
-- 编译`libimobiledevice`的时候引入了`openssl`但是`xcode`不存在这个库，所以手动导入并且修改了一些头文件配置。
+- 编译`libimobiledevice`的时候引入了`openssl`但是`xcode`不存在这个库，所以手动导入并且修改了一些头文件配置。 
