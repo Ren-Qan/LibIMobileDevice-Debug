@@ -11,7 +11,10 @@ debug libimobiledevice components with xcode
 
 ##### 编译报错`Undefined symbols for architecture x86_64`：
 
-- 在`已经导入静态库的前提`下还是编译报错，说明编译出来的`.a`文件不支持`x86_64`，所以需要引用当前适合的静态库，为了图方便所以哥们直接在工程中引入了两种架构的静态库。
+- 注意制作的`.a`文件支持的架构与当前硬件环境的架构是否一致。
 
-- 当导入一个`.a文件`编译时候却报错`Undefined symbols`，也有可能需要导入其他的`.a`，例如导入`libimobiledevice-1.0.a`还需要导入`libssl.a` `libcrypto.a` `libusbmuxd.a` `libcurl.tbd`
+- 确定引入的`.a`文件是否齐全，有些库存在不明显的依赖。
 
+##### 引入头文件`openssl`报错
+
+编译`libimobiledevice`的时候引入了`openssl`但是`xcode`不存在这个库，所以手动导入并且修改了一些头文件配置。
