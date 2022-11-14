@@ -7,14 +7,21 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DeviceInfoModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DeviceHelper : NSObject
 
 + (instancetype)shared;
 
-- (NSArray<NSString *> *)getDeviceList;
+- (NSArray<DeviceInfoModel *> *)getDeviceList;
+
+
+
+- (void)testAPI;
 
 @end
+
 
 NS_ASSUME_NONNULL_END

@@ -33,17 +33,31 @@ static void subscribe_event_cb(const idevice_event_t *event, void *user_data) {
 }
 
 
-- (NSArray *)getDeviceList {
-    int num = 0;
-    char **devices = NULL;
-    idevice_get_device_list(&devices, &num);
-    NSMutableArray *deviceList = [NSMutableArray array];
-    for (int i = 0; i < num; i++) {
-        NSString *udid = [NSString stringWithFormat:@"%s", devices[i]];
-        [deviceList addObject:udid];
+- (NSArray<DeviceInfoModel *> *)getDeviceList {
+    NSMutableArray<DeviceInfoModel *> *arr = [NSMutableArray array];
+
+    int count = 0;
+    idevice_info_t *list = NULL;
+
+    idevice_get_device_list_extended(&list, &count);
+    
+    for (int i = 0; i < count; i++) {
+        idevice_info_t current = list[i];
+        
+        DeviceInfoModel *model = [[DeviceInfoModel alloc] init];
+        model.udid = [[NSString alloc] initWithUTF8String:current -> udid];
+        model.connectType = current -> conn_type == CONNECTION_USBMUXD ? DeviceConnectTypeUSB : DeviceConnectTypeNet;
+        [arr addObject:model];
     }
-    idevice_device_list_free(devices);
-    return deviceList;
+
+    idevice_device_list_extended_free(list);
+    
+    return  arr;
+}
+
+
+- (void)testAPI {
+    
 }
 
 @end
