@@ -22,7 +22,6 @@
 		C72CB5172921E89600291F16 /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5112921E89600291F16 /* libimobiledevice-glue-1.0.a */; };
 		C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */; };
 		C72CB5192921E89600291F16 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5132921E89600291F16 /* libssl.a */; };
-		C72CB5202921EB2F00291F16 /* DeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C72CB51F2921EB2F00291F16 /* DeviceHelper.m */; };
 		C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E6291DF5EE0040F03A /* libplist-2.0.a */; };
 		C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E9291DF5EF0040F03A /* libplist-2.0.a */; };
@@ -74,10 +73,16 @@
 		C7999D85291E43BF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999D7F291E43BE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C7999D86291E43BF0040F03A /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999D80291E43BE0040F03A /* libusbmuxd-2.0.a */; };
 		C7999D87291E43BF0040F03A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999D81291E43BE0040F03A /* libcrypto.a */; };
+		C7A1E9A2292279FB00C61A84 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E99C292279FB00C61A84 /* libcrypto.a */; };
+		C7A1E9A3292279FB00C61A84 /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E99D292279FB00C61A84 /* libplist-2.0.a */; };
+		C7A1E9A4292279FB00C61A84 /* libimobiledevice-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E99E292279FB00C61A84 /* libimobiledevice-1.0.a */; };
+		C7A1E9A5292279FB00C61A84 /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E99F292279FB00C61A84 /* libimobiledevice-glue-1.0.a */; };
+		C7A1E9A6292279FB00C61A84 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E9A0292279FB00C61A84 /* libusbmuxd-2.0.a */; };
+		C7A1E9A7292279FB00C61A84 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E9A1292279FB00C61A84 /* libssl.a */; };
+		C7A1E9AA29227F8000C61A84 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9A929227F8000C61A84 /* DeviceManager.swift */; };
+		C7A1E9AE2922816200C61A84 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9AD2922816200C61A84 /* module.modulemap */; };
+		C7A1E9B12922861600C61A84 /* DeviceLockDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9B02922861600C61A84 /* DeviceLockDown.swift */; };
 		C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */; };
-		C7F83C232922198400CCBFF8 /* DeviceInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F83C222922198400CCBFF8 /* DeviceInfoModel.m */; };
-		C7F83C27292229CC00CCBFF8 /* AppInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F83C26292229CC00CCBFF8 /* AppInfoModel.m */; };
-		C7F83C2A29222EEB00CCBFF8 /* DeviceLockDown.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F83C2929222EEB00CCBFF8 /* DeviceLockDown.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -131,8 +136,6 @@
 		C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusbmuxd-2.0.a"; sourceTree = "<group>"; };
 		C72CB5132921E89600291F16 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestAPP-Bridging-Header.h"; sourceTree = "<group>"; };
-		C72CB51E2921EB2F00291F16 /* DeviceHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceHelper.h; sourceTree = "<group>"; };
-		C72CB51F2921EB2F00291F16 /* DeviceHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceHelper.m; sourceTree = "<group>"; };
 		C775A659291DECA9004F8618 /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		C775A65B291DECA9004F8618 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C775A65C291DECA9004F8618 /* opack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opack.h; sourceTree = "<group>"; };
@@ -433,6 +436,16 @@
 		C7999E26291E56F50040F03A /* afc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afc.h; sourceTree = "<group>"; };
 		C7999E27291E56F50040F03A /* mobilesync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mobilesync.h; sourceTree = "<group>"; };
 		C7999E28291E56F50040F03A /* house_arrest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = house_arrest.h; sourceTree = "<group>"; };
+		C7A1E99C292279FB00C61A84 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		C7A1E99D292279FB00C61A84 /* libplist-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist-2.0.a"; sourceTree = "<group>"; };
+		C7A1E99E292279FB00C61A84 /* libimobiledevice-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-1.0.a"; sourceTree = "<group>"; };
+		C7A1E99F292279FB00C61A84 /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
+		C7A1E9A0292279FB00C61A84 /* libusbmuxd-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusbmuxd-2.0.a"; sourceTree = "<group>"; };
+		C7A1E9A1292279FB00C61A84 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		C7A1E9A929227F8000C61A84 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
+		C7A1E9AD2922816200C61A84 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		C7A1E9AF2922818200C61A84 /* headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = headers.h; sourceTree = "<group>"; };
+		C7A1E9B02922861600C61A84 /* DeviceLockDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLockDown.swift; sourceTree = "<group>"; };
 		C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-1.0.a"; sourceTree = "<group>"; };
 		C7F83C022922134500CCBFF8 /* diagnostics_relay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diagnostics_relay.h; sourceTree = "<group>"; };
 		C7F83C032922134500CCBFF8 /* afc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afc.h; sourceTree = "<group>"; };
@@ -460,13 +473,6 @@
 		C7F83C192922135200CCBFF8 /* preboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preboard.h; sourceTree = "<group>"; };
 		C7F83C1A2922135200CCBFF8 /* reverse_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reverse_proxy.h; sourceTree = "<group>"; };
 		C7F83C1B2922135200CCBFF8 /* service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service.h; sourceTree = "<group>"; };
-		C7F83C212922198400CCBFF8 /* DeviceInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceInfoModel.h; sourceTree = "<group>"; };
-		C7F83C222922198400CCBFF8 /* DeviceInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoModel.m; sourceTree = "<group>"; };
-		C7F83C24292219B000CCBFF8 /* DeviceCommonConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceCommonConfig.h; sourceTree = "<group>"; };
-		C7F83C25292229CC00CCBFF8 /* AppInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfoModel.h; sourceTree = "<group>"; };
-		C7F83C26292229CC00CCBFF8 /* AppInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoModel.m; sourceTree = "<group>"; };
-		C7F83C2829222EEB00CCBFF8 /* DeviceLockDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceLockDown.h; sourceTree = "<group>"; };
-		C7F83C2929222EEB00CCBFF8 /* DeviceLockDown.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceLockDown.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -485,11 +491,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C72CB5172921E89600291F16 /* libimobiledevice-glue-1.0.a in Frameworks */,
+				C7A1E9A2292279FB00C61A84 /* libcrypto.a in Frameworks */,
 				C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */,
+				C7A1E9A5292279FB00C61A84 /* libimobiledevice-glue-1.0.a in Frameworks */,
+				C72CB5172921E89600291F16 /* libimobiledevice-glue-1.0.a in Frameworks */,
+				C7A1E9A4292279FB00C61A84 /* libimobiledevice-1.0.a in Frameworks */,
 				C72CB5192921E89600291F16 /* libssl.a in Frameworks */,
+				C7A1E9A6292279FB00C61A84 /* libusbmuxd-2.0.a in Frameworks */,
 				C72CB5142921E89600291F16 /* libcrypto.a in Frameworks */,
 				C72CB5152921E89600291F16 /* libplist-2.0.a in Frameworks */,
+				C7A1E9A7292279FB00C61A84 /* libssl.a in Frameworks */,
+				C7A1E9A3292279FB00C61A84 /* libplist-2.0.a in Frameworks */,
 				C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,11 +510,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7999D5F291E3EAC0040F03A /* libcrypto.a in Frameworks */,
+				C7999D61291E3EAC0040F03A /* libimobiledevice-1.0.a in Frameworks */,
 				C7999D63291E3EAC0040F03A /* libusbmuxd-2.0.a in Frameworks */,
+				C7999D5F291E3EAC0040F03A /* libcrypto.a in Frameworks */,
 				C7999D64291E3EAC0040F03A /* libssl.a in Frameworks */,
 				C7999D62291E3EAC0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */,
-				C7999D61291E3EAC0040F03A /* libimobiledevice-1.0.a in Frameworks */,
 				C7999CD2291E35F10040F03A /* libcurl.tbd in Frameworks */,
 				C7999D60291E3EAC0040F03A /* libplist-2.0.a in Frameworks */,
 			);
@@ -561,13 +573,13 @@
 		C72CB4DD2921E79400291F16 /* TestAPP */ = {
 			isa = PBXGroup;
 			children = (
-				C7F83C1C2922139D00CCBFF8 /* DeviceHelper */,
-				C72CB4EB2921E7E200291F16 /* LibIMobileDevice */,
 				C72CB4DE2921E79400291F16 /* AppDelegate.swift */,
 				C72CB4E02921E79400291F16 /* ViewController.swift */,
 				C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */,
 				C72CB4E22921E79600291F16 /* Assets.xcassets */,
 				C72CB4E42921E79600291F16 /* Main.storyboard */,
+				C7A1E9A829227F3000C61A84 /* DeviceManager */,
+				C72CB4EB2921E7E200291F16 /* LibIMobileDevice */,
 			);
 			path = TestAPP;
 			sourceTree = "<group>";
@@ -584,6 +596,8 @@
 		C72CB4EC2921E7FA00291F16 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				C7A1E9AF2922818200C61A84 /* headers.h */,
+				C7A1E9AD2922816200C61A84 /* module.modulemap */,
 				C72CB4F12921E87200291F16 /* libimobiledevice */,
 				C72CB4EF2921E87200291F16 /* plist */,
 			);
@@ -593,6 +607,7 @@
 		C72CB4ED2921E80200291F16 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				C7A1E99B292279FB00C61A84 /* arm64 */,
 				C72CB50D2921E89600291F16 /* x86 */,
 			);
 			path = Libraries;
@@ -643,12 +658,12 @@
 		C72CB50D2921E89600291F16 /* x86 */ = {
 			isa = PBXGroup;
 			children = (
-				C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */,
 				C72CB50E2921E89600291F16 /* libcrypto.a */,
-				C72CB50F2921E89600291F16 /* libplist-2.0.a */,
+				C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */,
 				C72CB5112921E89600291F16 /* libimobiledevice-glue-1.0.a */,
-				C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */,
+				C72CB50F2921E89600291F16 /* libplist-2.0.a */,
 				C72CB5132921E89600291F16 /* libssl.a */,
+				C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */,
 			);
 			path = x86;
 			sourceTree = "<group>";
@@ -1234,28 +1249,42 @@
 			path = libimobiledevice;
 			sourceTree = "<group>";
 		};
-		C7F83C1C2922139D00CCBFF8 /* DeviceHelper */ = {
+		C7A1E99B292279FB00C61A84 /* arm64 */ = {
 			isa = PBXGroup;
 			children = (
-				C72CB51E2921EB2F00291F16 /* DeviceHelper.h */,
-				C72CB51F2921EB2F00291F16 /* DeviceHelper.m */,
-				C7F83C2829222EEB00CCBFF8 /* DeviceLockDown.h */,
-				C7F83C2929222EEB00CCBFF8 /* DeviceLockDown.m */,
-				C7F83C202922197400CCBFF8 /* DeviceModels */,
+				C7A1E99C292279FB00C61A84 /* libcrypto.a */,
+				C7A1E99D292279FB00C61A84 /* libplist-2.0.a */,
+				C7A1E99E292279FB00C61A84 /* libimobiledevice-1.0.a */,
+				C7A1E99F292279FB00C61A84 /* libimobiledevice-glue-1.0.a */,
+				C7A1E9A0292279FB00C61A84 /* libusbmuxd-2.0.a */,
+				C7A1E9A1292279FB00C61A84 /* libssl.a */,
 			);
-			path = DeviceHelper;
+			path = arm64;
 			sourceTree = "<group>";
 		};
-		C7F83C202922197400CCBFF8 /* DeviceModels */ = {
+		C7A1E9A829227F3000C61A84 /* DeviceManager */ = {
 			isa = PBXGroup;
 			children = (
-				C7F83C24292219B000CCBFF8 /* DeviceCommonConfig.h */,
-				C7F83C212922198400CCBFF8 /* DeviceInfoModel.h */,
-				C7F83C222922198400CCBFF8 /* DeviceInfoModel.m */,
-				C7F83C25292229CC00CCBFF8 /* AppInfoModel.h */,
-				C7F83C26292229CC00CCBFF8 /* AppInfoModel.m */,
+				C7A1E9A929227F8000C61A84 /* DeviceManager.swift */,
+				C7A1E9AC29227F9700C61A84 /* DeviceComponent */,
 			);
-			path = DeviceModels;
+			path = DeviceManager;
+			sourceTree = "<group>";
+		};
+		C7A1E9AC29227F9700C61A84 /* DeviceComponent */ = {
+			isa = PBXGroup;
+			children = (
+				C7A1E9B629228D7B00C61A84 /* LockDown */,
+			);
+			path = DeviceComponent;
+			sourceTree = "<group>";
+		};
+		C7A1E9B629228D7B00C61A84 /* LockDown */ = {
+			isa = PBXGroup;
+			children = (
+				C7A1E9B02922861600C61A84 /* DeviceLockDown.swift */,
+			);
+			path = LockDown;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1401,12 +1430,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7F83C27292229CC00CCBFF8 /* AppInfoModel.m in Sources */,
-				C7F83C232922198400CCBFF8 /* DeviceInfoModel.m in Sources */,
+				C7A1E9AA29227F8000C61A84 /* DeviceManager.swift in Sources */,
 				C72CB4E12921E79400291F16 /* ViewController.swift in Sources */,
+				C7A1E9B12922861600C61A84 /* DeviceLockDown.swift in Sources */,
 				C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */,
-				C7F83C2A29222EEB00CCBFF8 /* DeviceLockDown.m in Sources */,
-				C72CB5202921EB2F00291F16 /* DeviceHelper.m in Sources */,
+				C7A1E9AE2922816200C61A84 /* module.modulemap in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1531,6 +1559,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
 					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
@@ -1571,6 +1600,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
 					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;

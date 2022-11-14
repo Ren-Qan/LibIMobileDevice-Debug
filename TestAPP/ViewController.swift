@@ -9,8 +9,6 @@ import Cocoa
 //import 
 
 class ViewController: NSViewController {
-
-    var a: Int 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +26,8 @@ class ViewController: NSViewController {
     }
 
     @objc func getDeviceList() {
-        print("\(DeviceHelper.shared().getDeviceList())")
-    }
-    
+
+        DeviceManager.share
+    }    
 }
 
