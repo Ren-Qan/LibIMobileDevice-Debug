@@ -13,6 +13,16 @@
 		C716B5BC291E988700C93BD6 /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B7291E988700C93BD6 /* libimobiledevice-glue-1.0.a */; };
 		C716B5BD291E988700C93BD6 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B8291E988700C93BD6 /* libusbmuxd-2.0.a */; };
 		C716B5BE291E988700C93BD6 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B9291E988700C93BD6 /* libssl.a */; };
+		C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72CB4DE2921E79400291F16 /* AppDelegate.swift */; };
+		C72CB4E12921E79400291F16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72CB4E02921E79400291F16 /* ViewController.swift */; };
+		C72CB4E32921E79600291F16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C72CB4E22921E79600291F16 /* Assets.xcassets */; };
+		C72CB4E62921E79600291F16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C72CB4E42921E79600291F16 /* Main.storyboard */; };
+		C72CB5142921E89600291F16 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB50E2921E89600291F16 /* libcrypto.a */; };
+		C72CB5152921E89600291F16 /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB50F2921E89600291F16 /* libplist-2.0.a */; };
+		C72CB5172921E89600291F16 /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5112921E89600291F16 /* libimobiledevice-glue-1.0.a */; };
+		C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */; };
+		C72CB5192921E89600291F16 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5132921E89600291F16 /* libssl.a */; };
+		C72CB5202921EB2F00291F16 /* DeviceHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = C72CB51F2921EB2F00291F16 /* DeviceHelper.mm */; };
 		C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E6291DF5EE0040F03A /* libplist-2.0.a */; };
 		C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E9291DF5EF0040F03A /* libplist-2.0.a */; };
@@ -64,6 +74,7 @@
 		C7999D85291E43BF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999D7F291E43BE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C7999D86291E43BF0040F03A /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999D80291E43BE0040F03A /* libusbmuxd-2.0.a */; };
 		C7999D87291E43BF0040F03A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999D81291E43BE0040F03A /* libcrypto.a */; };
+		C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -104,6 +115,21 @@
 		C716B5B7291E988700C93BD6 /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
 		C716B5B8291E988700C93BD6 /* libusbmuxd-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusbmuxd-2.0.a"; sourceTree = "<group>"; };
 		C716B5B9291E988700C93BD6 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		C72CB4DC2921E79400291F16 /* TestAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C72CB4DE2921E79400291F16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C72CB4E02921E79400291F16 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C72CB4E22921E79600291F16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C72CB4E52921E79600291F16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C72CB4F02921E87200291F16 /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
+		C72CB5052921E87200291F16 /* libimobiledevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libimobiledevice.h; sourceTree = "<group>"; };
+		C72CB50E2921E89600291F16 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		C72CB50F2921E89600291F16 /* libplist-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist-2.0.a"; sourceTree = "<group>"; };
+		C72CB5112921E89600291F16 /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
+		C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusbmuxd-2.0.a"; sourceTree = "<group>"; };
+		C72CB5132921E89600291F16 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestAPP-Bridging-Header.h"; sourceTree = "<group>"; };
+		C72CB51E2921EB2F00291F16 /* DeviceHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceHelper.h; sourceTree = "<group>"; };
+		C72CB51F2921EB2F00291F16 /* DeviceHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DeviceHelper.mm; sourceTree = "<group>"; };
 		C775A659291DECA9004F8618 /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		C775A65B291DECA9004F8618 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C775A65C291DECA9004F8618 /* opack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opack.h; sourceTree = "<group>"; };
@@ -404,6 +430,7 @@
 		C7999E26291E56F50040F03A /* afc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afc.h; sourceTree = "<group>"; };
 		C7999E27291E56F50040F03A /* mobilesync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mobilesync.h; sourceTree = "<group>"; };
 		C7999E28291E56F50040F03A /* house_arrest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = house_arrest.h; sourceTree = "<group>"; };
+		C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-1.0.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -415,6 +442,19 @@
 				C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */,
 				C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */,
 				C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C72CB4D92921E79400291F16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C72CB5172921E89600291F16 /* libimobiledevice-glue-1.0.a in Frameworks */,
+				C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */,
+				C72CB5192921E89600291F16 /* libssl.a in Frameworks */,
+				C72CB5142921E89600291F16 /* libcrypto.a in Frameworks */,
+				C72CB5152921E89600291F16 /* libplist-2.0.a in Frameworks */,
+				C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +522,76 @@
 			path = arm64;
 			sourceTree = "<group>";
 		};
+		C72CB4DD2921E79400291F16 /* TestAPP */ = {
+			isa = PBXGroup;
+			children = (
+				C72CB4EB2921E7E200291F16 /* LibIMobileDevice */,
+				C72CB4DE2921E79400291F16 /* AppDelegate.swift */,
+				C72CB4E02921E79400291F16 /* ViewController.swift */,
+				C72CB51E2921EB2F00291F16 /* DeviceHelper.h */,
+				C72CB51F2921EB2F00291F16 /* DeviceHelper.mm */,
+				C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */,
+				C72CB4E22921E79600291F16 /* Assets.xcassets */,
+				C72CB4E42921E79600291F16 /* Main.storyboard */,
+			);
+			path = TestAPP;
+			sourceTree = "<group>";
+		};
+		C72CB4EB2921E7E200291F16 /* LibIMobileDevice */ = {
+			isa = PBXGroup;
+			children = (
+				C72CB4EC2921E7FA00291F16 /* Headers */,
+				C72CB4ED2921E80200291F16 /* Libraries */,
+			);
+			path = LibIMobileDevice;
+			sourceTree = "<group>";
+		};
+		C72CB4EC2921E7FA00291F16 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				C72CB4F12921E87200291F16 /* libimobiledevice */,
+				C72CB4EF2921E87200291F16 /* plist */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		C72CB4ED2921E80200291F16 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				C72CB50D2921E89600291F16 /* x86 */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		C72CB4EF2921E87200291F16 /* plist */ = {
+			isa = PBXGroup;
+			children = (
+				C72CB4F02921E87200291F16 /* plist.h */,
+			);
+			path = plist;
+			sourceTree = "<group>";
+		};
+		C72CB4F12921E87200291F16 /* libimobiledevice */ = {
+			isa = PBXGroup;
+			children = (
+				C72CB5052921E87200291F16 /* libimobiledevice.h */,
+			);
+			path = libimobiledevice;
+			sourceTree = "<group>";
+		};
+		C72CB50D2921E89600291F16 /* x86 */ = {
+			isa = PBXGroup;
+			children = (
+				C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */,
+				C72CB50E2921E89600291F16 /* libcrypto.a */,
+				C72CB50F2921E89600291F16 /* libplist-2.0.a */,
+				C72CB5112921E89600291F16 /* libimobiledevice-glue-1.0.a */,
+				C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */,
+				C72CB5132921E89600291F16 /* libssl.a */,
+			);
+			path = x86;
+			sourceTree = "<group>";
+		};
 		C775A657291DECA9004F8618 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +639,7 @@
 				C7999CD8291E3DC60040F03A /* libimobiledevice */,
 				C716B586291D351E00C93BD6 /* libusbmuxd */,
 				C7999C7E291E29780040F03A /* libideviceactivation */,
+				C72CB4DD2921E79400291F16 /* TestAPP */,
 				C779DC44291D2D7C0002564C /* Products */,
 				C7999CC9291E31FA0040F03A /* Frameworks */,
 			);
@@ -540,6 +651,7 @@
 				C716B585291D351E00C93BD6 /* libusbmuxd */,
 				C7999C7D291E29780040F03A /* libideviceactivation */,
 				C7999CD7291E3DC50040F03A /* libimobiledevice */,
+				C72CB4DC2921E79400291F16 /* TestAPP.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1081,6 +1193,23 @@
 			productReference = C716B585291D351E00C93BD6 /* libusbmuxd */;
 			productType = "com.apple.product-type.tool";
 		};
+		C72CB4DB2921E79400291F16 /* TestAPP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C72CB4EA2921E79600291F16 /* Build configuration list for PBXNativeTarget "TestAPP" */;
+			buildPhases = (
+				C72CB4D82921E79400291F16 /* Sources */,
+				C72CB4D92921E79400291F16 /* Frameworks */,
+				C72CB4DA2921E79400291F16 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestAPP;
+			productName = TestAPP;
+			productReference = C72CB4DC2921E79400291F16 /* TestAPP.app */;
+			productType = "com.apple.product-type.application";
+		};
 		C7999C7C291E29780040F03A /* libideviceactivation */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7999C83291E29780040F03A /* Build configuration list for PBXNativeTarget "libideviceactivation" */;
@@ -1122,10 +1251,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					C716B584291D351E00C93BD6 = {
 						CreatedOnToolsVersion = 14.1;
+					};
+					C72CB4DB2921E79400291F16 = {
+						CreatedOnToolsVersion = 14.1;
+						LastSwiftMigration = 1410;
 					};
 					C7999C7C291E29780040F03A = {
 						CreatedOnToolsVersion = 14.1;
@@ -1151,9 +1285,22 @@
 				C716B584291D351E00C93BD6 /* libusbmuxd */,
 				C7999C7C291E29780040F03A /* libideviceactivation */,
 				C7999CD6291E3DC50040F03A /* libimobiledevice */,
+				C72CB4DB2921E79400291F16 /* TestAPP */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C72CB4DA2921E79400291F16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C72CB4E32921E79600291F16 /* Assets.xcassets in Resources */,
+				C72CB4E62921E79600291F16 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C716B581291D351E00C93BD6 /* Sources */ = {
@@ -1162,6 +1309,16 @@
 			files = (
 				C7999C8A291E2B910040F03A /* libusbmuxd.c in Sources */,
 				C716B588291D351E00C93BD6 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C72CB4D82921E79400291F16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C72CB4E12921E79400291F16 /* ViewController.swift in Sources */,
+				C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */,
+				C72CB5202921EB2F00291F16 /* DeviceHelper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1215,6 +1372,17 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		C72CB4E42921E79600291F16 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C72CB4E52921E79600291F16 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		C716B58A291D351E00C93BD6 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1226,8 +1394,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libusbmuxd/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libusbmuxd/Libraries/arm64",
 					"$(PROJECT_DIR)/libusbmuxd/Libraries/x86",
+					"$(PROJECT_DIR)/libusbmuxd/Libraries/arm64",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1244,10 +1412,89 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libusbmuxd/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libusbmuxd/Libraries/arm64",
 					"$(PROJECT_DIR)/libusbmuxd/Libraries/x86",
+					"$(PROJECT_DIR)/libusbmuxd/Libraries/arm64",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C72CB4E82921E79600291F16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88JVP7LE4V;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Headers";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = RYQ.TestAPP;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TestAPP/TestAPP-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		C72CB4E92921E79600291F16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88JVP7LE4V;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Headers";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = RYQ.TestAPP;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TestAPP/TestAPP-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
@@ -1407,8 +1654,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
 					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1428,8 +1675,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
 					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = (
@@ -1447,6 +1694,15 @@
 			buildConfigurations = (
 				C716B58A291D351E00C93BD6 /* Debug */,
 				C716B58B291D351E00C93BD6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C72CB4EA2921E79600291F16 /* Build configuration list for PBXNativeTarget "TestAPP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C72CB4E82921E79600291F16 /* Debug */,
+				C72CB4E92921E79600291F16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
