@@ -81,8 +81,11 @@
 		C7A1E9A7292279FB00C61A84 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E9A1292279FB00C61A84 /* libssl.a */; };
 		C7A1E9AA29227F8000C61A84 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9A929227F8000C61A84 /* DeviceManager.swift */; };
 		C7A1E9AE2922816200C61A84 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9AD2922816200C61A84 /* module.modulemap */; };
-		C7A1E9B12922861600C61A84 /* DeviceLockDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9B02922861600C61A84 /* DeviceLockDown.swift */; };
+		C7A1E9B12922861600C61A84 /* DeviceLockdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9B02922861600C61A84 /* DeviceLockdown.swift */; };
+		C7E56402292356C500F4418F /* MDUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E56401292356C500F4418F /* MDUtil.m */; };
 		C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */; };
+		C7FA8F7829233EC900FBF3C1 /* DeviceLockdownServerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FA8F7729233EC900FBF3C1 /* DeviceLockdownServerInterface.swift */; };
+		C7FA8F7B29234E4600FBF3C1 /* DeviceInstallProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FA8F7A29234E4600FBF3C1 /* DeviceInstallProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -445,7 +448,9 @@
 		C7A1E9A929227F8000C61A84 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		C7A1E9AD2922816200C61A84 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		C7A1E9AF2922818200C61A84 /* headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = headers.h; sourceTree = "<group>"; };
-		C7A1E9B02922861600C61A84 /* DeviceLockDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLockDown.swift; sourceTree = "<group>"; };
+		C7A1E9B02922861600C61A84 /* DeviceLockdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLockdown.swift; sourceTree = "<group>"; };
+		C7E56400292356C500F4418F /* MDUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUtil.h; sourceTree = "<group>"; };
+		C7E56401292356C500F4418F /* MDUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUtil.m; sourceTree = "<group>"; };
 		C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-1.0.a"; sourceTree = "<group>"; };
 		C7F83C022922134500CCBFF8 /* diagnostics_relay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diagnostics_relay.h; sourceTree = "<group>"; };
 		C7F83C032922134500CCBFF8 /* afc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afc.h; sourceTree = "<group>"; };
@@ -473,6 +478,8 @@
 		C7F83C192922135200CCBFF8 /* preboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preboard.h; sourceTree = "<group>"; };
 		C7F83C1A2922135200CCBFF8 /* reverse_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reverse_proxy.h; sourceTree = "<group>"; };
 		C7F83C1B2922135200CCBFF8 /* service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service.h; sourceTree = "<group>"; };
+		C7FA8F7729233EC900FBF3C1 /* DeviceLockdownServerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLockdownServerInterface.swift; sourceTree = "<group>"; };
+		C7FA8F7A29234E4600FBF3C1 /* DeviceInstallProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInstallProxy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -596,6 +603,8 @@
 		C72CB4EC2921E7FA00291F16 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				C7E56400292356C500F4418F /* MDUtil.h */,
+				C7E56401292356C500F4418F /* MDUtil.m */,
 				C7A1E9AF2922818200C61A84 /* headers.h */,
 				C7A1E9AD2922816200C61A84 /* module.modulemap */,
 				C72CB4F12921E87200291F16 /* libimobiledevice */,
@@ -1274,17 +1283,35 @@
 		C7A1E9AC29227F9700C61A84 /* DeviceComponent */ = {
 			isa = PBXGroup;
 			children = (
-				C7A1E9B629228D7B00C61A84 /* LockDown */,
+				C7C445EC2923855600F33091 /* Instruments */,
+				C7A1E9B629228D7B00C61A84 /* Lockdown */,
+				C7FA8F7929234E0400FBF3C1 /* InstallProxy */,
 			);
 			path = DeviceComponent;
 			sourceTree = "<group>";
 		};
-		C7A1E9B629228D7B00C61A84 /* LockDown */ = {
+		C7A1E9B629228D7B00C61A84 /* Lockdown */ = {
 			isa = PBXGroup;
 			children = (
-				C7A1E9B02922861600C61A84 /* DeviceLockDown.swift */,
+				C7A1E9B02922861600C61A84 /* DeviceLockdown.swift */,
+				C7FA8F7729233EC900FBF3C1 /* DeviceLockdownServerInterface.swift */,
 			);
-			path = LockDown;
+			path = Lockdown;
+			sourceTree = "<group>";
+		};
+		C7C445EC2923855600F33091 /* Instruments */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Instruments;
+			sourceTree = "<group>";
+		};
+		C7FA8F7929234E0400FBF3C1 /* InstallProxy */ = {
+			isa = PBXGroup;
+			children = (
+				C7FA8F7A29234E4600FBF3C1 /* DeviceInstallProxy.swift */,
+			);
+			path = InstallProxy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1432,9 +1459,12 @@
 			files = (
 				C7A1E9AA29227F8000C61A84 /* DeviceManager.swift in Sources */,
 				C72CB4E12921E79400291F16 /* ViewController.swift in Sources */,
-				C7A1E9B12922861600C61A84 /* DeviceLockDown.swift in Sources */,
+				C7E56402292356C500F4418F /* MDUtil.m in Sources */,
+				C7A1E9B12922861600C61A84 /* DeviceLockdown.swift in Sources */,
 				C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */,
 				C7A1E9AE2922816200C61A84 /* module.modulemap in Sources */,
+				C7FA8F7829233EC900FBF3C1 /* DeviceLockdownServerInterface.swift in Sources */,
+				C7FA8F7B29234E4600FBF3C1 /* DeviceInstallProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1559,8 +1589,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
 					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
+					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
@@ -1600,8 +1630,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
 					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
+					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;

@@ -8,6 +8,7 @@
 #ifndef headers_h
 #define headers_h
 
+#include "MDUtil.h"
 #include "plist/plist.h"
 #include "libimobiledevice/afc.h"
 #include "libimobiledevice/companion_proxy.h"

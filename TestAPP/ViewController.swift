@@ -6,14 +6,13 @@
 //
 
 import Cocoa
-//import 
+// import
 
 class ViewController: NSViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let button = NSButton(title: "click", target: self, action: #selector(getDeviceList))
+        let button = NSButton(title: "app list", target: self, action: #selector(getDeviceList))
         button.frame = .init(origin: .zero, size: .init(width: 200, height: 50))
         view.addSubview(button)
         // Do any additional setup after loading the view.
@@ -21,13 +20,18 @@ class ViewController: NSViewController {
 
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
         }
     }
 
     @objc func getDeviceList() {
+        DeviceManager.share.refreshDevices()
 
-        DeviceManager.share
-    }    
+        let device = DeviceManager.share.deviceList.first { item in
+            item.type == .usb
+        }
+        if let udid = device?.udid {
+           let list = DeviceManager.share.applist(udid: udid)
+        }
+    }
 }
-
