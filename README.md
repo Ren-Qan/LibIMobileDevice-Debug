@@ -10,7 +10,7 @@
 
   ``` swift
   private func xsbb {
-    	print("来自菜鸡的小声逼逼-instruments提供的服务 貌似能平替libimobiledevice，还不太确定再看看再看看")
+      print("来自菜鸡的小声逼逼-instruments提供的服务 貌似能平替libimobiledevice，还不太确定再看看再看看")
   }
   
   ```
@@ -46,3 +46,10 @@
 ##### 接入`.a`后接口不能正常执行
 
 - 需要取消掉`APP`的`沙盒机制`
+
+
+
+#### 致谢：
+
+感谢各位开源的作者（被我抄作业的同学）`因为还没开发完等开发完了链接补上。`
+
