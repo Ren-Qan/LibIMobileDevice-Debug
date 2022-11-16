@@ -1,7 +1,23 @@
-# LibIMobileDevice-Debug
+# LibIMobileDevice-DTXInstruments-Debug
 `debug libimobiledevice components source code with xcode`
 
-#### 踩坑日记
+- 纯测试工程，里面可能有奇怪的变量命名完全图方便（(*^▽^*)）
+- 因为没人看且没开发完，所以先不正经等开发完成了在正经（吧）
+
+#### Instruments Protocol 篇
+
+- 当时接入 `libmobiledevice`，是想借用提供的`API`去拿到`Instruments`的数据，结果没想到啊没法用，所以哥们去看了看 `DTXmsg`不出意外，确实牛皮也只是懂了皮毛，抱着`学习-实践`同步的心态，我直接把整个`ios-instruments-client`给丢了进来，在自己添加轮子的过程中`深入`理解。
+
+  ``` swift
+  private func xsbb {
+    	print("来自菜鸡的小声逼逼-instruments提供的服务 貌似能平替libimobiledevice，还不太确定再看看再看看")
+  }
+  
+  ```
+
+  
+
+#### libimobiledevice编译踩坑篇
 
 - 前提：因为俺有两台的电脑，处理器分别为 `Apple(arm64)` 和 `Intel(x86)`。
 
