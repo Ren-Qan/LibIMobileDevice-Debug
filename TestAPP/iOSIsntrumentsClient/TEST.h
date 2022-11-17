@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TEST : NSObject
 //(int argc, const char **argv)
 
-+ (void)testWithC:(NSInteger)c andArgv:(NSArray<NSString *> *)argv;
++ (void)testWithArgv:(NSArray<NSString *> *)argv;
 
 @end
 

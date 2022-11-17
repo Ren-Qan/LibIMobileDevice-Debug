@@ -1,18 +1,16 @@
 #include "ios_instruments_client.h"
-#include "mobile_device.hpp"
+
 #include <unistd.h>
 
 static string_t device_id;              // user's preferred device (-d option)
 static bool found_device = false;       // has the user's preferred device been detected?
-static bool verbose = false;            // verbose mode (-v option)
+static bool verbose = true;            // verbose mode (-v option)
 static int cur_message = 0;             // current message id
 static int cur_channel = 0;             // current channel id
 static CFDictionaryRef channels = NULL; // list of available channels published by the instruments server
-static int pid2kill = -1;               // process id to kill ("kill" option)
-static const char *bid2launch = NULL;   // bundle id of app to launch ("launch" option)
-static bool proclist = true;           // print the process list ("proclist" option)
-static bool applist = false;            // print the application list ("applist" option)
 static bool ssl_enabled = false;        // does the instruments server use SSL?
+
+static am_device_service_connection *device_service_connection = NULL;
 
 //-----------------------------------------------------------------------------
 void message_aux_t::append_int(int32_t val)
@@ -39,7 +37,7 @@ void message_aux_t::append_obj(CFTypeRef obj)
     bytevec_t tmp;
     archive(&tmp, obj);
     
-    append_d(buf, tmp.size());
+    append_d(buf, uint32_t(tmp.size()));
     append_b(buf, tmp);
 }
 
@@ -91,8 +89,7 @@ static void device_callback(am_device_notification_callback_info *cbi, void *arg
         am_device_service_connection **connptr = (am_device_service_connection **)arg;
         
         // launch the instruments server
-        mach_error_t err = MobileDevice.AMDeviceSecureStartService(
-                                                                   cbi->dev,
+        mach_error_t err = MobileDevice.AMDeviceSecureStartService(cbi->dev,
                                                                    CFSTR("com.apple.instruments.remoteserver"),
                                                                    NULL,
                                                                    connptr);
@@ -135,10 +132,9 @@ static am_device_service_connection *start_server(void)
     am_device_notification *notify_handle = NULL;
     am_device_service_connection *conn = NULL;
     
-    mach_error_t err = MobileDevice.AMDeviceNotificationSubscribe(
-                                                                  device_callback,
-                                                                  0,
-                                                                  0,
+    mach_error_t err = MobileDevice.AMDeviceNotificationSubscribe(device_callback,
+                                                                  1,
+                                                                  1,
                                                                   &conn,
                                                                   &notify_handle);
     
@@ -152,7 +148,7 @@ static am_device_service_connection *start_server(void)
     // if no device was detected within 3 seconds, we bail out.
     CFRunLoopRunInMode(kCFRunLoopDefaultMode, 3, false);
     
-    MobileDevice.AMDeviceNotificationUnsubscribe(notify_handle);
+//    MobileDevice.AMDeviceNotificationUnsubscribe(notify_handle);
     
     if ( conn == NULL && !found_device )
     {
@@ -175,8 +171,7 @@ static am_device_service_connection *start_server(void)
 //   args           serialized list of arguments for the method
 //   expects_reply  do we expect a return value from the method?
 //                  the return value can be obtained by a subsequent call to recv_message()
-static bool send_message(
-                         am_device_service_connection *conn,
+static bool send_message(am_device_service_connection *conn,
                          int channel,
                          CFStringRef selector,
                          const message_aux_t *args,
@@ -196,7 +191,7 @@ static bool send_message(
     // the low byte of the payload flags represents the message type.
     // so far it seems that all requests to the instruments server have message type 2.
     pheader.flags = 0x2 | (expects_reply ? 0x1000 : 0);
-    pheader.auxiliaryLength = aux.size();
+    pheader.auxiliaryLength = uint32_t(aux.size());
     pheader.totalLength = aux.size() + sel.size();
     
     DTXMessageHeader mheader;
@@ -204,7 +199,7 @@ static bool send_message(
     mheader.cb = sizeof(DTXMessageHeader);
     mheader.fragmentId = 0;
     mheader.fragmentCount = 1;
-    mheader.length = sizeof(pheader) + pheader.totalLength;
+    mheader.length = uint32_t(sizeof(pheader) + pheader.totalLength);
     mheader.identifier = id;
     mheader.conversationIndex = 0;
     mheader.channelCode = channel;
@@ -230,79 +225,11 @@ static bool send_message(
 }
 
 //-----------------------------------------------------------------------------
-//        前32个字节(两行) 为DTXMessage的头部 (包含了消息的类型和请求的channel)
-//        后面是携带的payload
-//        Returns:
-//            DTXMessageHeader, payload
-//
-//        Raises:
-//            MuxError
-//        Returns:
-//            retobj  contains the return value for the method invoked by send_message()
-//            aux     usually empty, except in specific situations (see _notifyOfPublishedCapabilities)
-//
-//        # Refs: https://github.com/troybowman/dtxmsg/blob/master/dtxmsg_client.cpp
-//        数据解析说明
-//        >> 全部数据
-//        00000000: 79 5B 3D 1F 20 00 00 00  00 00 01 00 2C 1C 00 00  y[=. .......,...
-//        00000010: 02 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ................
-//        00000020: 02 00 00 00 71 1B 00 00  1C 1C 00 00 00 00 00 00  ....q...........
-//        00000030: F0 1B 00 00 00 00 00 00  61 1B 00 00 00 00 00 00  ........a.......
-//        00000040: 0A 00 00 00 02 00 00 00  55 1B 00 00 62 70 6C 69  ........U...bpli
-//        00000050: 73 74 30 30 D4 00 01 00  02 00 03 00 04 00 05 00  st00............
-//        00000060: 06 01 2F 01 30 58 24 76  65 72 73 69 6F 6E 58 24  ../.0X$versionX$
-//        00000070: 6F 62 6A 65 63 74 73 59
-//        >> 前32个字节
-//        00000000: 79 5B 3D 1F 20 00 00 00  00 00 01 00 2C 1C 00 00  y[=. .......,...
-//        00000010: 02 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
-//        \\\\
-//        struct DTXMessageHeader {
-//            u32 magic  # 79 5B 3D 1F
-//            u32 cb # 20 00 00 00      # sizeof(DTXMessageHeader)
-//            u16 fragmentId # 00 00
-//            u16 fragmentCount # 01 00
-//            u32 length # 2C 1C 00 00  # 不包括MessageHeader自身的长度
-//            u32 messageId # 02 00 00 00
-//            u32 conversationIndex # 00 00 00 00 # 1 indicate a reply message
-//            u32 channelCode # 00 00 00 00
-//            u32 expectReply # 00 00 00 00    # 1 or 0
-//        }
-//
-//        00000020: 02 00 00 00 71 1B 00 00  1C 1C 00 00 00 00 00 00
-//        \\\\
-//        # 紧跟在MessageHeader的后面
-//        struct payloadHeader {
-//            u32 flags # 02 00 00 00 # 02(包含两个值), 00(empty), 01,03,04(只有一个值)
-//            u32 auxiliaryLength # 71 1B 00 00
-//            u64 totalLength # 1C 1C 00 00 00 00 00 00
-//        }
-//
-//        >> Body 部分
-//        00000030: F0 1B 00 00 00 00 00 00  61 1B 00 00 00 00 00 00  ........a.......
-//        \\\\
-//        # 前面8个字节 0X1BF0 据说是Magic word
-//        # 后面的 0x1B61 是整个序列化数据的长度
-//        # 解析的时候可以直接跳过这部分
-//        # 序列化的数据部分, 使用OC的NSKeyedArchiver序列化
-//        # 0A,00,00,00: 起始头
-//        # 02,00,00,00: 2(obj) 3(u32) 4(u64) 5(u32) 6(u64)
-//        # 55,1B,00,00: 序列化的数据长度
-//        00000040: 0A 00 00 00 02 00 00 00  55 1B 00 00 62 70 6C 69  ........U...bpli
-//        .....
-//        # 最后面还跟了一个NSKeyedArchiver序列化后的数据，没有长度字段
-//                          objectsY
-//
-//        ## 空数据Example, 仅用来应答收到的意思。其中的messageId需要跟请求的messageId保持一致
-//        00000000: 79 5B 3D 1F 20 00 00 00  00 00 01 00 10 00 00 00  y[=. ...........
-//        00000010: 03 00 00 00 01 00 00 00  00 00 00 00 00 00 00 00  ................
-//        00000020: 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ................
-
 // handle a response from the server.
 //   conn    server handle
 //   retobj  contains the return value for the method invoked by send_message()
 //   aux     usually empty, except in specific situations (see _notifyOfPublishedCapabilities)
-static bool recv_message(
-                         am_device_service_connection *conn,
+static bool recv_message(am_device_service_connection *conn,
                          CFTypeRef *retobj,
                          CFArrayRef *aux)
 {
@@ -759,101 +686,17 @@ static bool launch(am_device_service_connection *conn, const char *_bid)
     return ok;
 }
 
-//-----------------------------------------------------------------------------
-static void usage(const char *prog)
-{
-    fprintf(stderr, "usage: %s [-v] [-d <device id>] TASK <task args>\n"
-            "\n"
-            "This is a sample client application for the iOS Instruments server.\n"
-            "It is capable of rudimentary communication with the server and can\n"
-            "ask it to perform some interesting tasks.\n"
-            "\n"
-            "TASK can be one of the following:\n"
-            "  proclist  - print a list of running processes\n"
-            "  applist   - print a list of installed applications\n"
-            "  launch    - launch a given app. provide the bundle id of the app to launch\n"
-            "  kill      - kill a given process. provide the pid of the process to kill\n"
-            "\n"
-            "other args:\n"
-            "  -v  more verbose output\n"
-            "  -d  device ID. if empty, this app will use the first device it finds\n", prog);
+bool load() {
+   return MobileDevice.load();
 }
 
-//-----------------------------------------------------------------------------
-static bool parse_args(int argc, const char **argv)
-{
-    if ( argc > 1 )
-    {
-        for ( int i = 1; i < argc; )
-        {
-            if ( strcmp("-v", argv[i]) == 0 )
-            {
-                verbose = true;
-                i++;
-                continue;
-            }
-            else if ( strcmp("-d", argv[i]) == 0 )
-            {
-                if ( i == argc - 1 )
-                {
-                    fprintf(stderr, "Error: -d option requires a device id string\n");
-                    break;
-                }
-                device_id = argv[i+1];
-                i += 2;
-                continue;
-            }
-            
-            string_t task = argv[i];
-            
-            if ( task == "proclist" )
-            {
-                proclist = true;
-                return true;
-            }
-            else if ( task == "applist" )
-            {
-                applist = true;
-                return true;
-            }
-            else if ( task == "kill" )
-            {
-                if ( i == argc - 1 )
-                {
-                    fprintf(stderr, "Error: \"kill\" requires a process id\n");
-                    break;
-                }
-                pid2kill = atoi(argv[i+1]);
-                return true;
-            }
-            else if ( task == "launch" )
-            {
-                if ( i == argc - 1 )
-                {
-                    fprintf(stderr, "Error: \"launch\" requires a bundle id\n");
-                    break;
-                }
-                bid2launch = argv[i+1];
-                return true;
-            }
-            
-            fprintf(stderr, "Error, invalid task: %s\n", task.c_str());
-            break;
-        }
-    }
-    
-    usage(argv[0]);
-    return false;
-}
+int test(int argc, const char **argv) {
 
-//-----------------------------------------------------------------------------
+//    MobileDevice.load();
+//    return 1;
 
-
-
-int test(int argc, const char **argv)
-{
-    //  if ( !parse_args(argc, argv) )
-    //    return EXIT_FAILURE;
+//      if ( !parse_args(argc, argv) )
+//        return EXIT_FAILURE;
     
     if ( !MobileDevice.load() )
         return EXIT_FAILURE;
@@ -861,30 +704,57 @@ int test(int argc, const char **argv)
     am_device_service_connection *conn = start_server();
     if ( conn == NULL )
         return EXIT_FAILURE;
-    
+
     bool ok = false;
     if ( perform_handshake(conn) )
     {
-        if ( proclist )
-            ok = print_proclist(conn);
-        else if ( applist )
-            ok = print_applist(conn);
-        else if ( pid2kill > 0 )
-            ok = kill(conn, pid2kill);
-        else if ( bid2launch != NULL )
-            ok = launch(conn, bid2launch);
-        else
-            ok = true;
-        
-        CFRelease(channels);
+//        if ( proclist )
+//            ok = print_proclist(conn);
+//        else if ( applist )
+//            ok = print_applist(conn);
+//        else if ( pid2kill > 0 )
+//            ok = kill(conn, pid2kill);
+//        else if ( bid2launch != NULL )
+//            ok = launch(conn, bid2launch);
+//        else
+//            ok = true;
+//
+//        CFRelease(channels);
     }
     
     MobileDevice.AMDServiceConnectionInvalidate(conn);
     CFRelease(conn);
-    
+
     return ok ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
+
+am_device_service_connection * _Nullable getDeviceServiceConnection() {
+    if (device_service_connection != NULL) {
+        return device_service_connection;
+    }
+    
+    device_service_connection = start_server();
+    perform_handshake(device_service_connection);
+    return device_service_connection;
+}
+
+int stopServer() {
+    if (device_service_connection != NULL) {
+        MobileDevice.AMDServiceConnectionInvalidate(device_service_connection);
+        device_service_connection = NULL;
+        return 0;
+    }
+    return -1;
+}
+
+void printAppList() {
+    if (device_service_connection == NULL) {
+        return;
+    }
+    
+    print_applist(device_service_connection);
+}
 
 // 意外发现的服务。
 //"com.apple.dt.Instruments.inlineCapabilities" = 1;

@@ -11,17 +11,12 @@
 
 @implementation TEST
 
-+ (void)testWithC:(NSInteger)c andArgv:(NSArray<NSString *> *)argv {
++ (void)testWithArgv:(NSArray<NSString *> *)argv {
+    load();
+    am_device_service_connection *connect = getDeviceServiceConnection();
+    printAppList();
     
-    const char ** list = (const char **)malloc(sizeof(char *) * c);
-    
-    for (int i = 0; i < c; i++) {
-        list[i] = [argv[i] cStringUsingEncoding:NSUTF8StringEncoding];
-    }
-    
-    test(int(c), list);
-    free(list);
-    
+    NSLog(@"");
 }
 
 @end

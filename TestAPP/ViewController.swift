@@ -15,7 +15,7 @@ class ViewController: NSViewController {
         let button = NSButton(title: "app list", target: self, action: #selector(getDeviceList))
         button.frame = .init(origin: .zero, size: .init(width: 200, height: 50))
         view.addSubview(button)
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -26,19 +26,16 @@ class ViewController: NSViewController {
     }
 
     @objc func getDeviceList() {
-        DeviceManager.share.refreshDevices()
-
-        let device = DeviceManager.share.deviceList.first { item in
-            item.type == .usb
-        }
-
-        if let udid = device?.udid {
-           let list = DeviceManager.share.applist(udid: udid)
-        }
-        
-        TEST.test(withC: CommandLine.arguments.count, andArgv: CommandLine.arguments)
-        
+//        DeviceManager.share.refreshDevices()
+//
+//        let device = DeviceManager.share.deviceList.first { item in
+//            item.type == .usb
+//        }
+//
+//        if let udid = device?.udid {
+//           let list = DeviceManager.share.applist(udid: udid)
+//        }
+//
+        TEST.test(withArgv: CommandLine.arguments)
     }
 }
-
-
