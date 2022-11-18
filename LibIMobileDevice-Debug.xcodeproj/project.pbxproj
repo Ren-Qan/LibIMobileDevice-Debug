@@ -1867,8 +1867,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
 					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1889,8 +1889,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
 					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = (

@@ -2,7 +2,11 @@
 
 #include "ios_instruments_client.h"
 
+static int cur_channel = 0;             // current channel id
+static bool verbose = true;            // verbose mode (-v option)
+
 static int cur_message = 0;
+static CFDictionaryRef channels = NULL; // list of available channels published by the instruments server
 
 //-----------------------------------------------------------------------------
 void message_aux_t::append_int(int32_t val) {
@@ -39,11 +43,11 @@ void message_aux_t::get_bytes(bytevec_t *out) const {
     }
 }
 
-bool _send_message(idevice_connection_t conn,
-                   int channel,
-                   char * selector,
-                   const message_aux_t *args,
-                   bool expects_reply) {
+static bool send_message(idevice_connection_t conn,
+                         int channel,
+                         char * selector,
+                         const message_aux_t *args,
+                         bool expects_reply) {
     uint32_t id = ++cur_message;
     
     bytevec_t aux;
@@ -98,60 +102,48 @@ static bool recv_message(idevice_connection_t conn,
                          CFArrayRef * aux) {
     uint32_t id = 0;
     bytevec_t payload;
-        
-    while ( true )
-    {
+    
+    while (true) {
         DTXMessageHeader mheader;
-        idevice_connection_receive(conn, <#char *data#>, <#uint32_t len#>, <#uint32_t *recv_bytes#>)
-        ssize_t nrecv = ssl_enabled
-        ? MobileDevice.AMDServiceConnectionReceive(conn, &mheader, sizeof(mheader))
-        : read(sock, &mheader, sizeof(mheader));
-        if ( nrecv != sizeof(mheader) )
-        {
-            fprintf(stderr, "failed to read message header: %s, nrecv = %lx\n", strerror(errno), nrecv);
+        uint32_t nrecv = 0;
+        idevice_connection_receive(conn, (char *)(&mheader), sizeof(mheader), &nrecv);
+        
+        if (nrecv != sizeof(mheader)) {
+            fprintf(stderr, "failed to read message header: %s, nrecv = %x\n", strerror(errno), nrecv);
             return false;
         }
         
-        if ( mheader.magic != 0x1F3D5B79 )
-        {
+        if ( mheader.magic != 0x1F3D5B79 ) {
             fprintf(stderr, "bad header magic: %x\n", mheader.magic);
             return false;
         }
         
-        if ( mheader.conversationIndex == 1 )
-        {
+        if ( mheader.conversationIndex == 1 ) {
             // the message is a response to a previous request, so it should have the same id as the request
             if ( mheader.identifier != cur_message )
             {
                 fprintf(stderr, "expected response to message id=%d, got a new message with id=%d\n", cur_message, mheader.identifier);
                 return false;
             }
-        }
-        else if ( mheader.conversationIndex == 0 )
-        {
+        } else if ( mheader.conversationIndex == 0 ) {
             // the message is not a response to a previous request. in this case, different iOS versions produce different results.
             // on iOS 9, the incoming message can have the same message ID has the previous message we sent to the server.
             // on later versions, the incoming message will have a new message ID. we must be aware of both situations.
-            if ( mheader.identifier > cur_message )
-            {
+            if ( mheader.identifier > cur_message ) {
                 // new message id, we must update the count on our side
                 cur_message = mheader.identifier;
             }
-            else if ( mheader.identifier < cur_message )
-            {
+            else if ( mheader.identifier < cur_message ) {
                 // the id must match the previous request, anything else doesn't really make sense
                 fprintf(stderr, "unexpected message ID: %d\n", mheader.identifier);
                 return false;
             }
-        }
-        else
-        {
+        } else {
             fprintf(stderr, "invalid conversation index: %d\n", mheader.conversationIndex);
             return false;
         }
         
-        if ( mheader.fragmentId == 0 )
-        {
+        if ( mheader.fragmentId == 0 ) {
             id = mheader.identifier;
             // when reading multiple message fragments, the 0th fragment contains only a message header
             if ( mheader.fragmentCount > 1 )
@@ -166,15 +158,12 @@ static bool recv_message(idevice_connection_t conn,
         uint8_t *data = frag.data() + sizeof(mheader);
         
         uint32_t nbytes = 0;
-        while ( nbytes < mheader.length )
-        {
+        while ( nbytes < mheader.length ) {
             uint8_t *curptr = data + nbytes;
             size_t curlen = mheader.length - nbytes;
-            nrecv = ssl_enabled
-            ? MobileDevice.AMDServiceConnectionReceive(conn, curptr, curlen)
-            : read(sock, curptr, curlen);
-            if ( nrecv <= 0 )
-            {
+            idevice_connection_receive(conn, (char *)curptr, (uint32_t)curlen, &nrecv);
+            
+            if ( nrecv <= 0 ) {
                 fprintf(stderr, "failed reading from socket: %s\n", strerror(errno));
                 return false;
             }
@@ -193,8 +182,7 @@ static bool recv_message(idevice_connection_t conn,
     
     // we don't know how to decompress messages yet
     uint8_t compression = (pheader->flags & 0xFF000) >> 12;
-    if ( compression != 0 )
-    {
+    if (compression != 0) {
         fprintf(stderr, "message is compressed (compression type %d)\n", compression);
         return false;
     }
@@ -207,20 +195,19 @@ static bool recv_message(idevice_connection_t conn,
     const uint8_t *objptr = auxptr + auxlen;
     uint64_t objlen = pheader->totalLength - auxlen;
     
-    if ( auxlen != 0 && aux != NULL )
-    {
+    if (auxlen != 0 && aux != NULL) {
         string_t errbuf;
         CFArrayRef _aux = deserialize(auxptr, auxlen, &errbuf);
-        if ( _aux == NULL )
-        {
+        if (_aux == NULL) {
             fprintf(stderr, "Error: %s\n", errbuf.c_str());
             return false;
         }
         *aux = _aux;
     }
     
-    if ( objlen != 0 && retobj != NULL )
+    if (objlen != 0 && retobj != NULL) {
         *retobj = unarchive(objptr, objlen);
+    }
     
     return true;
 }
@@ -245,61 +232,179 @@ bool test(idevice_connection_t conn) {
     CFRelease(capabilities);
     CFRelease(v1);
     CFRelease(v2);
-
-    return _send_message(conn, 9, (char *)CFSTR("_notifyOfPublishedCapabilities:"), &args, false);
+    
+    if (!send_message(conn, 9, (char *)CFSTR("_notifyOfPublishedCapabilities:"), &args, false)) {
+        fprintf(stderr, "Error: failed to receive response from _notifyOfPublishedCapabilities:\n");
+        return false;
+    }
+    
+    CFTypeRef obj = NULL;
+    CFArrayRef aux = NULL;
+    
+    if (!recv_message(conn, &obj, &aux) || obj == NULL || aux == NULL) {
+        fprintf(stderr, "Error: failed to receive response from _notifyOfPublishedCapabilities:\n");
+        return false;
+    }
+    
+    
+    bool ok = false;
+    do
+    {
+        if ( CFGetTypeID(obj) != CFStringGetTypeID()
+            || to_stlstr((CFStringRef)obj) != "_notifyOfPublishedCapabilities:")
+        {
+            fprintf(stderr, "Error: unexpected message selector: %s\n", get_description(obj).c_str());
+            break;
+        }
+        
+        CFDictionaryRef _channels;
+        
+        // extract the channel list from the arguments
+        if ( CFArrayGetCount(aux) != 1
+            || (_channels = (CFDictionaryRef)CFArrayGetValueAtIndex(aux, 0)) == NULL
+            || CFGetTypeID(_channels) != CFDictionaryGetTypeID()
+            || CFDictionaryGetCount(_channels) == 0 ) {
+            fprintf(stderr, "channel list has an unexpected format:\n%s\n", get_description(aux).c_str());
+            break;
+        }
+        
+        channels = (CFDictionaryRef)CFRetain(_channels);
+        
+        if (verbose) {
+            printf("channel list:\n%s\n", get_description(channels).c_str());
+        }
+        
+        ok = true;
+    }
+    while ( false );
+    
+    CFRelease(obj);
+    CFRelease(aux);
+    
+    return ok;
 }
 
 
+static int make_channel(idevice_connection_t conn, CFStringRef identifier) {
+    if ( !CFDictionaryContainsKey(channels, identifier) ) {
+        fprintf(stderr, "channel %s is not supported by the server\n", to_stlstr(identifier).c_str());
+        return -1;
+    }
+    
+    int code = ++cur_channel;
+    
+    message_aux_t args;
+    args.append_int(code);
+    args.append_obj(identifier);
+    
+    CFTypeRef retobj = NULL;
 
-    //    if ( !send_message(conn, 0, CFSTR("_notifyOfPublishedCapabilities:"), &args, false) )
-    //        return false;
-    //
-    //    CFTypeRef obj = NULL;
-    //    CFArrayRef aux = NULL;
-    //
-    //    // we are now expecting the server to reply with the same message.
-    //    // a description of all available channels will be provided in the arguments list.
-    //    if ( !recv_message(conn, &obj, &aux) || obj == NULL || aux == NULL )
-    //    {
-    //        fprintf(stderr, "Error: failed to receive response from _notifyOfPublishedCapabilities:\n");
-    //        return false;
-    //    }
-    //
-    //    bool ok = false;
-    //    do
-    //    {
-    //        if ( CFGetTypeID(obj) != CFStringGetTypeID()
-    //            || to_stlstr((CFStringRef)obj) != "_notifyOfPublishedCapabilities:" )
-    //        {
-    //            fprintf(stderr, "Error: unexpected message selector: %s\n", get_description(obj).c_str());
-    //            break;
-    //        }
-    //
-    //        CFDictionaryRef _channels;
-    //
-    //        // extract the channel list from the arguments
-    //        if ( CFArrayGetCount(aux) != 1
-    //            || (_channels = (CFDictionaryRef)CFArrayGetValueAtIndex(aux, 0)) == NULL
-    //            || CFGetTypeID(_channels) != CFDictionaryGetTypeID()
-    //            || CFDictionaryGetCount(_channels) == 0 )
-    //        {
-    //            fprintf(stderr, "channel list has an unexpected format:\n%s\n", get_description(aux).c_str());
-    //            break;
-    //        }
-    //
-    //        channels = (CFDictionaryRef)CFRetain(_channels);
-    //
-    //        if ( verbose )
-    //            printf("channel list:\n%s\n", get_description(channels).c_str());
-    //
-    //        ok = true;
-    //    }
-    //    while ( false );
-    //
-    //    CFRelease(obj);
-    //    CFRelease(aux);
-    //
-    //    return ok;
+    if (!send_message(conn, 0, (char *)CFSTR("_requestChannelWithCode:identifier:"), &args, true) || !recv_message(conn, &retobj, NULL)) {
+        return -1;
+    }
+    
+    if ( retobj != NULL ) {
+        fprintf(stderr, "Error: _requestChannelWithCode:identifier: returned %s\n", get_description(retobj).c_str());
+        CFRelease(retobj);
+        return -1;
+    }
+    
+    return code;
+}
+
+bool print_proclist(idevice_connection_t conn) {
+    int channel = make_channel(conn, CFSTR("com.apple.instruments.server.services.deviceinfo"));
+    if ( channel < 0 )
+        return false;
+    
+    CFTypeRef retobj = NULL;
+    
+    if (!send_message(conn, channel, (char *)CFSTR("runningProcesses"), NULL, true)
+        || !recv_message(conn, &retobj, NULL)
+        || retobj == NULL )
+    {
+        fprintf(stderr, "Error: failed to retrieve return value for runningProcesses\n");
+        return false;
+    }
+    
+    bool ok = true;
+    if ( CFGetTypeID(retobj) == CFArrayGetTypeID() )
+    {
+        CFArrayRef array = (CFArrayRef)retobj;
+        
+        printf("proclist:\n");
+        for ( size_t i = 0, size = CFArrayGetCount(array); i < size; i++ )
+        {
+            CFDictionaryRef dict = (CFDictionaryRef)CFArrayGetValueAtIndex(array, i);
+            
+            CFStringRef _name = (CFStringRef)CFDictionaryGetValue(dict, CFSTR("name"));
+            string_t name = to_stlstr(_name);
+            
+            CFNumberRef _pid = (CFNumberRef)CFDictionaryGetValue(dict, CFSTR("pid"));
+            int pid = 0;
+            CFNumberGetValue(_pid, kCFNumberSInt32Type, &pid);
+            
+            printf("%6d %s\n", pid, name.c_str());
+        }
+    } else {
+        fprintf(stderr, "Error: process list is not in the expected format: %s\n", get_description(retobj).c_str());
+        ok = false;
+    }
+    
+    CFRelease(retobj);
+    return ok;
+}
+
+
+//    if ( !send_message(conn, 0, CFSTR("_notifyOfPublishedCapabilities:"), &args, false) )
+//        return false;
+//
+//    CFTypeRef obj = NULL;
+//    CFArrayRef aux = NULL;
+//
+//    // we are now expecting the server to reply with the same message.
+//    // a description of all available channels will be provided in the arguments list.
+//    if ( !recv_message(conn, &obj, &aux) || obj == NULL || aux == NULL )
+//    {
+//        fprintf(stderr, "Error: failed to receive response from _notifyOfPublishedCapabilities:\n");
+//        return false;
+//    }
+//
+//    bool ok = false;
+//    do
+//    {
+//        if ( CFGetTypeID(obj) != CFStringGetTypeID()
+//            || to_stlstr((CFStringRef)obj) != "_notifyOfPublishedCapabilities:" )
+//        {
+//            fprintf(stderr, "Error: unexpected message selector: %s\n", get_description(obj).c_str());
+//            break;
+//        }
+//
+//        CFDictionaryRef _channels;
+//
+//        // extract the channel list from the arguments
+//        if ( CFArrayGetCount(aux) != 1
+//            || (_channels = (CFDictionaryRef)CFArrayGetValueAtIndex(aux, 0)) == NULL
+//            || CFGetTypeID(_channels) != CFDictionaryGetTypeID()
+//            || CFDictionaryGetCount(_channels) == 0 )
+//        {
+//            fprintf(stderr, "channel list has an unexpected format:\n%s\n", get_description(aux).c_str());
+//            break;
+//        }
+//
+//        channels = (CFDictionaryRef)CFRetain(_channels);
+//
+//        if ( verbose )
+//            printf("channel list:\n%s\n", get_description(channels).c_str());
+//
+//        ok = true;
+//    }
+//    while ( false );
+//
+//    CFRelease(obj);
+//    CFRelease(aux);
+//
+//    return ok;
 //}
 
 //

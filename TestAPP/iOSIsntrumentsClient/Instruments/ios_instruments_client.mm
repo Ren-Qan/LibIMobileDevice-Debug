@@ -445,10 +445,8 @@ static bool perform_handshake(am_device_service_connection *conn)
 // the channel identifier should be in the list of channels returned by the server
 // in perform_handshake(). after a channel is established, you can use send_message()
 // to remotely invoke Objective-C methods.
-static int make_channel(am_device_service_connection *conn, CFStringRef identifier)
-{
-    if ( !CFDictionaryContainsKey(channels, identifier) )
-    {
+static int make_channel(am_device_service_connection *conn, CFStringRef identifier) {
+    if ( !CFDictionaryContainsKey(channels, identifier) ) {
         fprintf(stderr, "channel %s is not supported by the server\n", to_stlstr(identifier).c_str());
         return -1;
     }
@@ -462,14 +460,12 @@ static int make_channel(am_device_service_connection *conn, CFStringRef identifi
     CFTypeRef retobj = NULL;
     
     // request to open the channel, expect an empty reply
-    if ( !send_message(conn, 0, CFSTR("_requestChannelWithCode:identifier:"), &args)
-        || !recv_message(conn, &retobj, NULL) )
-    {
+    if (!send_message(conn, 0, CFSTR("_requestChannelWithCode:identifier:"), &args)
+        || !recv_message(conn, &retobj, NULL)) {
         return -1;
     }
     
-    if ( retobj != NULL )
-    {
+    if ( retobj != NULL ) {
         fprintf(stderr, "Error: _requestChannelWithCode:identifier: returned %s\n", get_description(retobj).c_str());
         CFRelease(retobj);
         return -1;

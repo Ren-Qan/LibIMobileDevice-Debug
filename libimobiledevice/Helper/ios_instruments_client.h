@@ -44,6 +44,7 @@ public:
 
 
 bool test(idevice_connection_t _Nullable conn);
+bool print_proclist(idevice_connection_t _Nullable conn);
 
 #endif // IOS_INSTRUMENTS_CLIENT
 

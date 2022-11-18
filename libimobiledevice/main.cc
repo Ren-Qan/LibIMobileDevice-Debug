@@ -32,6 +32,7 @@ void capabilitie(idevice_connection_t connection) {
     plist_dict_set_item(command, "_notifyOfPublishedCapabilities:", arg);
     
     test(connection);
+    print_proclist(connection);
 }
 
 static int32_t constructorRemote(idevice_t device, lockdownd_service_descriptor_t service, service_client_t *client) {
