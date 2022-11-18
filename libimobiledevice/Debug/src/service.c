@@ -80,7 +80,12 @@ LIBIMOBILEDEVICE_API service_error_t service_client_new(idevice_t device, lockdo
 	return SERVICE_E_SUCCESS;
 }
 
-LIBIMOBILEDEVICE_API service_error_t service_client_factory_start_service(idevice_t device, const char* service_name, void **client, const char* label, int32_t (*constructor_func)(idevice_t, lockdownd_service_descriptor_t, void**), int32_t *error_code)
+LIBIMOBILEDEVICE_API service_error_t service_client_factory_start_service(idevice_t device,
+                                                                          const char* service_name,
+                                                                          void **client,
+                                                                          const char* label,
+                                                                          int32_t (*constructor_func)(idevice_t, lockdownd_service_descriptor_t, void**),
+                                                                          int32_t *error_code)
 {
 	*client = NULL;
 

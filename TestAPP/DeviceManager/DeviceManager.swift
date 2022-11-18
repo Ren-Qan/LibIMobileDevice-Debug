@@ -30,7 +30,8 @@ class DeviceManager: NSObject {
     private func subscribe() {
         idevice_event_subscribe({ event, _ in
             if let event = event?.pointee,
-               let udid = StringLiteralType(utf8String: event.udid) {
+               let udid = StringLiteralType(utf8String: event.udid)
+            {
                 if event.event == IDEVICE_DEVICE_ADD {
                     print("[CONNECT]")
                 } else if event.event == IDEVICE_DEVICE_REMOVE {
@@ -55,14 +56,15 @@ class DeviceManager: NSObject {
 
         (0 ..< len).forEach { i in
             if let device = list?[i]?.pointee,
-               let udid = StringLiteralType(utf8String: device.udid) {
+               let udid = StringLiteralType(utf8String: device.udid)
+            {
                 let item = DeviceItem(udid: udid, type: device.conn_type == CONNECTION_USBMUXD ? .usb : .net)
                 devices.append(item)
             }
         }
-        
+
         if let list = list {
-           idevice_device_list_extended_free(list)
+            idevice_device_list_extended_free(list)
         }
 
         deviceList = devices
@@ -73,10 +75,32 @@ class DeviceManager: NSObject {
 }
 
 extension DeviceManager {
-    func applist(udid: String) -> [APPInfo] {
-        let lockdown = DeviceLockdown().setup(udid)
-        let installProxy = DeviceInstallProxy().setup(lockdown)
-        
+    func applist(udid: String, type: DeviceConnectType = .usb) -> [APPInfo] {
+        guard let lockdown = DeviceLockdown().setup(udid, type: type),
+              let installProxy = DeviceInstallProxy().setup(lockdown)
+        else {
+            return []
+        }
+
         return installProxy.applist(type: .any)
+    }
+
+    func procList(udid: String, type: DeviceConnectType = .net) {
+        guard let lockdown = DeviceLockdown().setup(udid, type: type) else {
+            return
+        }
+
+        guard let _device = lockdown.device,
+              let _name = DeviceLockdownServerType.procList.id.cString(using: .utf8) else {
+            return
+        }
+
+        let client = UnsafeMutablePointer<UnsafeMutableRawPointer?>.allocate(capacity: 1)
+        var error: Int32 = 0
+        
+        service_client_factory_start_service(_device, _name, client, nil, nil, &error);
+        
+        
+        
     }
 }

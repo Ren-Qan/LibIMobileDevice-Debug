@@ -11,9 +11,12 @@ import LibMobileDevice
 enum DeviceLockdownServerType: String {
     case appList
     
+    case procList
+    
     var id: String {
         switch self {
             case .appList: return "com.apple.mobile.installation_proxy"
+            case .procList: return "com.apple.instruments.server.services.deviceinfo"
         }
     }
 }

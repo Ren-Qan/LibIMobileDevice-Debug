@@ -50,10 +50,10 @@ class DeviceInstallProxy: NSObject {
 }
 
 extension DeviceInstallProxy {
-    public func setup(_ lockdown: DeviceLockdown) -> Self {
+    public func setup(_ lockdown: DeviceLockdown) -> Self? {
         guard let _device = lockdown.device,
               let _service = lockdown.server(type: .appList) else {
-            return self
+            return nil
         }
 
         instproxy_client_new(_device, _service, &instproxy)

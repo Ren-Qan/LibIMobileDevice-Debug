@@ -27,6 +27,7 @@
 		C72CB5172921E89600291F16 /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5112921E89600291F16 /* libimobiledevice-glue-1.0.a */; };
 		C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */; };
 		C72CB5192921E89600291F16 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5132921E89600291F16 /* libssl.a */; };
+		C761B0A5292626FA00603756 /* instruments.c in Sources */ = {isa = PBXBuildFile; fileRef = C761B0A4292626FA00603756 /* instruments.c */; };
 		C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E6291DF5EE0040F03A /* libplist-2.0.a */; };
 		C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E9291DF5EF0040F03A /* libplist-2.0.a */; };
@@ -154,6 +155,9 @@
 		C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusbmuxd-2.0.a"; sourceTree = "<group>"; };
 		C72CB5132921E89600291F16 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestAPP-Bridging-Header.h"; sourceTree = "<group>"; };
+		C761B0A3292626FA00603756 /* instruments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = instruments.h; sourceTree = "<group>"; };
+		C761B0A4292626FA00603756 /* instruments.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = instruments.c; sourceTree = "<group>"; };
+		C761B0A62926426500603756 /* libimobiledevice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = libimobiledevice.entitlements; sourceTree = "<group>"; };
 		C775A659291DECA9004F8618 /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		C775A65B291DECA9004F8618 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C775A65C291DECA9004F8618 /* opack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opack.h; sourceTree = "<group>"; };
@@ -940,6 +944,9 @@
 		C7999CD8291E3DC60040F03A /* libimobiledevice */ = {
 			isa = PBXGroup;
 			children = (
+				C761B0A62926426500603756 /* libimobiledevice.entitlements */,
+				C761B0A3292626FA00603756 /* instruments.h */,
+				C761B0A4292626FA00603756 /* instruments.c */,
 				C7999CD9291E3DC60040F03A /* main.c */,
 				C7999CDF291E3E7D0040F03A /* Debug */,
 				C7999D39291E3E7D0040F03A /* Headers */,
@@ -1522,6 +1529,7 @@
 				C7999D42291E3E7E0040F03A /* afc.c in Sources */,
 				C7999D47291E3E7E0040F03A /* mobilesync.c in Sources */,
 				C7999D52291E3E7E0040F03A /* mobilebackup2.c in Sources */,
+				C761B0A5292626FA00603756 /* instruments.c in Sources */,
 				C7999D3B291E3E7E0040F03A /* lockdown.c in Sources */,
 				C7999D55291E3E7E0040F03A /* screenshotr.c in Sources */,
 				C7999D54291E3E7E0040F03A /* heartbeat.c in Sources */,
@@ -1834,9 +1842,10 @@
 		C7999CDC291E3DC60040F03A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = libimobiledevice/libimobiledevice.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88JVP7LE4V;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1855,9 +1864,10 @@
 		C7999CDD291E3DC60040F03A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = libimobiledevice/libimobiledevice.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88JVP7LE4V;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

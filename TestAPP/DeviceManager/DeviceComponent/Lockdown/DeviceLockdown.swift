@@ -41,18 +41,19 @@ class DeviceLockdown: NSObject {
 
 extension DeviceLockdown {
     @discardableResult
-    public func setup(_ udid: String) -> Self {
+    public func setup(_ udid: String, type: DeviceConnectType) -> Self? {
         guard let cudid = udid.cString(using: .utf8),
               let label = "LOCKDOWN".cString(using: .utf8) else {
-            return self
+            return nil
         }
-         
-        guard idevice_new(&device, cudid) == IDEVICE_E_SUCCESS else {
-            return self
+        
+        let state = idevice_new_with_options(&device, cudid, type == .usb ? IDEVICE_LOOKUP_USBMUX : IDEVICE_LOOKUP_NETWORK)
+        guard state == IDEVICE_E_SUCCESS else {
+            return nil
         }
         
         guard lockdownd_client_new_with_handshake(device, &lockdown, label) == LOCKDOWN_E_SUCCESS else {
-            return self
+            return nil
         }
         
         self.udid = udid

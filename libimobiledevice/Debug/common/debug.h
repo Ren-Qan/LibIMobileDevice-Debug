@@ -37,16 +37,21 @@
 #endif
 
 void debug_info_real(const char *func,
-											const char *file,
-											int	line,
-											const char *format, ...);
+                     const char *file,
+                     int line,
+                     const char *format, ...);
 
-void debug_buffer(const char *data, const int length);
-void debug_buffer_to_file(const char *file, const char *data, const int length);
+void debug_buffer(const char *data,
+                  const int length);
+
+void debug_buffer_to_file(const char *file,
+                          const char *data,
+                          const int length);
+
 void debug_plist_real(const char *func,
-											const char *file,
-											int	line,
-											plist_t plist);
+                      const char *file,
+                      int line,
+                      plist_t plist);
 
 void internal_set_debug_level(int level);
 

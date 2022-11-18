@@ -26,16 +26,15 @@ class ViewController: NSViewController {
     }
 
     @objc func getDeviceList() {
-//        DeviceManager.share.refreshDevices()
+        DeviceManager.share.refreshDevices()
 //
-//        let device = DeviceManager.share.deviceList.first { item in
-//            item.type == .usb
-//        }
-//
-//        if let udid = device?.udid {
-//           let list = DeviceManager.share.applist(udid: udid)
-//        }
-//
-        TEST.test(withArgv: CommandLine.arguments)
+        let device = DeviceManager.share.deviceList.first { item in
+            item.type == .net
+        }
+
+        if let udid = device?.udid {
+            let list = DeviceManager.share.procList(udid: udid)
+        }
+
     }
 }
