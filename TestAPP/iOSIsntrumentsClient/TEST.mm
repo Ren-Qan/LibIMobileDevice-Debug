@@ -12,11 +12,14 @@
 @implementation TEST
 
 + (void)testWithArgv:(NSArray<NSString *> *)argv {
-    load();
-    am_device_service_connection *connect = getDeviceServiceConnection();
-    printAppList();
+//    load();
+//    am_device_service_connection *connect = getDeviceServiceConnection();
+//    printAppList();
+//
     
-    NSLog(@"");
+//    show();
+    
+//    NSLog(@"");
 }
 
 @end

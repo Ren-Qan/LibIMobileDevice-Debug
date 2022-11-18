@@ -10,11 +10,11 @@
 #include <string.h>
 
 #include "libimobiledevice.h"
-#include "instruments.h"
 #include "installation_proxy.h"
 #include "mobile_image_mounter.h"
 #include "service.h"
 
+#include "ios_instruments_client.h"
 
 #define REMOTESERVER_SERVICE_NAME "com.apple.instruments.remoteserver.DVTSecureSocketProxy"
 
@@ -31,9 +31,7 @@ void capabilitie(idevice_connection_t connection) {
     plist_t command = plist_new_dict();
     plist_dict_set_item(command, "_notifyOfPublishedCapabilities:", arg);
     
-//    int error = idevice_connection_send(connection, data, (uint32_t)len, &bytes);
-    
-    
+    test(connection);
 }
 
 static int32_t constructorRemote(idevice_t device, lockdownd_service_descriptor_t service, service_client_t *client) {
@@ -63,7 +61,6 @@ char * getVersion(idevice_t device) {
     
     plist_t p_version = NULL;
     if (lockdownd_get_value(client_loc, NULL, "ProductVersion", &p_version) == LOCKDOWN_E_SUCCESS) {
-        int vers[3] = {0, 0, 0};
         char *s_version = NULL;
         plist_get_string_val(p_version, &s_version);
         return s_version;

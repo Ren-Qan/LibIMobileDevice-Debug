@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C70E00E929277D1700CBB6EA /* cftypes.mm in Sources */ = {isa = PBXBuildFile; fileRef = C70E00E429277D1700CBB6EA /* cftypes.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C70E00EA29277D1700CBB6EA /* common.mm in Sources */ = {isa = PBXBuildFile; fileRef = C70E00E629277D1700CBB6EA /* common.mm */; };
+		C70E00EB29277D1700CBB6EA /* ios_instruments_client.mm in Sources */ = {isa = PBXBuildFile; fileRef = C70E00E729277D1700CBB6EA /* ios_instruments_client.mm */; };
 		C716B588291D351E00C93BD6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C716B587291D351E00C93BD6 /* main.c */; };
 		C716B5BA291E988700C93BD6 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B5291E988700C93BD6 /* libcrypto.a */; };
 		C716B5BB291E988700C93BD6 /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B6291E988700C93BD6 /* libplist-2.0.a */; };
@@ -27,7 +30,6 @@
 		C72CB5172921E89600291F16 /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5112921E89600291F16 /* libimobiledevice-glue-1.0.a */; };
 		C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */; };
 		C72CB5192921E89600291F16 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5132921E89600291F16 /* libssl.a */; };
-		C761B0A5292626FA00603756 /* instruments.c in Sources */ = {isa = PBXBuildFile; fileRef = C761B0A4292626FA00603756 /* instruments.c */; };
 		C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E6291DF5EE0040F03A /* libplist-2.0.a */; };
 		C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E9291DF5EF0040F03A /* libplist-2.0.a */; };
@@ -36,7 +38,7 @@
 		C7999C8A291E2B910040F03A /* libusbmuxd.c in Sources */ = {isa = PBXBuildFile; fileRef = C7999C89291E2B910040F03A /* libusbmuxd.c */; };
 		C7999C92291E2C040040F03A /* activation.c in Sources */ = {isa = PBXBuildFile; fileRef = C7999C90291E2C040040F03A /* activation.c */; };
 		C7999CD2291E35F10040F03A /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C7999CD1291E35F10040F03A /* libcurl.tbd */; };
-		C7999CDA291E3DC60040F03A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C7999CD9291E3DC60040F03A /* main.c */; };
+		C7999CDA291E3DC60040F03A /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = C7999CD9291E3DC60040F03A /* main.cc */; };
 		C7999D3A291E3E7E0040F03A /* syslog_relay.c in Sources */ = {isa = PBXBuildFile; fileRef = C7999D00291E3E7D0040F03A /* syslog_relay.c */; };
 		C7999D3B291E3E7E0040F03A /* lockdown.c in Sources */ = {isa = PBXBuildFile; fileRef = C7999D01291E3E7D0040F03A /* lockdown.c */; };
 		C7999D3C291E3E7E0040F03A /* device_link_service.c in Sources */ = {isa = PBXBuildFile; fileRef = C7999D02291E3E7D0040F03A /* device_link_service.c */; };
@@ -125,6 +127,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C70E00E329277D1700CBB6EA /* cftypes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cftypes.hpp; sourceTree = "<group>"; };
+		C70E00E429277D1700CBB6EA /* cftypes.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cftypes.mm; sourceTree = "<group>"; };
+		C70E00E529277D1700CBB6EA /* ios_instruments_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_instruments_client.h; sourceTree = "<group>"; };
+		C70E00E629277D1700CBB6EA /* common.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = common.mm; sourceTree = "<group>"; };
+		C70E00E729277D1700CBB6EA /* ios_instruments_client.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_instruments_client.mm; sourceTree = "<group>"; };
+		C70E00E829277D1700CBB6EA /* common.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = common.hh; sourceTree = "<group>"; };
 		C716B585291D351E00C93BD6 /* libusbmuxd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libusbmuxd; sourceTree = BUILT_PRODUCTS_DIR; };
 		C716B587291D351E00C93BD6 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		C716B5B5291E988700C93BD6 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -155,9 +163,6 @@
 		C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusbmuxd-2.0.a"; sourceTree = "<group>"; };
 		C72CB5132921E89600291F16 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestAPP-Bridging-Header.h"; sourceTree = "<group>"; };
-		C761B0A3292626FA00603756 /* instruments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = instruments.h; sourceTree = "<group>"; };
-		C761B0A4292626FA00603756 /* instruments.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = instruments.c; sourceTree = "<group>"; };
-		C761B0A62926426500603756 /* libimobiledevice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = libimobiledevice.entitlements; sourceTree = "<group>"; };
 		C775A659291DECA9004F8618 /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		C775A65B291DECA9004F8618 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C775A65C291DECA9004F8618 /* opack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opack.h; sourceTree = "<group>"; };
@@ -216,7 +221,7 @@
 		C7999CB9291E2CC10040F03A /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		C7999CD1291E35F10040F03A /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		C7999CD7291E3DC50040F03A /* libimobiledevice */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libimobiledevice; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7999CD9291E3DC60040F03A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		C7999CD9291E3DC60040F03A /* main.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cc; sourceTree = "<group>"; };
 		C7999CE2291E3E7D0040F03A /* installation_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = installation_proxy.h; sourceTree = "<group>"; };
 		C7999CE3291E3E7D0040F03A /* companion_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = companion_proxy.h; sourceTree = "<group>"; };
 		C7999CE4291E3E7D0040F03A /* notification_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notification_proxy.h; sourceTree = "<group>"; };
@@ -566,6 +571,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C70E00E229277CF300CBB6EA /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C70E00E329277D1700CBB6EA /* cftypes.hpp */,
+				C70E00E429277D1700CBB6EA /* cftypes.mm */,
+				C70E00E829277D1700CBB6EA /* common.hh */,
+				C70E00E629277D1700CBB6EA /* common.mm */,
+				C70E00E529277D1700CBB6EA /* ios_instruments_client.h */,
+				C70E00E729277D1700CBB6EA /* ios_instruments_client.mm */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		C716B586291D351E00C93BD6 /* libusbmuxd */ = {
 			isa = PBXGroup;
 			children = (
@@ -944,10 +962,8 @@
 		C7999CD8291E3DC60040F03A /* libimobiledevice */ = {
 			isa = PBXGroup;
 			children = (
-				C761B0A62926426500603756 /* libimobiledevice.entitlements */,
-				C761B0A3292626FA00603756 /* instruments.h */,
-				C761B0A4292626FA00603756 /* instruments.c */,
-				C7999CD9291E3DC60040F03A /* main.c */,
+				C7999CD9291E3DC60040F03A /* main.cc */,
+				C70E00E229277CF300CBB6EA /* Helper */,
 				C7999CDF291E3E7D0040F03A /* Debug */,
 				C7999D39291E3E7D0040F03A /* Headers */,
 				C7999CDE291E3E7D0040F03A /* Libraries */,
@@ -1529,8 +1545,8 @@
 				C7999D42291E3E7E0040F03A /* afc.c in Sources */,
 				C7999D47291E3E7E0040F03A /* mobilesync.c in Sources */,
 				C7999D52291E3E7E0040F03A /* mobilebackup2.c in Sources */,
-				C761B0A5292626FA00603756 /* instruments.c in Sources */,
 				C7999D3B291E3E7E0040F03A /* lockdown.c in Sources */,
+				C70E00EB29277D1700CBB6EA /* ios_instruments_client.mm in Sources */,
 				C7999D55291E3E7E0040F03A /* screenshotr.c in Sources */,
 				C7999D54291E3E7E0040F03A /* heartbeat.c in Sources */,
 				C7999D56291E3E7E0040F03A /* lockdown-cu.c in Sources */,
@@ -1547,8 +1563,10 @@
 				C7999D49291E3E7E0040F03A /* restore.c in Sources */,
 				C7999D3F291E3E7E0040F03A /* sbservices.c in Sources */,
 				C7999D44291E3E7E0040F03A /* reverse_proxy.c in Sources */,
-				C7999CDA291E3DC60040F03A /* main.c in Sources */,
+				C70E00EA29277D1700CBB6EA /* common.mm in Sources */,
+				C7999CDA291E3DC60040F03A /* main.cc in Sources */,
 				C7999D48291E3E7E0040F03A /* notification_proxy.c in Sources */,
+				C70E00E929277D1700CBB6EA /* cftypes.mm in Sources */,
 				C7999D3C291E3E7E0040F03A /* device_link_service.c in Sources */,
 				C7999D53291E3E7E0040F03A /* file_relay.c in Sources */,
 				C7999D7A291E3FF80040F03A /* userpref.c in Sources */,
@@ -1842,7 +1860,7 @@
 		C7999CDC291E3DC60040F03A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = libimobiledevice/libimobiledevice.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88JVP7LE4V;
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -1864,7 +1882,7 @@
 		C7999CDD291E3DC60040F03A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = libimobiledevice/libimobiledevice.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88JVP7LE4V;
 				ENABLE_HARDENED_RUNTIME = NO;

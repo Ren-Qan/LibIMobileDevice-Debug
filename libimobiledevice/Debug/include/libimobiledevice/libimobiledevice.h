@@ -74,7 +74,7 @@ struct idevice_info {
 };
 typedef struct idevice_info* idevice_info_t;
 
-/* discovery (events/asynchronous) */
+/* discovery* (events/asynchronous) */
 /** The event type for device add or removal */
 enum idevice_event_type {
 	IDEVICE_DEVICE_ADD = 1, /**< device was added */

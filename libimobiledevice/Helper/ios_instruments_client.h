@@ -2,13 +2,9 @@
 #define IOS_INSTRUMENTS_CLIENT
 
 #include "cftypes.hpp"
-#include "mobile_device.hpp"
-
-
-am_device_service_connection * _Nullable getDeviceServiceConnection();
-int stopServer();
-void printAppList();
-bool load();
+//#include "libimobiledevice/libimobiledevice.h"
+//#include "include/libimobiledevice/libimobiledevice.h"
+#include <libimobiledevice/libimobiledevice.h>
 
 //-----------------------------------------------------------------------------
 struct DTXMessageHeader
@@ -45,6 +41,9 @@ public:
     
     void get_bytes(bytevec_t * _Nullable out) const;
 };
+
+
+bool test(idevice_connection_t _Nullable conn);
 
 #endif // IOS_INSTRUMENTS_CLIENT
 
