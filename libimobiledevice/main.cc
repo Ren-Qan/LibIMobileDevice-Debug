@@ -14,24 +14,16 @@
 #include "mobile_image_mounter.h"
 #include "service.h"
 
-#include "ios_instruments_client.h"
+#import "DTXInstruments.hh"
+
 
 #define REMOTESERVER_SERVICE_NAME "com.apple.instruments.remoteserver.DVTSecureSocketProxy"
 
 static uint8_t instrument_sslEnable = 0;
 static uint16_t instrument_port = 0;
 
-
 void capabilitie(idevice_connection_t connection) {
-    plist_t arg = plist_new_dict();
-    plist_dict_set_item(arg, "com.apple.private.DTXBlockCompression", plist_new_uint(2));
-    plist_dict_set_item(arg, "com.apple.private.DTXConnection", plist_new_uint(1));
-    
-    
-    plist_t command = plist_new_dict();
-    plist_dict_set_item(command, "_notifyOfPublishedCapabilities:", arg);
-    
-    test(connection);
+    handShake(connection);
     print_proclist(connection);
 }
 
@@ -151,7 +143,7 @@ int main(int argc, const char * argv[]) {
     // service start
     void * remoteClient;
     int32_t reomoteError = 0;
-    int error = service_client_factory_start_service(device, REMOTESERVER_SERVICE_NAME, &remoteClient, "ReMote", SERVICE_CONSTRUCTOR(constructorRemote), &reomoteError);
+    service_client_factory_start_service(device, REMOTESERVER_SERVICE_NAME, &remoteClient, "ReMote", SERVICE_CONSTRUCTOR(constructorRemote), &reomoteError);
     
     while (1) {
         

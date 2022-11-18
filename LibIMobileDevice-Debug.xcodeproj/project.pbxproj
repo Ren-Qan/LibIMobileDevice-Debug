@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C70E00E929277D1700CBB6EA /* cftypes.mm in Sources */ = {isa = PBXBuildFile; fileRef = C70E00E429277D1700CBB6EA /* cftypes.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C70E00EA29277D1700CBB6EA /* common.mm in Sources */ = {isa = PBXBuildFile; fileRef = C70E00E629277D1700CBB6EA /* common.mm */; };
-		C70E00EB29277D1700CBB6EA /* ios_instruments_client.mm in Sources */ = {isa = PBXBuildFile; fileRef = C70E00E729277D1700CBB6EA /* ios_instruments_client.mm */; };
+		C70E00E929277D1700CBB6EA /* DTXCFTypes.mm in Sources */ = {isa = PBXBuildFile; fileRef = C70E00E429277D1700CBB6EA /* DTXCFTypes.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C70E00EA29277D1700CBB6EA /* DTXCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = C70E00E629277D1700CBB6EA /* DTXCommon.mm */; };
+		C70E00EB29277D1700CBB6EA /* DTXMessage.mm in Sources */ = {isa = PBXBuildFile; fileRef = C70E00E729277D1700CBB6EA /* DTXMessage.mm */; };
 		C716B588291D351E00C93BD6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C716B587291D351E00C93BD6 /* main.c */; };
 		C716B5BA291E988700C93BD6 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B5291E988700C93BD6 /* libcrypto.a */; };
 		C716B5BB291E988700C93BD6 /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B6291E988700C93BD6 /* libplist-2.0.a */; };
@@ -30,6 +30,8 @@
 		C72CB5172921E89600291F16 /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5112921E89600291F16 /* libimobiledevice-glue-1.0.a */; };
 		C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */; };
 		C72CB5192921E89600291F16 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5132921E89600291F16 /* libssl.a */; };
+		C73D82CB2927E45F0018B6F9 /* DTXMessageService.mm in Sources */ = {isa = PBXBuildFile; fileRef = C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */; };
+		C73D82CE2927E91F0018B6F9 /* DTXInstruments.mm in Sources */ = {isa = PBXBuildFile; fileRef = C73D82CC2927E91F0018B6F9 /* DTXInstruments.mm */; };
 		C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E6291DF5EE0040F03A /* libplist-2.0.a */; };
 		C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E9291DF5EF0040F03A /* libplist-2.0.a */; };
@@ -127,12 +129,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C70E00E329277D1700CBB6EA /* cftypes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cftypes.hpp; sourceTree = "<group>"; };
-		C70E00E429277D1700CBB6EA /* cftypes.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cftypes.mm; sourceTree = "<group>"; };
-		C70E00E529277D1700CBB6EA /* ios_instruments_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_instruments_client.h; sourceTree = "<group>"; };
-		C70E00E629277D1700CBB6EA /* common.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = common.mm; sourceTree = "<group>"; };
-		C70E00E729277D1700CBB6EA /* ios_instruments_client.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_instruments_client.mm; sourceTree = "<group>"; };
-		C70E00E829277D1700CBB6EA /* common.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = common.hh; sourceTree = "<group>"; };
+		C70E00E329277D1700CBB6EA /* DTXCFTypes.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DTXCFTypes.hh; sourceTree = "<group>"; };
+		C70E00E429277D1700CBB6EA /* DTXCFTypes.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DTXCFTypes.mm; sourceTree = "<group>"; };
+		C70E00E529277D1700CBB6EA /* DTXMessage.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DTXMessage.hh; sourceTree = "<group>"; };
+		C70E00E629277D1700CBB6EA /* DTXCommon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DTXCommon.mm; sourceTree = "<group>"; };
+		C70E00E729277D1700CBB6EA /* DTXMessage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DTXMessage.mm; sourceTree = "<group>"; };
+		C70E00E829277D1700CBB6EA /* DTXCommon.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DTXCommon.hh; sourceTree = "<group>"; };
 		C716B585291D351E00C93BD6 /* libusbmuxd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libusbmuxd; sourceTree = BUILT_PRODUCTS_DIR; };
 		C716B587291D351E00C93BD6 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		C716B5B5291E988700C93BD6 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -163,6 +165,10 @@
 		C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusbmuxd-2.0.a"; sourceTree = "<group>"; };
 		C72CB5132921E89600291F16 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestAPP-Bridging-Header.h"; sourceTree = "<group>"; };
+		C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DTXMessageService.mm; sourceTree = "<group>"; };
+		C73D82CA2927E45F0018B6F9 /* DTXMessageService.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DTXMessageService.hh; sourceTree = "<group>"; };
+		C73D82CC2927E91F0018B6F9 /* DTXInstruments.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DTXInstruments.mm; sourceTree = "<group>"; };
+		C73D82CD2927E91F0018B6F9 /* DTXInstruments.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DTXInstruments.hh; sourceTree = "<group>"; };
 		C775A659291DECA9004F8618 /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		C775A65B291DECA9004F8618 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C775A65C291DECA9004F8618 /* opack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opack.h; sourceTree = "<group>"; };
@@ -574,12 +580,16 @@
 		C70E00E229277CF300CBB6EA /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				C70E00E329277D1700CBB6EA /* cftypes.hpp */,
-				C70E00E429277D1700CBB6EA /* cftypes.mm */,
-				C70E00E829277D1700CBB6EA /* common.hh */,
-				C70E00E629277D1700CBB6EA /* common.mm */,
-				C70E00E529277D1700CBB6EA /* ios_instruments_client.h */,
-				C70E00E729277D1700CBB6EA /* ios_instruments_client.mm */,
+				C70E00E329277D1700CBB6EA /* DTXCFTypes.hh */,
+				C70E00E429277D1700CBB6EA /* DTXCFTypes.mm */,
+				C70E00E829277D1700CBB6EA /* DTXCommon.hh */,
+				C70E00E629277D1700CBB6EA /* DTXCommon.mm */,
+				C73D82CD2927E91F0018B6F9 /* DTXInstruments.hh */,
+				C73D82CC2927E91F0018B6F9 /* DTXInstruments.mm */,
+				C70E00E529277D1700CBB6EA /* DTXMessage.hh */,
+				C70E00E729277D1700CBB6EA /* DTXMessage.mm */,
+				C73D82CA2927E45F0018B6F9 /* DTXMessageService.hh */,
+				C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1546,7 +1556,7 @@
 				C7999D47291E3E7E0040F03A /* mobilesync.c in Sources */,
 				C7999D52291E3E7E0040F03A /* mobilebackup2.c in Sources */,
 				C7999D3B291E3E7E0040F03A /* lockdown.c in Sources */,
-				C70E00EB29277D1700CBB6EA /* ios_instruments_client.mm in Sources */,
+				C70E00EB29277D1700CBB6EA /* DTXMessage.mm in Sources */,
 				C7999D55291E3E7E0040F03A /* screenshotr.c in Sources */,
 				C7999D54291E3E7E0040F03A /* heartbeat.c in Sources */,
 				C7999D56291E3E7E0040F03A /* lockdown-cu.c in Sources */,
@@ -1563,10 +1573,12 @@
 				C7999D49291E3E7E0040F03A /* restore.c in Sources */,
 				C7999D3F291E3E7E0040F03A /* sbservices.c in Sources */,
 				C7999D44291E3E7E0040F03A /* reverse_proxy.c in Sources */,
-				C70E00EA29277D1700CBB6EA /* common.mm in Sources */,
+				C70E00EA29277D1700CBB6EA /* DTXCommon.mm in Sources */,
+				C73D82CE2927E91F0018B6F9 /* DTXInstruments.mm in Sources */,
+				C73D82CB2927E45F0018B6F9 /* DTXMessageService.mm in Sources */,
 				C7999CDA291E3DC60040F03A /* main.cc in Sources */,
 				C7999D48291E3E7E0040F03A /* notification_proxy.c in Sources */,
-				C70E00E929277D1700CBB6EA /* cftypes.mm in Sources */,
+				C70E00E929277D1700CBB6EA /* DTXCFTypes.mm in Sources */,
 				C7999D3C291E3E7E0040F03A /* device_link_service.c in Sources */,
 				C7999D53291E3E7E0040F03A /* file_relay.c in Sources */,
 				C7999D7A291E3FF80040F03A /* userpref.c in Sources */,

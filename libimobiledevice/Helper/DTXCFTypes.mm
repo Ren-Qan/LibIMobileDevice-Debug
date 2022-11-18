@@ -1,4 +1,4 @@
-#include "cftypes.hpp"
+#include "DTXCFTypes.hh"
 #import <Foundation/Foundation.h>
 
 //------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ CFTypeRef unarchive(const uint8_t *buf, size_t bufsize)
     @autoreleasepool
     {
         NSData *data = [NSData dataWithBytesNoCopy:(void *)buf length:bufsize freeWhenDone:false];
-        id object = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:data error:NULL];
+        id object = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         return (__bridge CFTypeRef)[object retain];
     }
 }

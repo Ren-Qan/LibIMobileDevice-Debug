@@ -1,4 +1,4 @@
-#include "common.hh"
+#include "DTXCommon.hh"
 
 #define MAXSTR 1024
 

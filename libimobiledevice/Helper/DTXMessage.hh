@@ -1,9 +1,7 @@
-#ifndef IOS_INSTRUMENTS_CLIENT
-#define IOS_INSTRUMENTS_CLIENT
+#ifndef DTXMESSAGE
+#define DTXMESSAGE
 
-#include "cftypes.hpp"
-//#include "libimobiledevice/libimobiledevice.h"
-//#include "include/libimobiledevice/libimobiledevice.h"
+#include "DTXCFTypes.hh"
 #include <libimobiledevice/libimobiledevice.h>
 
 //-----------------------------------------------------------------------------
@@ -42,11 +40,7 @@ public:
     void get_bytes(bytevec_t * _Nullable out) const;
 };
 
-
-bool test(idevice_connection_t _Nullable conn);
-bool print_proclist(idevice_connection_t _Nullable conn);
-
-#endif // IOS_INSTRUMENTS_CLIENT
+#endif // DTXMESSAGE
 
 
 //instruments连接建立之后，传输的消息为 DTXMessage
