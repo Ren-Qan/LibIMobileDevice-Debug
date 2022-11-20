@@ -381,6 +381,8 @@ static bool perform_handshake(am_device_service_connection *conn)
     CFDictionaryAddValue(capabilities, CFSTR("com.apple.private.DTXBlockCompression"), v2);
     CFDictionaryAddValue(capabilities, CFSTR("com.apple.private.DTXConnection"), v1);
     
+    
+    
     // serialize the dictionary
     message_aux_t args;
     args.append_obj(capabilities);
@@ -631,8 +633,7 @@ static bool launch(am_device_service_connection *conn, const char *_bid)
         CFSTR("KillExisting")
     };
     const void *values[] = { v0, v1 };
-    CFDictionaryRef options = CFDictionaryCreate(
-                                                 NULL,
+    CFDictionaryRef options = CFDictionaryCreate(NULL,
                                                  keys,
                                                  values,
                                                  2,

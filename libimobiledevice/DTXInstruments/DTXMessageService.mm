@@ -104,11 +104,6 @@ bool recv_message(idevice_connection_t conn,
                 // new message id, we must update the count on our side
                 cur_message = mheader.identifier;
             }
-            else if ( mheader.identifier < cur_message ) {
-                // the id must match the previous request, anything else doesn't really make sense
-                fprintf(stderr, "unexpected message ID: %d\n", mheader.identifier);
-                return false;
-            }
         } else {
             fprintf(stderr, "invalid conversation index: %d\n", mheader.conversationIndex);
             return false;
@@ -175,6 +170,7 @@ bool recv_message(idevice_connection_t conn,
         }
         *aux = _aux;
     }
+    
     
     if (objlen != 0 && retobj != NULL) {
         *retobj = unarchive(objptr, objlen);

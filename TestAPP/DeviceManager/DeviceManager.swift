@@ -19,7 +19,7 @@ struct DeviceItem {
 }
 
 class DeviceManager: NSObject {
-    private(set) var deviceList = [DeviceItem]()
+    public private(set) var deviceList = [DeviceItem]()
 
     static var share: DeviceManager = {
         let device = DeviceManager()

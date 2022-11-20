@@ -23,4 +23,6 @@ void instrument_connection_free(idevice_connection_t conn);
 
 bool print_proclist(idevice_connection_t _Nullable conn);
 
+void print_cpu(idevice_connection_t conn);
+
 #endif /* Instruments_hpp */

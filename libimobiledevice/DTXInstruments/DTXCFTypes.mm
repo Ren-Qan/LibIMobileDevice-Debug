@@ -1,6 +1,31 @@
 #include "DTXCFTypes.hh"
 #import <Foundation/Foundation.h>
 
+@interface DTTapMessage : NSObject<NSSecureCoding>
+
+@property (nonatomic, strong) NSObject * dic;
+
+@end
+
+@implementation DTTapMessage
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    [coder encodeObject:self.dic forKey:@"DTTapMessagePlist"];
+}
+
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
+    if (self = [super init]) {
+        self.dic = [coder decodeObjectForKey:@"DTTapMessagePlist"];
+    }
+    return self;
+}
+
+@end
+
 //------------------------------------------------------------------------------
 string_t to_stlstr(CFStringRef ref)
 {
@@ -37,7 +62,7 @@ void archive(bytevec_t *buf, CFTypeRef ref)
     @autoreleasepool
     {
         id object = (__bridge id)ref;
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object requiringSecureCoding:NO error:NULL];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object requiringSecureCoding:true error:NULL];
         const void *bytes = [data bytes];
         int length = (int)[data length];
         append_v(*buf, bytes, length);
@@ -50,8 +75,21 @@ CFTypeRef unarchive(const uint8_t *buf, size_t bufsize)
     @autoreleasepool
     {
         NSData *data = [NSData dataWithBytesNoCopy:(void *)buf length:bufsize freeWhenDone:false];
-        id object = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        [NSKeyedUnarchiver setClass:[DTTapMessage class] forClassName:@"DTSysmonTapMessage"];
+        NSError *error = NULL;
+        id object = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:data error:&error];
         return (__bridge CFTypeRef)[object retain];
+    }
+}
+
+
+void log(const uint8_t *buf, size_t bufsize) {
+    @autoreleasepool
+    {
+        NSData *data = [NSData dataWithBytesNoCopy:(void *)buf length:bufsize freeWhenDone:false];
+        NSString * string = [NSString.alloc initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", string);
+//        return (__bridge CFTypeRef)[object retain];
     }
 }
 

@@ -30,12 +30,17 @@ int main(int argc, const char * argv[]) {
     
     // creat Device
     idevice_t device = NULL;
-    idevice_new_with_options(&device, list[0], IDEVICE_LOOKUP_NETWORK);
+    idevice_new_with_options(&device, list[0], IDEVICE_LOOKUP_USBMUX);
 
     idevice_connection_t conn;
     instruments_start_connection(device, &conn);
     print_proclist(conn);
+    print_cpu(conn);
+
     instrument_connection_free(conn);
+    
+    
+    idevice_free(device);
     return 0;
 }
 

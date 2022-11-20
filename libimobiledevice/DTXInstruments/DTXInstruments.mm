@@ -5,6 +5,7 @@
 //  Created by 任玉乾 on 2022/11/19.
 //
 
+#import <Foundation/Foundation.h>
 #include "DTXInstruments.hh"
 
 #include <libimobiledevice/lockdown.h>
@@ -162,6 +163,56 @@ void instrument_connection_free(idevice_connection_t conn) {
         return;
     }
     idevice_disconnect(conn);
+}
+
+void print_cpu(idevice_connection_t conn) {
+    int channel = make_channel(conn, CFSTR("com.apple.instruments.server.services.sysmontap"));
+    if (channel < 0) {
+        return;
+    }
+        
+    
+    const void *procAttrs_values[] = {CFSTR("memVirtualSize"), CFSTR("cpuUsage"), CFSTR("ctxSwitch"), CFSTR("intWakeups"),CFSTR("physFootprint"), CFSTR("memResidentSize"), CFSTR("memAnon"), CFSTR("pid")};
+    int _bm = 0; // don't suspend the process after starting it
+    int _ur = 1; // kill the application if it is already running
+    int _cpuUsage = 1; // kill the application if it is already running
+    int _sampleInterval = 1; // kill the application if it is already running
+    
+    CFNumberRef bm = CFNumberCreate(NULL, kCFNumberSInt32Type, &_bm);
+    CFNumberRef ur = CFNumberCreate(NULL, kCFNumberSInt32Type, &_ur);
+    CFNumberRef cpuUsage = CFNumberCreate(NULL, kCFNumberSInt32Type, &_cpuUsage);
+    CFNumberRef sampleInterval = CFNumberCreate(NULL, kCFNumberSInt32Type, &_sampleInterval);
+    CFArrayRef procAttrs = CFArrayCreate(NULL, procAttrs_values, 8, NULL);
+    
+    const void *keys[] =
+    {
+        CFSTR("bm"),
+        CFSTR("cpuUsage"),
+        CFSTR("procAttrs"),
+        CFSTR("sampleInterval"),
+        CFSTR("ur")
+    };
+    
+    const void *values[] = { bm, cpuUsage, procAttrs, sampleInterval, ur};
+    
+    CFDictionaryRef dic = CFDictionaryCreate(NULL, keys, values, 5, NULL, NULL);
+    
+    message_aux_t args;
+    args.append_obj(dic);
+    
+    
+    
+    CFTypeRef retobj = NULL;
+    
+    send_message(conn, channel, (char *)CFSTR("setConfig:"), &args, true);
+    recv_message(conn, &retobj, NULL);
+    
+    retobj = NULL;
+    
+    send_message(conn, channel, (char *)CFSTR("start"), NULL, true);
+    recv_message(conn, &retobj, NULL);
+
+    
 }
 
 bool print_proclist(idevice_connection_t conn) {
