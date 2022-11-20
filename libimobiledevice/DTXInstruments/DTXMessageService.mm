@@ -212,7 +212,7 @@ int make_channel(idevice_connection_t conn,
 }
 
 
-bool handShake(idevice_connection_t conn) {
+bool hand_shake(idevice_connection_t conn) {
     // I'm not sure if this argument is necessary - but Xcode uses it, so I'm using it too.
     CFMutableDictionaryRef capabilities = CFDictionaryCreateMutable(NULL, 0, NULL, NULL);
     

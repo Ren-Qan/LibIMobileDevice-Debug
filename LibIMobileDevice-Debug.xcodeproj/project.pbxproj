@@ -577,7 +577,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C70E00E229277CF300CBB6EA /* Helper */ = {
+		C70E00E229277CF300CBB6EA /* DTXInstruments */ = {
 			isa = PBXGroup;
 			children = (
 				C70E00E329277D1700CBB6EA /* DTXCFTypes.hh */,
@@ -591,7 +591,7 @@
 				C73D82CA2927E45F0018B6F9 /* DTXMessageService.hh */,
 				C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */,
 			);
-			path = Helper;
+			path = DTXInstruments;
 			sourceTree = "<group>";
 		};
 		C716B586291D351E00C93BD6 /* libusbmuxd */ = {
@@ -973,7 +973,7 @@
 			isa = PBXGroup;
 			children = (
 				C7999CD9291E3DC60040F03A /* main.cc */,
-				C70E00E229277CF300CBB6EA /* Helper */,
+				C70E00E229277CF300CBB6EA /* DTXInstruments */,
 				C7999CDF291E3E7D0040F03A /* Debug */,
 				C7999D39291E3E7D0040F03A /* Headers */,
 				C7999CDE291E3E7D0040F03A /* Libraries */,

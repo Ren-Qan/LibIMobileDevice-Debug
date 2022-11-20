@@ -11,7 +11,7 @@
 #include <stdio.h>
 #import "DTXMessage.hh"
 
-bool handShake(idevice_connection_t conn);
+bool hand_shake(idevice_connection_t conn);
 
 bool send_message(idevice_connection_t conn,
                          int channel,
