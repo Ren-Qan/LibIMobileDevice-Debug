@@ -9,21 +9,28 @@
 #define DTXMessageService_hh
 
 #include <stdio.h>
+
 #import "DTXMessage.hh"
 
-bool hand_shake(idevice_connection_t conn);
+typedef void (*instruments_cb_t)(int channel, void * object);
 
-bool send_message(idevice_connection_t conn,
-                         int channel,
-                         char * selector,
-                         const message_aux_t *args,
-                         bool expects_reply);
+typedef uint32_t instruments_error;
 
-bool recv_message(idevice_connection_t conn,
-                         CFTypeRef * retobj,
-                         CFArrayRef * aux);
+instruments_error instruments_start_connection(idevice_t device,
+                                               idevice_connection_t * conn,
+                                               instruments_cb_t call_back);
 
-int make_channel(idevice_connection_t conn,
-                        CFStringRef identifier);
+void instrument_connection_free(idevice_connection_t conn);
+
+int instrument_make_channel(idevice_connection_t conn,
+                            CFStringRef identifier);
+
+bool instruments_response(idevice_connection_t conn,
+                          int channel_code,
+                          char *selector,
+                          const message_aux_t * aux);
+
+void instrument_receive(idevice_connection_t conn,
+                        int channel_code);
 
 #endif /* DTXMessageService */

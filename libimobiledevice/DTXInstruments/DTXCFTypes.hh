@@ -16,8 +16,6 @@ string_t get_description(CFTypeRef ref);
 // serialize a CF object
 void archive(bytevec_t *buf, CFTypeRef ref);
 
-//void archive(bytevec_t *buf, __CFDictionary *dic);
-
 //------------------------------------------------------------------------------
 // deserialize a CF object
 CFTypeRef unarchive(const uint8_t *buf, size_t bufsize);

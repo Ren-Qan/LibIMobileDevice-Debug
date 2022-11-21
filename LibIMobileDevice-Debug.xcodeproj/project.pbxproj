@@ -31,7 +31,6 @@
 		C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */; };
 		C72CB5192921E89600291F16 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5132921E89600291F16 /* libssl.a */; };
 		C73D82CB2927E45F0018B6F9 /* DTXMessageService.mm in Sources */ = {isa = PBXBuildFile; fileRef = C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */; };
-		C73D82CE2927E91F0018B6F9 /* DTXInstruments.mm in Sources */ = {isa = PBXBuildFile; fileRef = C73D82CC2927E91F0018B6F9 /* DTXInstruments.mm */; };
 		C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E6291DF5EE0040F03A /* libplist-2.0.a */; };
 		C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E9291DF5EF0040F03A /* libplist-2.0.a */; };
@@ -167,8 +166,6 @@
 		C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestAPP-Bridging-Header.h"; sourceTree = "<group>"; };
 		C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DTXMessageService.mm; sourceTree = "<group>"; };
 		C73D82CA2927E45F0018B6F9 /* DTXMessageService.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DTXMessageService.hh; sourceTree = "<group>"; };
-		C73D82CC2927E91F0018B6F9 /* DTXInstruments.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DTXInstruments.mm; sourceTree = "<group>"; };
-		C73D82CD2927E91F0018B6F9 /* DTXInstruments.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DTXInstruments.hh; sourceTree = "<group>"; };
 		C775A659291DECA9004F8618 /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		C775A65B291DECA9004F8618 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C775A65C291DECA9004F8618 /* opack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opack.h; sourceTree = "<group>"; };
@@ -584,8 +581,6 @@
 				C70E00E429277D1700CBB6EA /* DTXCFTypes.mm */,
 				C70E00E829277D1700CBB6EA /* DTXCommon.hh */,
 				C70E00E629277D1700CBB6EA /* DTXCommon.mm */,
-				C73D82CD2927E91F0018B6F9 /* DTXInstruments.hh */,
-				C73D82CC2927E91F0018B6F9 /* DTXInstruments.mm */,
 				C70E00E529277D1700CBB6EA /* DTXMessage.hh */,
 				C70E00E729277D1700CBB6EA /* DTXMessage.mm */,
 				C73D82CA2927E45F0018B6F9 /* DTXMessageService.hh */,
@@ -1574,7 +1569,6 @@
 				C7999D3F291E3E7E0040F03A /* sbservices.c in Sources */,
 				C7999D44291E3E7E0040F03A /* reverse_proxy.c in Sources */,
 				C70E00EA29277D1700CBB6EA /* DTXCommon.mm in Sources */,
-				C73D82CE2927E91F0018B6F9 /* DTXInstruments.mm in Sources */,
 				C73D82CB2927E45F0018B6F9 /* DTXMessageService.mm in Sources */,
 				C7999CDA291E3DC60040F03A /* main.cc in Sources */,
 				C7999D48291E3E7E0040F03A /* notification_proxy.c in Sources */,
@@ -1879,8 +1873,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
 					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1901,8 +1895,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
 					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = (

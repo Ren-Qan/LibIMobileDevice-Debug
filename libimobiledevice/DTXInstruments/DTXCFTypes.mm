@@ -62,7 +62,7 @@ void archive(bytevec_t *buf, CFTypeRef ref)
     @autoreleasepool
     {
         id object = (__bridge id)ref;
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object requiringSecureCoding:true error:NULL];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object requiringSecureCoding:false error:NULL];
         const void *bytes = [data bytes];
         int length = (int)[data length];
         append_v(*buf, bytes, length);
