@@ -17,7 +17,6 @@ static bool verbose = false;
 
 static int cur_channel_tag = 0;
 static int cur_message = 0;
-static int cur_response_channel_code = -1;
 
 static CFDictionaryRef channels = NULL;
 static instruments_cb_t instruments_datas_call_back = NULL;
@@ -29,19 +28,19 @@ char * idevice_get_version(idevice_t _Nullable device) {
         return NULL;
     }
     
+    char *s_version = NULL;
+    
     lockdownd_client_t client_loc = NULL;
     lockdownd_client_new(device, &client_loc, "getVersion");
     
     plist_t p_version = NULL;
     if (lockdownd_get_value(client_loc, NULL, "ProductVersion", &p_version) == LOCKDOWN_E_SUCCESS) {
-        char *s_version = NULL;
         plist_get_string_val(p_version, &s_version);
-        return s_version;
     }
     
     lockdownd_client_free(client_loc);
     plist_free(p_version);
-    return NULL;
+    return s_version;
 }
 
 char * find_image_path(idevice_t device) {
@@ -157,7 +156,8 @@ bool send_message(idevice_connection_t conn,
 bool recv_message(idevice_connection_t conn,
                   CFTypeRef * retobj,
                   CFArrayRef * aux) {
-    uint32_t id = 0;
+    uint32_t channelCode = 0;
+    uint32_t identifier = 0;
     bytevec_t payload;
     
     while (true) {
@@ -191,7 +191,8 @@ bool recv_message(idevice_connection_t conn,
         }
         
         if ( mheader.fragmentId == 0 ) {
-            id = mheader.identifier;
+            identifier = mheader.identifier;
+            channelCode = mheader.channelCode;
             // when reading multiple message fragments, the 0th fragment contains only a message header
             if ( mheader.fragmentCount > 1 )
                 continue;
@@ -227,6 +228,7 @@ bool recv_message(idevice_connection_t conn,
     
     const DTXMessagePayloadHeader *pheader = (const DTXMessagePayloadHeader *)payload.data();
     
+    
     // we don't know how to decompress messages yet
     uint8_t compression = (pheader->flags & 0xFF000) >> 12;
     if (compression != 0) {
@@ -251,7 +253,7 @@ bool recv_message(idevice_connection_t conn,
         }
         *aux = _aux;
         if (instruments_datas_call_back != NULL) {
-            instruments_datas_call_back(cur_response_channel_code, (void *)&_aux);
+            instruments_datas_call_back(channelCode, (void *)&_aux);
         }
     }
     
@@ -259,7 +261,7 @@ bool recv_message(idevice_connection_t conn,
     if (objlen != 0 && retobj != NULL) {
         *retobj = unarchive(objptr, objlen);
         if (instruments_datas_call_back != NULL) {
-            instruments_datas_call_back(cur_response_channel_code, (void *)retobj);
+            instruments_datas_call_back(channelCode, (void *)retobj);
         }
     }
     
@@ -420,6 +422,10 @@ bool hand_shake(idevice_connection_t conn) {
 
 int instrument_make_channel(idevice_connection_t conn,
                             CFStringRef identifier) {
+    if (channels == NULL) {
+        return -1;
+    }
+    
     if ( !CFDictionaryContainsKey(channels, identifier) ) {
         fprintf(stderr, "channel %s is not supported by the server\n", to_stlstr(identifier).c_str());
         return -1;
@@ -457,10 +463,8 @@ bool instruments_response(idevice_connection_t conn,
     CFTypeRef retobj = NULL;
     CFArrayRef retArr = NULL;
     
-    cur_response_channel_code = channel_code;
     bool state = send_message(conn, channel_code, selector, aux, true);
     state = state & recv_message(conn, &retobj, &retArr);
-    cur_response_channel_code = -1;
     if (retobj != NULL) {
         CFRelease(retobj);
     }
@@ -472,13 +476,11 @@ bool instruments_response(idevice_connection_t conn,
     return state;
 }
 
-void instrument_receive(idevice_connection_t conn, int channel_code) {
+void instrument_receive(idevice_connection_t conn) {
     CFTypeRef retobj = NULL;
     CFArrayRef retArr = NULL;
     
-    cur_response_channel_code = channel_code;
     recv_message(conn, &retobj, &retArr);
-    cur_response_channel_code = -1;
     
     if (retobj != NULL) {
         CFRelease(retobj);

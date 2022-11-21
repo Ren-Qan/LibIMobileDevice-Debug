@@ -16,11 +16,6 @@
 		C716B5BC291E988700C93BD6 /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B7291E988700C93BD6 /* libimobiledevice-glue-1.0.a */; };
 		C716B5BD291E988700C93BD6 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B8291E988700C93BD6 /* libusbmuxd-2.0.a */; };
 		C716B5BE291E988700C93BD6 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B9291E988700C93BD6 /* libssl.a */; };
-		C728C89D2924D7330099008E /* TEST.mm in Sources */ = {isa = PBXBuildFile; fileRef = C728C8922924D7330099008E /* TEST.mm */; };
-		C728C89E2924D7330099008E /* common.mm in Sources */ = {isa = PBXBuildFile; fileRef = C728C8942924D7330099008E /* common.mm */; };
-		C728C89F2924D7330099008E /* mobile_device.mm in Sources */ = {isa = PBXBuildFile; fileRef = C728C8992924D7330099008E /* mobile_device.mm */; };
-		C728C8A02924D7330099008E /* cftypes.mm in Sources */ = {isa = PBXBuildFile; fileRef = C728C89A2924D7330099008E /* cftypes.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C728C8A12924D7330099008E /* ios_instruments_client.mm in Sources */ = {isa = PBXBuildFile; fileRef = C728C89B2924D7330099008E /* ios_instruments_client.mm */; };
 		C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72CB4DE2921E79400291F16 /* AppDelegate.swift */; };
 		C72CB4E12921E79400291F16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72CB4E02921E79400291F16 /* ViewController.swift */; };
 		C72CB4E32921E79600291F16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C72CB4E22921E79600291F16 /* Assets.xcassets */; };
@@ -91,6 +86,9 @@
 		C7A1E9AA29227F8000C61A84 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9A929227F8000C61A84 /* DeviceManager.swift */; };
 		C7A1E9AE2922816200C61A84 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9AD2922816200C61A84 /* module.modulemap */; };
 		C7A1E9B12922861600C61A84 /* DeviceLockdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9B02922861600C61A84 /* DeviceLockdown.swift */; };
+		C7B6BDA1292B6B5A0094D460 /* DeviceInstruments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA0292B6B5A0094D460 /* DeviceInstruments.swift */; };
+		C7B6BDA6292B786B0094D460 /* DTXMessageHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */; };
+		C7B6BDA9292B797F0094D460 /* DTXArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA8292B797F0094D460 /* DTXArguments.m */; };
 		C7E56402292356C500F4418F /* MDUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E56401292356C500F4418F /* MDUtil.m */; };
 		C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */; };
 		C7FA8F7829233EC900FBF3C1 /* DeviceLockdownServerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FA8F7729233EC900FBF3C1 /* DeviceLockdownServerInterface.swift */; };
@@ -141,16 +139,6 @@
 		C716B5B7291E988700C93BD6 /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
 		C716B5B8291E988700C93BD6 /* libusbmuxd-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusbmuxd-2.0.a"; sourceTree = "<group>"; };
 		C716B5B9291E988700C93BD6 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		C728C8922924D7330099008E /* TEST.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TEST.mm; sourceTree = "<group>"; };
-		C728C8942924D7330099008E /* common.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = common.mm; sourceTree = "<group>"; };
-		C728C8952924D7330099008E /* common.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = common.hh; sourceTree = "<group>"; };
-		C728C8962924D7330099008E /* cftypes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cftypes.hpp; sourceTree = "<group>"; };
-		C728C8972924D7330099008E /* mobile_device.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mobile_device.hpp; sourceTree = "<group>"; };
-		C728C8982924D7330099008E /* ios_instruments_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_instruments_client.h; sourceTree = "<group>"; };
-		C728C8992924D7330099008E /* mobile_device.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mobile_device.mm; sourceTree = "<group>"; };
-		C728C89A2924D7330099008E /* cftypes.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cftypes.mm; sourceTree = "<group>"; };
-		C728C89B2924D7330099008E /* ios_instruments_client.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_instruments_client.mm; sourceTree = "<group>"; };
-		C728C89C2924D7330099008E /* TEST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEST.h; sourceTree = "<group>"; };
 		C72CB4DC2921E79400291F16 /* TestAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C72CB4DE2921E79400291F16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C72CB4E02921E79400291F16 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -476,6 +464,11 @@
 		C7A1E9AD2922816200C61A84 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		C7A1E9AF2922818200C61A84 /* headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = headers.h; sourceTree = "<group>"; };
 		C7A1E9B02922861600C61A84 /* DeviceLockdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLockdown.swift; sourceTree = "<group>"; };
+		C7B6BDA0292B6B5A0094D460 /* DeviceInstruments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInstruments.swift; sourceTree = "<group>"; };
+		C7B6BDA4292B786B0094D460 /* DTXMessageHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTXMessageHandle.h; sourceTree = "<group>"; };
+		C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTXMessageHandle.m; sourceTree = "<group>"; };
+		C7B6BDA7292B797F0094D460 /* DTXArguments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTXArguments.h; sourceTree = "<group>"; };
+		C7B6BDA8292B797F0094D460 /* DTXArguments.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTXArguments.m; sourceTree = "<group>"; };
 		C7E56400292356C500F4418F /* MDUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUtil.h; sourceTree = "<group>"; };
 		C7E56401292356C500F4418F /* MDUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUtil.m; sourceTree = "<group>"; };
 		C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-1.0.a"; sourceTree = "<group>"; };
@@ -619,31 +612,6 @@
 			path = arm64;
 			sourceTree = "<group>";
 		};
-		C728C8912924D7190099008E /* iOSIsntrumentsClient */ = {
-			isa = PBXGroup;
-			children = (
-				C728C89C2924D7330099008E /* TEST.h */,
-				C728C8922924D7330099008E /* TEST.mm */,
-				C728C8932924D7330099008E /* Instruments */,
-			);
-			path = iOSIsntrumentsClient;
-			sourceTree = "<group>";
-		};
-		C728C8932924D7330099008E /* Instruments */ = {
-			isa = PBXGroup;
-			children = (
-				C728C8962924D7330099008E /* cftypes.hpp */,
-				C728C89A2924D7330099008E /* cftypes.mm */,
-				C728C8952924D7330099008E /* common.hh */,
-				C728C8942924D7330099008E /* common.mm */,
-				C728C8982924D7330099008E /* ios_instruments_client.h */,
-				C728C89B2924D7330099008E /* ios_instruments_client.mm */,
-				C728C8972924D7330099008E /* mobile_device.hpp */,
-				C728C8992924D7330099008E /* mobile_device.mm */,
-			);
-			path = Instruments;
-			sourceTree = "<group>";
-		};
 		C72CB4DD2921E79400291F16 /* TestAPP */ = {
 			isa = PBXGroup;
 			children = (
@@ -652,7 +620,6 @@
 				C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */,
 				C72CB4E22921E79600291F16 /* Assets.xcassets */,
 				C72CB4E42921E79600291F16 /* Main.storyboard */,
-				C728C8912924D7190099008E /* iOSIsntrumentsClient */,
 				C7A1E9A829227F3000C61A84 /* DeviceManager */,
 				C72CB4EB2921E7E200291F16 /* LibIMobileDevice */,
 			);
@@ -789,6 +756,10 @@
 		C779DC3A291D2D7C0002564C = {
 			isa = PBXGroup;
 			children = (
+				C7B6BDA7292B797F0094D460 /* DTXArguments.h */,
+				C7B6BDA8292B797F0094D460 /* DTXArguments.m */,
+				C7B6BDA4292B786B0094D460 /* DTXMessageHandle.h */,
+				C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */,
 				C7999CD8291E3DC60040F03A /* libimobiledevice */,
 				C716B586291D351E00C93BD6 /* libusbmuxd */,
 				C7999C7E291E29780040F03A /* libideviceactivation */,
@@ -1354,6 +1325,7 @@
 			children = (
 				C7A1E9B629228D7B00C61A84 /* Lockdown */,
 				C7FA8F7929234E0400FBF3C1 /* InstallProxy */,
+				C7B6BD9F292B6B1F0094D460 /* Intruments */,
 			);
 			path = DeviceComponent;
 			sourceTree = "<group>";
@@ -1365,6 +1337,14 @@
 				C7FA8F7729233EC900FBF3C1 /* DeviceLockdownServerInterface.swift */,
 			);
 			path = Lockdown;
+			sourceTree = "<group>";
+		};
+		C7B6BD9F292B6B1F0094D460 /* Intruments */ = {
+			isa = PBXGroup;
+			children = (
+				C7B6BDA0292B6B5A0094D460 /* DeviceInstruments.swift */,
+			);
+			path = Intruments;
 			sourceTree = "<group>";
 		};
 		C7FA8F7929234E0400FBF3C1 /* InstallProxy */ = {
@@ -1518,19 +1498,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7B6BDA6292B786B0094D460 /* DTXMessageHandle.m in Sources */,
 				C7A1E9AA29227F8000C61A84 /* DeviceManager.swift in Sources */,
 				C72CB4E12921E79400291F16 /* ViewController.swift in Sources */,
 				C7E56402292356C500F4418F /* MDUtil.m in Sources */,
-				C728C89E2924D7330099008E /* common.mm in Sources */,
+				C7B6BDA9292B797F0094D460 /* DTXArguments.m in Sources */,
 				C7A1E9B12922861600C61A84 /* DeviceLockdown.swift in Sources */,
-				C728C89D2924D7330099008E /* TEST.mm in Sources */,
 				C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */,
 				C7A1E9AE2922816200C61A84 /* module.modulemap in Sources */,
-				C728C89F2924D7330099008E /* mobile_device.mm in Sources */,
+				C7B6BDA1292B6B5A0094D460 /* DeviceInstruments.swift in Sources */,
 				C7FA8F7829233EC900FBF3C1 /* DeviceLockdownServerInterface.swift in Sources */,
-				C728C8A02924D7330099008E /* cftypes.mm in Sources */,
 				C7FA8F7B29234E4600FBF3C1 /* DeviceInstallProxy.swift in Sources */,
-				C728C8A12924D7330099008E /* ios_instruments_client.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,7 @@
 #include "libimobiledevice.h"
 #include "DTXMessageService.hh"
 
-static void instruments_call_back(int channel, void * object) {
+static void instruments_call_back(uint32_t channel, void * object) {
     printf("=======%d\n", channel);
 }
 
@@ -36,7 +36,7 @@ int main(int argc, const char * argv[]) {
     
     // creat Device
     idevice_t device = NULL;
-    idevice_new_with_options(&device, list[0], IDEVICE_LOOKUP_USBMUX);
+    idevice_new_with_options(&device, list[0], IDEVICE_LOOKUP_NETWORK);
 
     idevice_connection_t conn;
     instruments_start_connection(device, &conn, instruments_call_back);
@@ -75,11 +75,9 @@ int main(int argc, const char * argv[]) {
     
     int i = 0;
     while (i < 10000) {
-        instrument_receive(conn, cpu_channel_code);
+        instrument_receive(conn);
         i++;
     }
-    
-//    print_cpu(conn);
 
     instrument_connection_free(conn);
     idevice_free(device);

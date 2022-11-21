@@ -2,7 +2,7 @@
 #define CFTYPES_H
 
 #include <CoreFoundation/CoreFoundation.h>
-#include "common.hh"
+#include "DTXCommon.hh"
 
 //------------------------------------------------------------------------------
 // convert the given CFString to an STL string

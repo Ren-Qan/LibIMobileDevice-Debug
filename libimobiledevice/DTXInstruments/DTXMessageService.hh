@@ -12,7 +12,7 @@
 
 #import "DTXMessage.hh"
 
-typedef void (*instruments_cb_t)(int channel, void * object);
+typedef void (*instruments_cb_t)(uint32_t channel, void * object);
 
 typedef uint32_t instruments_error;
 
@@ -30,7 +30,6 @@ bool instruments_response(idevice_connection_t conn,
                           char *selector,
                           const message_aux_t * aux);
 
-void instrument_receive(idevice_connection_t conn,
-                        int channel_code);
+void instrument_receive(idevice_connection_t conn);
 
 #endif /* DTXMessageService */

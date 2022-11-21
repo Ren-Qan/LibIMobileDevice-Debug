@@ -84,23 +84,4 @@ extension DeviceManager {
 
         return installProxy.applist(type: .any)
     }
-
-    func procList(udid: String, type: DeviceConnectType = .net) {
-        guard let lockdown = DeviceLockdown().setup(udid, type: type) else {
-            return
-        }
-
-        guard let _device = lockdown.device,
-              let _name = DeviceLockdownServerType.procList.id.cString(using: .utf8) else {
-            return
-        }
-
-        let client = UnsafeMutablePointer<UnsafeMutableRawPointer?>.allocate(capacity: 1)
-        var error: Int32 = 0
-        
-        service_client_factory_start_service(_device, _name, client, nil, nil, &error);
-        
-        
-        
-    }
 }
