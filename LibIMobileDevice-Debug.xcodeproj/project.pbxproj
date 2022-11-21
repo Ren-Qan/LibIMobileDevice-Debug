@@ -617,6 +617,10 @@
 			children = (
 				C72CB4DE2921E79400291F16 /* AppDelegate.swift */,
 				C72CB4E02921E79400291F16 /* ViewController.swift */,
+				C7B6BDA7292B797F0094D460 /* DTXArguments.h */,
+				C7B6BDA8292B797F0094D460 /* DTXArguments.m */,
+				C7B6BDA4292B786B0094D460 /* DTXMessageHandle.h */,
+				C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */,
 				C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */,
 				C72CB4E22921E79600291F16 /* Assets.xcassets */,
 				C72CB4E42921E79600291F16 /* Main.storyboard */,
@@ -756,10 +760,6 @@
 		C779DC3A291D2D7C0002564C = {
 			isa = PBXGroup;
 			children = (
-				C7B6BDA7292B797F0094D460 /* DTXArguments.h */,
-				C7B6BDA8292B797F0094D460 /* DTXArguments.m */,
-				C7B6BDA4292B786B0094D460 /* DTXMessageHandle.h */,
-				C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */,
 				C7999CD8291E3DC60040F03A /* libimobiledevice */,
 				C716B586291D351E00C93BD6 /* libusbmuxd */,
 				C7999C7E291E29780040F03A /* libideviceactivation */,
@@ -1637,8 +1637,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
 					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
+					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
@@ -1678,8 +1678,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
 					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
+					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
@@ -1851,8 +1851,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
 					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1873,8 +1873,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
 					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = (

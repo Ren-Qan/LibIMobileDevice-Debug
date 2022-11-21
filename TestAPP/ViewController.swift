@@ -9,6 +9,9 @@ import Cocoa
 // import
 
 class ViewController: NSViewController {
+    
+    var ins: DTXMessageHandle? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,5 +33,9 @@ class ViewController: NSViewController {
         let device = DeviceManager.share.deviceList.first { item in
             item.type == .net
         }
+        var _device: idevice_t? = nil
+        idevice_new_with_options(&_device, device?.udid.cString(using: .utf8)!, IDEVICE_LOOKUP_USBMUX);
+        
+        ins = DTXMessageHandle(device: _device!)
     }
 }

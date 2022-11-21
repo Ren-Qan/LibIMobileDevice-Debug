@@ -13,11 +13,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSData *)bytes;
 
+- (void)addData:(NSData *)data;
+
 - (void)appendData:(NSData *)data;
 
 - (void)appendInt:(int32_t)num;
 
 - (void)appendLong:(int64_t)num;
+
+- (void)append_d:(uint32_t)num;
+
+- (void)append_q:(uint64_t)num;
+
+- (void)append_b:(NSData *)data;
+
+- (void)append_v:(const void *)v len:(NSUInteger)len;
 
 @end
 

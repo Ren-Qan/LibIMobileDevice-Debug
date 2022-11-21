@@ -33,8 +33,19 @@ struct DTXMessagePayloadHeader
     uint64_t totalLength;
 };
 
+@protocol DTXMessageHandleDelegate <NSObject>
+
+@optional
+
+- (void)shakeHandFinishWithState:(BOOL)state;
+
+@end
+
 @interface DTXMessageHandle : NSObject
 
+@property (nonatomic, weak) id<DTXMessageHandleDelegate> delegate;
+
+- (instancetype)initWithDevice:(idevice_t)device;
 
 @end
 
