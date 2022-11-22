@@ -2,8 +2,6 @@
 
 ## 简介
 
----
-
 此项目其实是为了抄 [字节-App性能分析工作台](https://www.volcengine.com/docs/6431/82895) [腾讯-PrefDog](https://perfdog.qq.com/)的部分功能。
 
 包括但不限于：实时监控 CPU GPU 内存等， 功能太多了抄不完。
@@ -11,8 +9,6 @@
 
 
 ## 项目
-
-***
 
 #### 进度
 
@@ -30,8 +26,6 @@
 
 ## 致谢
 
----
-
 - [SYM](https://github.com/zqqf16/SYM)
 
 - [libimobiledevice](https://github.com/libimobiledevice/libimobiledevice)
@@ -47,8 +41,6 @@
   
 
 ## 絮絮叨叨
-
----
 
 #### libimobiledevice编译踩坑篇
 
