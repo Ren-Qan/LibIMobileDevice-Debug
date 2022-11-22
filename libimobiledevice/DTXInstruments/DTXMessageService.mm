@@ -355,8 +355,8 @@ bool hand_shake(idevice_connection_t conn) {
     int64_t _v1 = 1;
     int64_t _v2 = 2;
     
-    CFNumberRef v1 = CFNumberCreate(NULL, kCFNumberSInt64Type, &_v1);
-    CFNumberRef v2 = CFNumberCreate(NULL, kCFNumberSInt64Type, &_v2);
+    CFNumberRef v1 = CFNumberCreate(NULL, kCFNumberSInt32Type, &_v1);
+    CFNumberRef v2 = CFNumberCreate(NULL, kCFNumberSInt32Type, &_v2);
     
     CFDictionaryAddValue(capabilities, CFSTR("com.apple.private.DTXBlockCompression"), v2);
     CFDictionaryAddValue(capabilities, CFSTR("com.apple.private.DTXConnection"), v1);

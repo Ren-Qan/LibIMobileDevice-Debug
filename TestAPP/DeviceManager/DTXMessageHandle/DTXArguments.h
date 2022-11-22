@@ -11,9 +11,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DTXArguments : NSObject
 
-- (NSData *)bytes;
++ (instancetype)args;
 
-- (void)addData:(NSData *)data;
+- (NSMutableData *)bytes;
+
+- (NSData *)getArgBytes;
+
+- (void)addObject:(id)object;
 
 - (void)appendData:(NSData *)data;
 

@@ -18,6 +18,10 @@
 
 @implementation DTXArguments
 
++ (instancetype)args {
+    return [[DTXArguments alloc] init];
+}
+
 - (NSMutableData *)bytevec_t {
     if (!_bytevec_t) {
         _bytevec_t = [[NSMutableData alloc] init];
@@ -25,15 +29,27 @@
     return _bytevec_t;
 }
 
-- (NSData *)bytes {
+- (NSMutableData *)bytes {
     return [self bytevec_t];
 }
 
-- (void)addData:(NSData *)data {
-    if (data == NULL) {
-        return;
+- (NSData *)getArgBytes {
+    if (_bytevec_t == NULL || _bytevec_t.length <= 0) {
+        return NULL;
     }
-    [self.bytevec_t appendData:data];
+    
+    DTXArguments *result = [DTXArguments args];
+    [result append_q:0x01F0];
+    [result append_q:_bytevec_t.length];
+    [result append_b:_bytevec_t];
+    return result.bytes;
+}
+
+- (void)addObject:(id)object {
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object requiringSecureCoding:YES error:NULL];
+    if (data) {
+        [self appendData:data];
+    }
 }
 
 - (void)appendData:(NSData *)data {
@@ -67,6 +83,9 @@
 }
 
 - (void)append_b:(NSData *)data {
+    if (data == NULL) {
+        return;
+    }
     [self append_v:data.bytes len:data.length];
 }
 

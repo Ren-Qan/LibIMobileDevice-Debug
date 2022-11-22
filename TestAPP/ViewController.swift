@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-// import
+ import LibMobileDevice
 
 class ViewController: NSViewController {
     
@@ -35,7 +35,37 @@ class ViewController: NSViewController {
         }
         var _device: idevice_t? = nil
         idevice_new_with_options(&_device, device?.udid.cString(using: .utf8)!, IDEVICE_LOOKUP_USBMUX);
+        if (ins == nil) {
+            
+            let config: [String : Any] = [
+                "bm": 0,
+                "cpuUsage": true,
+                "ur": 1000,
+                "sampleInterval": 1000000000,
+                "procAttrs": [
+                    "memVirtualSize", "cpuUsage", "ctxSwitch", "intWakeups", "physFootprint", "memResidentSize", "memAnon", "pid"
+                ],
+                "sysAttrs": [
+                    "vmExtPageCount", "vmFreeCount", "vmPurgeableCount", "vmSpeculativeCount", "physMemSize"
+                ]
+            ]
+            let args = DTXArguments()
+            args.add(config)
+            
+            let ins = DTXMessageHandle(device: _device!)
+            ins.delegate = self
+            ins.response(forServer: "com.apple.instruments.server.services.sysmontap", selector: "setConfig:", args: args)
+            ins.response(forServer: "com.apple.instruments.server.services.sysmontap", selector: "start", args: nil)
+            
+            self.ins = ins
+        }
         
-        ins = DTXMessageHandle(device: _device!)
+        ins?.requestForReceive()
+    }
+}
+
+extension ViewController: DTXMessageHandleDelegate {
+    func receive(withServer server: String, andObject object: DTXReceiveObject) {
+        print("====\(object.objectResult())")
     }
 }

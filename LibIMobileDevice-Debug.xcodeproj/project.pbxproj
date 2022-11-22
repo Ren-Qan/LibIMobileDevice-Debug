@@ -26,6 +26,7 @@
 		C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */; };
 		C72CB5192921E89600291F16 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5132921E89600291F16 /* libssl.a */; };
 		C73D82CB2927E45F0018B6F9 /* DTXMessageService.mm in Sources */ = {isa = PBXBuildFile; fileRef = C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */; };
+		C7831C36292C7A81008AD86B /* DTXReceiveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C7831C35292C7A81008AD86B /* DTXReceiveObject.m */; };
 		C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E6291DF5EE0040F03A /* libplist-2.0.a */; };
 		C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E9291DF5EF0040F03A /* libplist-2.0.a */; };
@@ -163,6 +164,8 @@
 		C775A660291DECA9004F8618 /* collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collection.h; sourceTree = "<group>"; };
 		C775A661291DECA9004F8618 /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
 		C775A662291DECA9004F8618 /* tlv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tlv.h; sourceTree = "<group>"; };
+		C7831C34292C7A81008AD86B /* DTXReceiveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTXReceiveObject.h; sourceTree = "<group>"; };
+		C7831C35292C7A81008AD86B /* DTXReceiveObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTXReceiveObject.m; sourceTree = "<group>"; };
 		C79998E6291DF5EE0040F03A /* libplist-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist-2.0.a"; sourceTree = "<group>"; };
 		C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
 		C79998E9291DF5EF0040F03A /* libplist-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist-2.0.a"; sourceTree = "<group>"; };
@@ -617,10 +620,6 @@
 			children = (
 				C72CB4DE2921E79400291F16 /* AppDelegate.swift */,
 				C72CB4E02921E79400291F16 /* ViewController.swift */,
-				C7B6BDA7292B797F0094D460 /* DTXArguments.h */,
-				C7B6BDA8292B797F0094D460 /* DTXArguments.m */,
-				C7B6BDA4292B786B0094D460 /* DTXMessageHandle.h */,
-				C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */,
 				C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */,
 				C72CB4E22921E79600291F16 /* Assets.xcassets */,
 				C72CB4E42921E79600291F16 /* Main.storyboard */,
@@ -642,10 +641,11 @@
 		C72CB4EC2921E7FA00291F16 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				C7A1E9AD2922816200C61A84 /* module.modulemap */,
+				C7A1E9AF2922818200C61A84 /* headers.h */,
 				C7E56400292356C500F4418F /* MDUtil.h */,
 				C7E56401292356C500F4418F /* MDUtil.m */,
-				C7A1E9AF2922818200C61A84 /* headers.h */,
-				C7A1E9AD2922816200C61A84 /* module.modulemap */,
+				C7831C38292CBD91008AD86B /* instruments */,
 				C72CB4F12921E87200291F16 /* libimobiledevice */,
 				C72CB4EF2921E87200291F16 /* plist */,
 			);
@@ -778,6 +778,26 @@
 				C72CB4DC2921E79400291F16 /* TestAPP.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C7831C38292CBD91008AD86B /* instruments */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = instruments;
+			sourceTree = "<group>";
+		};
+		C7831C39292CBE3A008AD86B /* DTXMessageHandle */ = {
+			isa = PBXGroup;
+			children = (
+				C7B6BDA7292B797F0094D460 /* DTXArguments.h */,
+				C7B6BDA8292B797F0094D460 /* DTXArguments.m */,
+				C7B6BDA4292B786B0094D460 /* DTXMessageHandle.h */,
+				C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */,
+				C7831C34292C7A81008AD86B /* DTXReceiveObject.h */,
+				C7831C35292C7A81008AD86B /* DTXReceiveObject.m */,
+			);
+			path = DTXMessageHandle;
 			sourceTree = "<group>";
 		};
 		C79998E5291DF5EE0040F03A /* x86 */ = {
@@ -1315,6 +1335,7 @@
 			isa = PBXGroup;
 			children = (
 				C7A1E9A929227F8000C61A84 /* DeviceManager.swift */,
+				C7831C39292CBE3A008AD86B /* DTXMessageHandle */,
 				C7A1E9AC29227F9700C61A84 /* DeviceComponent */,
 			);
 			path = DeviceManager;
@@ -1501,6 +1522,7 @@
 				C7B6BDA6292B786B0094D460 /* DTXMessageHandle.m in Sources */,
 				C7A1E9AA29227F8000C61A84 /* DeviceManager.swift in Sources */,
 				C72CB4E12921E79400291F16 /* ViewController.swift in Sources */,
+				C7831C36292C7A81008AD86B /* DTXReceiveObject.m in Sources */,
 				C7E56402292356C500F4418F /* MDUtil.m in Sources */,
 				C7B6BDA9292B797F0094D460 /* DTXArguments.m in Sources */,
 				C7A1E9B12922861600C61A84 /* DeviceLockdown.swift in Sources */,
@@ -1637,8 +1659,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
 					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
+					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
@@ -1678,8 +1700,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
 					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
+					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
@@ -1851,8 +1873,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
 					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1873,8 +1895,8 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libimobiledevice/Headers";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
 					"$(PROJECT_DIR)/libimobiledevice/Libraries/x86",
+					"$(PROJECT_DIR)/libimobiledevice/Libraries/arm64",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = (

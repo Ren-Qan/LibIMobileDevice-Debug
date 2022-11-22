@@ -18,7 +18,29 @@
 
 #define REMOTESERVER_SERVICE_NAME "com.apple.instruments.remoteserver.DVTSecureSocketProxy"
 
+struct DTXMessageHeader {
+    uint32_t magic;
+    uint32_t cb;
+    uint16_t fragmentId;
+    uint16_t fragmentCount;
+    uint32_t length;
+    uint32_t identifier;
+    uint32_t conversationIndex;
+    uint32_t channelCode;
+    uint32_t expectsReply;
+};
+
+struct DTXMessagePayloadHeader {
+    uint32_t flags;
+    uint32_t auxiliaryLength;
+    uint64_t totalLength;
+};
+
 @interface DTXMessageHandle()
+
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSNumber *> *channelMap;
+
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSString *> *channelNameMap;
 
 @end
 
@@ -27,6 +49,9 @@
     mobile_image_mounter_client_t _mounter_client;
     
     uint32_t _cur_message_tag;
+    uint32_t _cur_channel_tag;
+    
+    NSDictionary *_server_dic;
 }
 
 - (instancetype)initWithDevice:(idevice_t)device {
@@ -34,6 +59,8 @@
         _connection = NULL;
         _mounter_client = NULL;
         _cur_message_tag = 0;
+        _cur_channel_tag = 20;
+        _server_dic = NULL;
         [self setupWithDevice:device];
     }
     return self;
@@ -47,6 +74,22 @@
     if (_mounter_client) {
         mobile_image_mounter_free(_mounter_client);
     }
+}
+
+//MARK: - Lazy Getter -
+
+- (NSMutableDictionary<NSString *,NSNumber *> *)channelMap {
+    if(!_channelMap) {
+        _channelMap = [NSMutableDictionary dictionary];
+    }
+    return _channelMap;
+}
+
+- (NSMutableDictionary<NSNumber *,NSString *> *)channelNameMap {
+    if(!_channelNameMap) {
+        _channelNameMap = [NSMutableDictionary dictionary];
+    }
+    return _channelNameMap;
 }
 
 - (void)setupWithDevice:(idevice_t)device {
@@ -98,34 +141,123 @@
     
     if (_connection) {
         [self handShake];
+    } else {
+        if ([self.delegate respondsToSelector:@selector(shakeHandFinishWithState:)]) {
+            [self.delegate shakeHandFinishWithState:NO];
+        }
     }
 }
 
 - (void)handShake {
     NSDictionary * par = @{
-        @"com.apple.private.DTXBlockCompression" : @(2),
-        @"com.apple.private.DTXConnection" : @(1)
+        @"com.apple.private.DTXBlockCompression" : [NSNumber numberWithLongLong:2],
+        @"com.apple.private.DTXConnection" : [NSNumber numberWithLongLong:1]
     };
     
-    NSData *parData = [self getByteWithObj:par];
-    
-    if (!parData) {
-        return;
-    }
-    
     DTXArguments *args = [[DTXArguments alloc] init];
-    [args appendData:parData];
+    [args addObject:par];
     
     [self sendWithChannel:9 selector:@"_notifyOfPublishedCapabilities:" args:args expectsReply:false];
-    NSString *result= [self receive];
+    DTXReceiveObject *result= [self receive];
+    
+    NSString *string = (NSString *)[result objectResult];
+    NSDictionary *serverDic = (NSDictionary *)[result.arrayResult firstObject];
+    BOOL success = NO;
+    
+    if (string && serverDic) {
+        if ([string isKindOfClass:[NSString class]] && [string isEqualToString:@"_notifyOfPublishedCapabilities:"] && [serverDic isKindOfClass:[NSDictionary class]]) {
+            _server_dic = serverDic;
+            success = YES;
+        }
+    }
     
     if([self.delegate respondsToSelector:@selector(shakeHandFinishWithState:)]) {
-        [self.delegate shakeHandFinishWithState:[result isEqualToString:@"_notifyOfPublishedCapabilities:"]];
+        [self.delegate shakeHandFinishWithState:success];
     }
 }
 
 - (NSData *)getByteWithObj:(id)obj {
-    return [NSKeyedArchiver archivedDataWithRootObject:obj requiringSecureCoding:true error:NULL];
+    return [NSKeyedArchiver archivedDataWithRootObject:obj requiringSecureCoding:NO error:NULL];
+}
+
+- (uint32_t)nextChannel {
+    _cur_channel_tag += 1;
+    return _cur_channel_tag;
+}
+
+// MARK: api
+
+- (void)makechannelWithServer:(NSString *)server {
+    if (!_server_dic) {
+        return;
+    }
+    
+    if (![_server_dic objectForKey:server]) {
+        return;
+    }
+    
+    if ([self.channelMap objectForKey:server]) {
+        return;
+    }
+        
+    int code = [self nextChannel];
+    DTXArguments *arg = [DTXArguments args];
+    [arg appendInt:code];
+    [arg appendData:[self getByteWithObj:server]];
+    
+    [self sendWithChannel:0 selector:@"_requestChannelWithCode:identifier:" args:arg expectsReply:YES];
+    DTXReceiveObject *result = [self receive];
+    
+    if (!result.exist) {
+        self.channelMap[server] = @(code);
+        self.channelNameMap[@(code)] = server;
+    }
+}
+
+// MARK: - Public -
+
+- (void)responseForServer:(NSString *)server
+                 selector:(NSString *)selector
+                     args:(nullable DTXArguments *)args {
+    [self makechannelWithServer:server];
+    NSNumber *object = [self.channelMap objectForKey:server];
+    if (!object) {
+        return;
+    }
+    uint32_t channel = object.unsignedIntValue;
+    [self sendWithChannel:channel selector:selector args:args expectsReply:YES];
+    DTXReceiveObject *result = [self receive];
+    
+    if ([self.delegate respondsToSelector:@selector(receiveWithServer:andObject:)]) {
+        [self.delegate receiveWithServer:server andObject:result];
+    }
+}
+
+- (void)requestForReceive {
+    DTXReceiveObject *result = [self receive];
+    
+    uint32_t channel = result.channel;
+    
+    if (result.flag == 1) {
+        channel = UINT32_MAX - result.channel + 1;
+    }
+    
+    NSString *server = [self.channelNameMap objectForKey:@(channel)];
+    if (!server || server.length <= 0) {
+        return;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(receiveWithServer:andObject:)]) {
+        [self.delegate receiveWithServer:server andObject:result];
+    }
+}
+
+- (void)removeServer:(NSString *)server {
+    NSNumber *channel = [self.channelMap valueForKey:server];
+    if (channel) {
+        [self.channelNameMap removeObjectForKey:channel];
+    }
+    [self.channelMap removeObjectForKey:server];
 }
 
 // MARK: Send Message / Receive Message
@@ -137,7 +269,7 @@
     uint32 identifier = _cur_message_tag;
     _cur_message_tag += 1;
     NSData *selData = [self getByteWithObj:selector];
-    NSData *argData = [args bytes];
+    NSData *argData = [args getArgBytes];
     
     struct DTXMessagePayloadHeader pheader;
     pheader.flags = 0x2 | (expectsReply ? 0x1000 : 0);
@@ -170,7 +302,7 @@
     return nsent == msglen;
 }
 
-- (id)receive {
+- (DTXReceiveObject *)receive {
     uint32_t channelCode = 0;
     uint32_t identifier = 0;
     DTXArguments *payload = [[DTXArguments alloc] init];
@@ -205,7 +337,6 @@
         if ( mheader.fragmentId == 0 ) {
             identifier = mheader.identifier;
             channelCode = mheader.channelCode;
-            // when reading multiple message fragments, the 0th fragment contains only a message header
             if ( mheader.fragmentCount > 1 )
                 continue;
         }
@@ -225,7 +356,7 @@
             }
             
             NSData *temData = [NSData dataWithBytes:curptr length:nrecv];
-            [frag addData:temData];
+            [frag.bytes appendData:temData];
             
             nbytes += nrecv;
         }
@@ -237,7 +368,7 @@
     }
     
     struct DTXMessagePayloadHeader *pheader = (struct DTXMessagePayloadHeader *)(payload.bytes.bytes);
-    // we don't know how to decompress messages yet
+    
     uint8_t compression = (pheader->flags & 0xFF000) >> 12;
     if (compression != 0) {
         return NULL;
@@ -251,12 +382,22 @@
     const uint8_t *objptr = auxptr + auxlen;
     uint64_t objlen = pheader->totalLength - auxlen;
     
+    DTXReceiveObject *result = [[DTXReceiveObject alloc] init];
+    
+    [result setChannel:channelCode];
+    [result setIdentifier:identifier];
+    [result setFlag:pheader -> flags];
+    
+    if (auxlen != 0) {
+        NSData *data = [NSData dataWithBytesNoCopy:(void *)auxptr length:auxlen freeWhenDone:false];
+        [result deserializeWithData:data];
+    }
+    
     if (objlen != 0) {
         NSData *data = [NSData dataWithBytesNoCopy:(void *)objptr length:objlen freeWhenDone:false];
-        NSError *error = NULL;
-        return [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:data error:&error];
+        [result unarchiverWithData:data];
     }
-    return NULL;
+    return result;
 }
 
 // MARK: - C Func -

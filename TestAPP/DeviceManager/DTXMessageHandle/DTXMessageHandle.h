@@ -7,33 +7,15 @@
 
 #import <Foundation/Foundation.h>
 #import "DTXArguments.h"
+#import "DTXReceiveObject.h"
 
 #include <libimobiledevice/libimobiledevice.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-struct DTXMessageHeader
-{
-    uint32_t magic;
-    uint32_t cb;
-    uint16_t fragmentId;
-    uint16_t fragmentCount;
-    uint32_t length;
-    uint32_t identifier;
-    uint32_t conversationIndex;
-    uint32_t channelCode;
-    uint32_t expectsReply;
-};
-
-//-----------------------------------------------------------------------------
-struct DTXMessagePayloadHeader
-{
-    uint32_t flags;
-    uint32_t auxiliaryLength;
-    uint64_t totalLength;
-};
-
 @protocol DTXMessageHandleDelegate <NSObject>
+
+- (void)receiveWithServer:(NSString *)server andObject:(DTXReceiveObject *)object;
 
 @optional
 
@@ -46,6 +28,14 @@ struct DTXMessagePayloadHeader
 @property (nonatomic, weak) id<DTXMessageHandleDelegate> delegate;
 
 - (instancetype)initWithDevice:(idevice_t)device;
+
+- (void)responseForServer:(NSString *)server
+                 selector:(NSString *)selector
+                     args:(nullable DTXArguments *)args;
+
+- (void)requestForReceive;
+
+- (void)removeServer:(NSString *)server;
 
 @end
 
