@@ -1,8 +1,54 @@
 # LibIMobileDevice-Debug
-`debug libimobiledevice components source code with xcode`
 
-- 纯测试工程，里面可能有奇怪的变量命名完全图方便。
-- 因为没人看且没开发完，所以先不正经等开发完成了在正经（吧）
+## 简介
+
+---
+
+此项目其实是为了抄 [字节-App性能分析工作台](https://www.volcengine.com/docs/6431/82895) [腾讯-PrefDog](https://perfdog.qq.com/)的部分功能。
+
+包括但不限于：实时监控 CPU GPU 内存等， 功能太多了抄不完。
+
+
+
+## 项目
+
+***
+
+#### 进度
+
+1. `Instruments`服务第一版本封装完成。
+   - 经过测试可以拿到`CPU`的实时数据
+2. `libimobiedevice`编译出`x86` `arm64`对应的静态库
+   - 目前支持调试`libimobiledevice`、 `libusbmuxd` 、` libideviceactivation` 三个组件的源码。
+   - 基本接口封装 `idevice`等
+
+#### 目标
+
+抄一个`App性能分析工作台`出来。
+
+
+
+## 致谢
+
+---
+
+- [SYM](https://github.com/zqqf16/SYM)
+
+- [libimobiledevice](https://github.com/libimobiledevice/libimobiledevice)
+
+- [ios_instruments_client](https://github.com/troybowman/ios_instruments_client)
+
+- [taobao-iphone-device](https://github.com/alibaba/taobao-iphone-device)
+
+- [py-ios-device](https://github.com/YueChen-C/py-ios-device)
+
+- [APP性能分析工作台——你的最佳桌面端性能分析助手](https://juejin.cn/post/7052577178587758605)
+
+  
+
+## 絮絮叨叨
+
+---
 
 #### libimobiledevice编译踩坑篇
 
@@ -33,10 +79,4 @@
 ##### 接入`.a`后接口不能正常执行
 
 - 需要取消掉`APP`的`沙盒机制`
-
-
-
-#### 致谢：
-
-感谢各位开源的作者（被我抄作业的同学）`因为还没开发完等开发完了链接补上。`
 

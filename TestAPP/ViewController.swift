@@ -6,7 +6,7 @@
 //
 
 import Cocoa
- import LibMobileDevice
+import LibMobileDevice
 
 class ViewController: NSViewController {
     
