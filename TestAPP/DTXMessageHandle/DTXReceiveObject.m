@@ -42,22 +42,12 @@
     uint32_t _flag;
 }
 
-- (BOOL)exist {
-    return _array || _object;
+- (NSArray *)array {
+    return _array;
 }
 
-- (NSArray *)arrayResult {
-    if (_array) {
-        return _array;
-    }
-    return [NSArray array];
-}
-
-- (id)objectResult {
-    if (_object) {
-        return _object;
-    }
-    return [[NSObject alloc] init];
+- (id)object {
+    return _object;
 }
 
 - (uint32_t)channel {

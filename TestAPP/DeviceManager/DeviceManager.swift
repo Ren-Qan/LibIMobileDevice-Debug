@@ -8,16 +8,6 @@
 import Cocoa
 import LibMobileDevice
 
-enum DeviceConnectType {
-    case usb
-    case net
-}
-
-struct DeviceItem {
-    var udid: String = ""
-    var type = DeviceConnectType.usb
-}
-
 class DeviceManager: NSObject {
     public private(set) var deviceList = [DeviceItem]()
 

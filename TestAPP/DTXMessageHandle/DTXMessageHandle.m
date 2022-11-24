@@ -54,26 +54,8 @@ struct DTXMessagePayloadHeader {
     NSDictionary *_server_dic;
 }
 
-- (instancetype)initWithDevice:(idevice_t)device {
-    if (self = [super init]) {
-        _connection = NULL;
-        _mounter_client = NULL;
-        _cur_message_tag = 0;
-        _cur_channel_tag = 20;
-        _server_dic = NULL;
-        [self setupWithDevice:device];
-    }
-    return self;
-}
-
 - (void)dealloc {
-    if (_connection) {
-        idevice_disconnect(_connection);
-    }
-    
-    if (_mounter_client) {
-        mobile_image_mounter_free(_mounter_client);
-    }
+    [self stopService];
 }
 
 //MARK: - Lazy Getter -
@@ -92,15 +74,30 @@ struct DTXMessagePayloadHeader {
     return _channelNameMap;
 }
 
-- (void)setupWithDevice:(idevice_t)device {
+// MARK: - Private -
+
+- (void)makeError:(NSString *)error {
+    if ([self.delegate respondsToSelector:@selector(error:handle:)]) {
+        [self.delegate error:error handle:self];
+    }
+}
+
+// MARK: - Setup -
+
+- (BOOL)setupWithDevice:(idevice_t)device {
+    if (!device) {
+        return NO;
+    }
     int error = mobile_image_mounter_start_service(device, &_mounter_client, "INSTRUMENTS");
     if (error != 0) {
-        return;
+        [self makeError:@"mounter_start_service_failed"];
+        return NO;
     }
     
     plist_t mounter_lookup_result;
     if (mobile_image_mounter_lookup_image(_mounter_client, "Developer", &mounter_lookup_result) != 0) {
-        return;
+        [self makeError:@"mounter_lookup_image_failed"];
+        return NO;
     }
     
     plist_t signatureDic = plist_dict_get_item(mounter_lookup_result, "ImageSignature");
@@ -112,43 +109,46 @@ struct DTXMessagePayloadHeader {
     
     plist_free(signatureDic);
     if (signtureLen <= 0 || signatureString == NULL) {
-        return;
+        [self makeError:@"not found signature"];
+        return NO;
     }
     
     // upload image
     if (mobile_image_mounter_upload_image(_mounter_client, "Developer", 9, signatureString, (uint16_t)signtureLen, upload_mounter_callback, NULL) != 0) {
-        return;
+        [self makeError:@"upload image error"];
+        return NO;
     }
     
     // get imagePath
     char * image_path = find_image_path(device);
     if (image_path == NULL) {
-        return;
+        [self makeError:@"not found imagePath"];
+        return NO;
     }
     
     plist_t result = NULL;
     if (mobile_image_mounter_mount_image(_mounter_client, image_path, signatureString, signtureLen, "Developer", &result) != 0) {
+        [self makeError:@"mount image failed"];
         free(image_path);
-        return;
+        return NO;
     }
     
     free(image_path);
         
     // service start
     if (service_client_factory_start_service(device, REMOTESERVER_SERVICE_NAME, (void **)(&_connection), "Remote", SERVICE_CONSTRUCTOR(constructor_remote_service), NULL) != 0) {
-        return;
+        [self makeError:@"strat instruments service failed"];
+        return NO;
     }
     
     if (_connection) {
-        [self handShake];
-    } else {
-        if ([self.delegate respondsToSelector:@selector(shakeHandFinishWithState:)]) {
-            [self.delegate shakeHandFinishWithState:NO];
-        }
+        return [self instrumentsShakeHand];
     }
+    
+    return NO;
 }
 
-- (void)handShake {
+- (BOOL)instrumentsShakeHand {
     NSDictionary * par = @{
         @"com.apple.private.DTXBlockCompression" : [NSNumber numberWithLongLong:2],
         @"com.apple.private.DTXConnection" : [NSNumber numberWithLongLong:1]
@@ -157,11 +157,11 @@ struct DTXMessagePayloadHeader {
     DTXArguments *args = [[DTXArguments alloc] init];
     [args addObject:par];
     
-    [self sendWithChannel:9 selector:@"_notifyOfPublishedCapabilities:" args:args expectsReply:false];
+    [self sendWithChannel:9 selector:@"_notifyOfPublishedCapabilities:" args:args expectsReply:NO];
     DTXReceiveObject *result= [self receive];
     
-    NSString *string = (NSString *)[result objectResult];
-    NSDictionary *serverDic = (NSDictionary *)[result.arrayResult firstObject];
+    NSString *string = (NSString *)[result object];
+    NSDictionary *serverDic = (NSDictionary *)[result.array firstObject];
     BOOL success = NO;
     
     if (string && serverDic) {
@@ -171,9 +171,11 @@ struct DTXMessagePayloadHeader {
         }
     }
     
-    if([self.delegate respondsToSelector:@selector(shakeHandFinishWithState:)]) {
-        [self.delegate shakeHandFinishWithState:success];
+    if (!success) {
+        [self makeError:@"instruments hand shake failed"];
     }
+    
+    return success;
 }
 
 - (NSData *)getByteWithObj:(id)obj {
@@ -184,8 +186,6 @@ struct DTXMessagePayloadHeader {
     _cur_channel_tag += 1;
     return _cur_channel_tag;
 }
-
-// MARK: api
 
 - (void)makechannelWithServer:(NSString *)server {
     if (!_server_dic) {
@@ -205,20 +205,44 @@ struct DTXMessagePayloadHeader {
     [arg appendInt:code];
     [arg appendData:[self getByteWithObj:server]];
     
-    [self sendWithChannel:0 selector:@"_requestChannelWithCode:identifier:" args:arg expectsReply:YES];
-    DTXReceiveObject *result = [self receive];
+    self.channelMap[server] = @(code);
+    self.channelNameMap[@(code)] = server;
     
-    if (!result.exist) {
-        self.channelMap[server] = @(code);
-        self.channelNameMap[@(code)] = server;
-    }
+    [self sendWithChannel:0 selector:@"_requestChannelWithCode:identifier:" args:arg expectsReply:YES];
 }
 
 // MARK: - Public -
 
-- (void)responseForServer:(NSString *)server
-                 selector:(NSString *)selector
-                     args:(nullable DTXArguments *)args {
+- (void)stopService {
+    _connection = NULL;
+    _mounter_client = NULL;
+    _cur_message_tag = 0;
+    _cur_channel_tag = 1;
+    _server_dic = NULL;
+    _channelMap = NULL;
+    _channelNameMap = NULL;
+    
+    if (_connection) {
+        idevice_disconnect(_connection);
+    }
+    
+    if (_mounter_client) {
+        mobile_image_mounter_free(_mounter_client);
+    }
+}
+
+- (BOOL)connectInstrumentsServiceWithDevice:(idevice_t)device {
+    [self stopService];
+    return [self setupWithDevice:device];
+}
+
+- (void)requestForServer:(NSString *)server
+                selector:(NSString *)selector
+                    args:(nullable DTXArguments *)args {
+    if (!_connection) {
+        return;
+    }
+    
     [self makechannelWithServer:server];
     NSNumber *object = [self.channelMap objectForKey:server];
     if (!object) {
@@ -226,14 +250,13 @@ struct DTXMessagePayloadHeader {
     }
     uint32_t channel = object.unsignedIntValue;
     [self sendWithChannel:channel selector:selector args:args expectsReply:YES];
-    DTXReceiveObject *result = [self receive];
-    
-    if ([self.delegate respondsToSelector:@selector(receiveWithServer:andObject:)]) {
-        [self.delegate receiveWithServer:server andObject:result];
-    }
 }
 
-- (void)requestForReceive {
+- (void)responseForReceive {
+    if (!_connection) {
+        return;
+    }
+    
     DTXReceiveObject *result = [self receive];
     
     uint32_t channel = result.channel;
@@ -247,17 +270,13 @@ struct DTXMessagePayloadHeader {
         return;
     }
     
-    if ([self.delegate respondsToSelector:@selector(receiveWithServer:andObject:)]) {
-        [self.delegate receiveWithServer:server andObject:result];
+    if ([self.delegate respondsToSelector:@selector(receiveWithServer:object:handle:)]) {
+        [self.delegate receiveWithServer:server object:result handle:self];
     }
 }
 
-- (void)removeServer:(NSString *)server {
-    NSNumber *channel = [self.channelMap valueForKey:server];
-    if (channel) {
-        [self.channelNameMap removeObjectForKey:channel];
-    }
-    [self.channelMap removeObjectForKey:server];
+- (BOOL)isServerBuildSuccessWithName:(NSString *)name {
+    return self.channelMap[name] != NULL;
 }
 
 // MARK: Send Message / Receive Message
@@ -389,12 +408,12 @@ struct DTXMessagePayloadHeader {
     [result setFlag:pheader -> flags];
     
     if (auxlen != 0) {
-        NSData *data = [NSData dataWithBytesNoCopy:(void *)auxptr length:auxlen freeWhenDone:false];
+        NSData *data = [NSData dataWithBytesNoCopy:(void *)auxptr length:auxlen freeWhenDone:NO];
         [result deserializeWithData:data];
     }
     
     if (objlen != 0) {
-        NSData *data = [NSData dataWithBytesNoCopy:(void *)objptr length:objlen freeWhenDone:false];
+        NSData *data = [NSData dataWithBytesNoCopy:(void *)objptr length:objlen freeWhenDone:NO];
         [result unarchiverWithData:data];
     }
     return result;

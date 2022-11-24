@@ -16,6 +16,11 @@
 		C716B5BC291E988700C93BD6 /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B7291E988700C93BD6 /* libimobiledevice-glue-1.0.a */; };
 		C716B5BD291E988700C93BD6 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B8291E988700C93BD6 /* libusbmuxd-2.0.a */; };
 		C716B5BE291E988700C93BD6 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C716B5B9291E988700C93BD6 /* libssl.a */; };
+		C7183A88292F210E006F76AB /* MobileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7183A87292F210E006F76AB /* MobileManager.swift */; };
+		C7183A8A292F23CB006F76AB /* IDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7183A89292F23CB006F76AB /* IDevice.swift */; };
+		C7183A8E292F3BEF006F76AB /* IIntruments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7183A8D292F3BEF006F76AB /* IIntruments.swift */; };
+		C7183A91292F4EEA006F76AB /* AppProcessItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7183A90292F4EEA006F76AB /* AppProcessItem.swift */; };
+		C7183A93292F5023006F76AB /* IIntrumentsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7183A92292F5023006F76AB /* IIntrumentsResolver.swift */; };
 		C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72CB4DE2921E79400291F16 /* AppDelegate.swift */; };
 		C72CB4E12921E79400291F16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72CB4E02921E79400291F16 /* ViewController.swift */; };
 		C72CB4E32921E79600291F16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C72CB4E22921E79600291F16 /* Assets.xcassets */; };
@@ -140,6 +145,11 @@
 		C716B5B7291E988700C93BD6 /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
 		C716B5B8291E988700C93BD6 /* libusbmuxd-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusbmuxd-2.0.a"; sourceTree = "<group>"; };
 		C716B5B9291E988700C93BD6 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		C7183A87292F210E006F76AB /* MobileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileManager.swift; sourceTree = "<group>"; };
+		C7183A89292F23CB006F76AB /* IDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDevice.swift; sourceTree = "<group>"; };
+		C7183A8D292F3BEF006F76AB /* IIntruments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IIntruments.swift; sourceTree = "<group>"; };
+		C7183A90292F4EEA006F76AB /* AppProcessItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppProcessItem.swift; sourceTree = "<group>"; };
+		C7183A92292F5023006F76AB /* IIntrumentsResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IIntrumentsResolver.swift; sourceTree = "<group>"; };
 		C72CB4DC2921E79400291F16 /* TestAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C72CB4DE2921E79400291F16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C72CB4E02921E79400291F16 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -615,6 +625,26 @@
 			path = arm64;
 			sourceTree = "<group>";
 		};
+		C7183A84292F20C5006F76AB /* MobileManager */ = {
+			isa = PBXGroup;
+			children = (
+				C7183A87292F210E006F76AB /* MobileManager.swift */,
+				C7183A89292F23CB006F76AB /* IDevice.swift */,
+				C7183A8F292F4EAB006F76AB /* Instruments */,
+			);
+			path = MobileManager;
+			sourceTree = "<group>";
+		};
+		C7183A8F292F4EAB006F76AB /* Instruments */ = {
+			isa = PBXGroup;
+			children = (
+				C7183A8D292F3BEF006F76AB /* IIntruments.swift */,
+				C7183A92292F5023006F76AB /* IIntrumentsResolver.swift */,
+				C7183A90292F4EEA006F76AB /* AppProcessItem.swift */,
+			);
+			path = Instruments;
+			sourceTree = "<group>";
+		};
 		C72CB4DD2921E79400291F16 /* TestAPP */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +653,8 @@
 				C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */,
 				C72CB4E22921E79600291F16 /* Assets.xcassets */,
 				C72CB4E42921E79600291F16 /* Main.storyboard */,
+				C7831C39292CBE3A008AD86B /* DTXMessageHandle */,
+				C7183A84292F20C5006F76AB /* MobileManager */,
 				C7A1E9A829227F3000C61A84 /* DeviceManager */,
 				C72CB4EB2921E7E200291F16 /* LibIMobileDevice */,
 			);
@@ -645,7 +677,6 @@
 				C7A1E9AF2922818200C61A84 /* headers.h */,
 				C7E56400292356C500F4418F /* MDUtil.h */,
 				C7E56401292356C500F4418F /* MDUtil.m */,
-				C7831C38292CBD91008AD86B /* instruments */,
 				C72CB4F12921E87200291F16 /* libimobiledevice */,
 				C72CB4EF2921E87200291F16 /* plist */,
 			);
@@ -778,13 +809,6 @@
 				C72CB4DC2921E79400291F16 /* TestAPP.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		C7831C38292CBD91008AD86B /* instruments */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = instruments;
 			sourceTree = "<group>";
 		};
 		C7831C39292CBE3A008AD86B /* DTXMessageHandle */ = {
@@ -1335,7 +1359,6 @@
 			isa = PBXGroup;
 			children = (
 				C7A1E9A929227F8000C61A84 /* DeviceManager.swift */,
-				C7831C39292CBE3A008AD86B /* DTXMessageHandle */,
 				C7A1E9AC29227F9700C61A84 /* DeviceComponent */,
 			);
 			path = DeviceManager;
@@ -1519,6 +1542,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7183A88292F210E006F76AB /* MobileManager.swift in Sources */,
 				C7B6BDA6292B786B0094D460 /* DTXMessageHandle.m in Sources */,
 				C7A1E9AA29227F8000C61A84 /* DeviceManager.swift in Sources */,
 				C72CB4E12921E79400291F16 /* ViewController.swift in Sources */,
@@ -1527,10 +1551,14 @@
 				C7B6BDA9292B797F0094D460 /* DTXArguments.m in Sources */,
 				C7A1E9B12922861600C61A84 /* DeviceLockdown.swift in Sources */,
 				C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */,
+				C7183A8A292F23CB006F76AB /* IDevice.swift in Sources */,
 				C7A1E9AE2922816200C61A84 /* module.modulemap in Sources */,
 				C7B6BDA1292B6B5A0094D460 /* DeviceInstruments.swift in Sources */,
 				C7FA8F7829233EC900FBF3C1 /* DeviceLockdownServerInterface.swift in Sources */,
 				C7FA8F7B29234E4600FBF3C1 /* DeviceInstallProxy.swift in Sources */,
+				C7183A93292F5023006F76AB /* IIntrumentsResolver.swift in Sources */,
+				C7183A91292F4EEA006F76AB /* AppProcessItem.swift in Sources */,
+				C7183A8E292F3BEF006F76AB /* IIntruments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

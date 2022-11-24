@@ -13,8 +13,6 @@ class DeviceInstruments: NSObject {
     private var mounter_client: mobile_image_mounter_client_t? = nil
     
     deinit {
-        if let connection = connection {
-        }
         if let mounter_client = mounter_client {
             mobile_image_mounter_free(mounter_client)
         }

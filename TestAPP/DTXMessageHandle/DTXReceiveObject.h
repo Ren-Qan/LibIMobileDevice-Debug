@@ -11,17 +11,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DTXReceiveObject : NSObject
 
-- (BOOL)exist;
+// MARK: - Setter -
 
-- (NSArray *)arrayResult;
+- (NSArray *)array;
 
-- (id)objectResult;
+- (id)object;
 
 - (uint32_t)channel;
 
 - (uint32_t)identifier;
 
 - (uint32_t)flag;
+
+// MARK: - Setter -
 
 - (void)setIdentifier:(uint32_t)identifier;
 
