@@ -89,15 +89,10 @@
 		C7A1E9A5292279FB00C61A84 /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E99F292279FB00C61A84 /* libimobiledevice-glue-1.0.a */; };
 		C7A1E9A6292279FB00C61A84 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E9A0292279FB00C61A84 /* libusbmuxd-2.0.a */; };
 		C7A1E9A7292279FB00C61A84 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E9A1292279FB00C61A84 /* libssl.a */; };
-		C7A1E9AA29227F8000C61A84 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9A929227F8000C61A84 /* DeviceManager.swift */; };
-		C7A1E9B12922861600C61A84 /* DeviceLockdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9B02922861600C61A84 /* DeviceLockdown.swift */; };
-		C7B6BDA1292B6B5A0094D460 /* DeviceInstruments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA0292B6B5A0094D460 /* DeviceInstruments.swift */; };
 		C7B6BDA6292B786B0094D460 /* DTXMessageHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */; };
 		C7B6BDA9292B797F0094D460 /* DTXArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA8292B797F0094D460 /* DTXArguments.m */; };
 		C7E56402292356C500F4418F /* MDUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E56401292356C500F4418F /* MDUtil.m */; };
 		C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */; };
-		C7FA8F7829233EC900FBF3C1 /* DeviceLockdownServerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FA8F7729233EC900FBF3C1 /* DeviceLockdownServerInterface.swift */; };
-		C7FA8F7B29234E4600FBF3C1 /* DeviceInstallProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FA8F7A29234E4600FBF3C1 /* DeviceInstallProxy.swift */; };
 		C7FD51A02930A35100FD964A /* DTXServerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FD519F2930A35100FD964A /* DTXServerModel.m */; };
 /* End PBXBuildFile section */
 
@@ -473,11 +468,8 @@
 		C7A1E99F292279FB00C61A84 /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
 		C7A1E9A0292279FB00C61A84 /* libusbmuxd-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusbmuxd-2.0.a"; sourceTree = "<group>"; };
 		C7A1E9A1292279FB00C61A84 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		C7A1E9A929227F8000C61A84 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		C7A1E9AD2922816200C61A84 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		C7A1E9AF2922818200C61A84 /* headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = headers.h; sourceTree = "<group>"; };
-		C7A1E9B02922861600C61A84 /* DeviceLockdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLockdown.swift; sourceTree = "<group>"; };
-		C7B6BDA0292B6B5A0094D460 /* DeviceInstruments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInstruments.swift; sourceTree = "<group>"; };
 		C7B6BDA4292B786B0094D460 /* DTXMessageHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTXMessageHandle.h; sourceTree = "<group>"; };
 		C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTXMessageHandle.m; sourceTree = "<group>"; };
 		C7B6BDA7292B797F0094D460 /* DTXArguments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTXArguments.h; sourceTree = "<group>"; };
@@ -511,8 +503,6 @@
 		C7F83C192922135200CCBFF8 /* preboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preboard.h; sourceTree = "<group>"; };
 		C7F83C1A2922135200CCBFF8 /* reverse_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reverse_proxy.h; sourceTree = "<group>"; };
 		C7F83C1B2922135200CCBFF8 /* service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service.h; sourceTree = "<group>"; };
-		C7FA8F7729233EC900FBF3C1 /* DeviceLockdownServerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLockdownServerInterface.swift; sourceTree = "<group>"; };
-		C7FA8F7A29234E4600FBF3C1 /* DeviceInstallProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInstallProxy.swift; sourceTree = "<group>"; };
 		C7FD519E2930A35100FD964A /* DTXServerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTXServerModel.h; sourceTree = "<group>"; };
 		C7FD519F2930A35100FD964A /* DTXServerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTXServerModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -657,7 +647,6 @@
 				C72CB4E42921E79600291F16 /* Main.storyboard */,
 				C7831C39292CBE3A008AD86B /* DTXMessageHandle */,
 				C7183A84292F20C5006F76AB /* MobileManager */,
-				C7A1E9A829227F3000C61A84 /* DeviceManager */,
 				C72CB4EB2921E7E200291F16 /* LibIMobileDevice */,
 			);
 			path = TestAPP;
@@ -1359,50 +1348,6 @@
 			path = arm64;
 			sourceTree = "<group>";
 		};
-		C7A1E9A829227F3000C61A84 /* DeviceManager */ = {
-			isa = PBXGroup;
-			children = (
-				C7A1E9A929227F8000C61A84 /* DeviceManager.swift */,
-				C7A1E9AC29227F9700C61A84 /* DeviceComponent */,
-			);
-			path = DeviceManager;
-			sourceTree = "<group>";
-		};
-		C7A1E9AC29227F9700C61A84 /* DeviceComponent */ = {
-			isa = PBXGroup;
-			children = (
-				C7A1E9B629228D7B00C61A84 /* Lockdown */,
-				C7FA8F7929234E0400FBF3C1 /* InstallProxy */,
-				C7B6BD9F292B6B1F0094D460 /* Intruments */,
-			);
-			path = DeviceComponent;
-			sourceTree = "<group>";
-		};
-		C7A1E9B629228D7B00C61A84 /* Lockdown */ = {
-			isa = PBXGroup;
-			children = (
-				C7A1E9B02922861600C61A84 /* DeviceLockdown.swift */,
-				C7FA8F7729233EC900FBF3C1 /* DeviceLockdownServerInterface.swift */,
-			);
-			path = Lockdown;
-			sourceTree = "<group>";
-		};
-		C7B6BD9F292B6B1F0094D460 /* Intruments */ = {
-			isa = PBXGroup;
-			children = (
-				C7B6BDA0292B6B5A0094D460 /* DeviceInstruments.swift */,
-			);
-			path = Intruments;
-			sourceTree = "<group>";
-		};
-		C7FA8F7929234E0400FBF3C1 /* InstallProxy */ = {
-			isa = PBXGroup;
-			children = (
-				C7FA8F7A29234E4600FBF3C1 /* DeviceInstallProxy.swift */,
-			);
-			path = InstallProxy;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1548,18 +1493,13 @@
 			files = (
 				C7183A88292F210E006F76AB /* MobileManager.swift in Sources */,
 				C7B6BDA6292B786B0094D460 /* DTXMessageHandle.m in Sources */,
-				C7A1E9AA29227F8000C61A84 /* DeviceManager.swift in Sources */,
 				C72CB4E12921E79400291F16 /* ViewController.swift in Sources */,
 				C7831C36292C7A81008AD86B /* DTXReceiveObject.m in Sources */,
 				C7E56402292356C500F4418F /* MDUtil.m in Sources */,
 				C7B6BDA9292B797F0094D460 /* DTXArguments.m in Sources */,
-				C7A1E9B12922861600C61A84 /* DeviceLockdown.swift in Sources */,
 				C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */,
 				C7FD51A02930A35100FD964A /* DTXServerModel.m in Sources */,
 				C7183A8A292F23CB006F76AB /* IDevice.swift in Sources */,
-				C7B6BDA1292B6B5A0094D460 /* DeviceInstruments.swift in Sources */,
-				C7FA8F7829233EC900FBF3C1 /* DeviceLockdownServerInterface.swift in Sources */,
-				C7FA8F7B29234E4600FBF3C1 /* DeviceInstallProxy.swift in Sources */,
 				C7183A93292F5023006F76AB /* IIntrumentsResolver.swift in Sources */,
 				C7183A91292F4EEA006F76AB /* IIntrumentsModels.swift in Sources */,
 				C7183A8E292F3BEF006F76AB /* IIntruments.swift in Sources */,
