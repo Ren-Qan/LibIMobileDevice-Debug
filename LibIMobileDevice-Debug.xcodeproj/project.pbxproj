@@ -90,7 +90,6 @@
 		C7A1E9A6292279FB00C61A84 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E9A0292279FB00C61A84 /* libusbmuxd-2.0.a */; };
 		C7A1E9A7292279FB00C61A84 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E9A1292279FB00C61A84 /* libssl.a */; };
 		C7A1E9AA29227F8000C61A84 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9A929227F8000C61A84 /* DeviceManager.swift */; };
-		C7A1E9AE2922816200C61A84 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9AD2922816200C61A84 /* module.modulemap */; };
 		C7A1E9B12922861600C61A84 /* DeviceLockdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1E9B02922861600C61A84 /* DeviceLockdown.swift */; };
 		C7B6BDA1292B6B5A0094D460 /* DeviceInstruments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA0292B6B5A0094D460 /* DeviceInstruments.swift */; };
 		C7B6BDA6292B786B0094D460 /* DTXMessageHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */; };
@@ -1558,7 +1557,6 @@
 				C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */,
 				C7FD51A02930A35100FD964A /* DTXServerModel.m in Sources */,
 				C7183A8A292F23CB006F76AB /* IDevice.swift in Sources */,
-				C7A1E9AE2922816200C61A84 /* module.modulemap in Sources */,
 				C7B6BDA1292B6B5A0094D460 /* DeviceInstruments.swift in Sources */,
 				C7FA8F7829233EC900FBF3C1 /* DeviceLockdownServerInterface.swift in Sources */,
 				C7FA8F7B29234E4600FBF3C1 /* DeviceInstallProxy.swift in Sources */,
