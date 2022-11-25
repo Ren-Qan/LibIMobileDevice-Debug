@@ -8,7 +8,19 @@
 import Cocoa
 import LibMobileDevice
 
+enum IIntrumentsServerName: String {
+    case deviceinfo = "com.apple.instruments.server.services.deviceinfo"
+    case sysmontap = "com.apple.instruments.server.services.sysmontap"
+}
+
+protocol IIntrumentsDelegate: NSObjectProtocol {
+    func appProcess(list: [AppProcessItem])
+    
+    func cpu(info: [[String : Any]])
+}
+
 class IIntruments: NSObject {
+    // MARK: - Private -
     private lazy var dtxService: DTXMessageHandle = {
         let server = DTXMessageHandle()
         server.delegate = self
@@ -25,7 +37,16 @@ class IIntruments: NSObject {
     
     private var timer: Timer? = nil
     
+    // MARK: - Public Getter -
     public private(set) var isConnected = false
+    
+    // MARK: - Public -
+    
+    public weak var delegate: IIntrumentsDelegate? = nil {
+        didSet {
+            resolver.sourceDelegate = delegate
+        }
+    }
     
     deinit {
         timer?.invalidate()
@@ -35,9 +56,9 @@ class IIntruments: NSObject {
 
 // MARK: - Private -
 private extension IIntruments {
-    func request(_ server: String, _ selector: String, _ args: DTXArguments?) {
+    func request(_ server: IIntrumentsServerName, _ selector: String, _ args: DTXArguments?) {
         queue.addOperation { [weak self] in
-            self?.dtxService.request(forServer: server, selector: selector, args: args)
+            self?.dtxService.request(forServer: server.rawValue, selector: selector, args: args)
         }
     }
 }
@@ -50,12 +71,14 @@ extension IIntruments {
         }
     }
     
-    func start(_ device: IDevice) {
+    @discardableResult
+    func start(_ device: IDevice) -> Bool {
         guard let device_t = device.device_t else {
-            return
+            return false
         }
         
         isConnected = dtxService.connectInstrumentsService(withDevice: device_t)
+        return isConnected
     }
     
     func response() {
@@ -64,14 +87,42 @@ extension IIntruments {
         }
     }
     
+    func autoReponse(_ seconds: TimeInterval) {
+        timer?.invalidate()
+        timer = nil
+        
+        let timer = Timer(timeInterval: seconds, repeats: true) { [weak self] _ in
+            self?.response()
+        }
+        
+        timer.fire()
+        RunLoop.main.add(timer, forMode: .common)
+        self.timer = timer
+    }
+    
     func refreshAppProcessList() {
-        let server = "com.apple.instruments.server.services.deviceinfo"
         let selector = "runningProcesses"
-        request(server, selector, nil)
+        request(.deviceinfo, selector, nil)
     }
     
     func cpu() {
+        let config: [String : Any] = [
+            "bm": 0,
+            "cpuUsage": true,
+            "ur": 1000,
+            "sampleInterval": 1000000000,
+            "procAttrs": [
+                "memVirtualSize", "cpuUsage", "ctxSwitch", "intWakeups", "physFootprint", "memResidentSize", "memAnon", "pid"
+            ],
+            "sysAttrs": [
+                "vmExtPageCount", "vmFreeCount", "vmPurgeableCount", "vmSpeculativeCount", "physMemSize"
+            ]
+        ]
+        let args = DTXArguments()
+        args.add(config)
         
+        request(.sysmontap, "setConfig:", args)
+        request(.sysmontap, "start", nil)
     }
     
     func gpu() {
@@ -80,8 +131,8 @@ extension IIntruments {
 }
 
 extension IIntruments: DTXMessageHandleDelegate {
-    func receive(withServer server: String, object: DTXReceiveObject, handle: DTXMessageHandle) {
-        
+    func responseServer(_ server: DTXServerModel, object: DTXReceiveObject, handle: DTXMessageHandle) {
+        resolver.resolver(server: server, object: object)
     }
     
     func error(_ error: String, handle: DTXMessageHandle) {

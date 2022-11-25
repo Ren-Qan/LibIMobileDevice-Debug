@@ -12,6 +12,8 @@ class ViewController: NSViewController {
     
     lazy var instrument = IIntruments()
     
+    var processList: [AppProcessItem]? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,41 +25,7 @@ class ViewController: NSViewController {
             MobileManager.share.refreshDeviceList()
         }
         
-        
-        
-//        DeviceManager.share.refreshDevices()
-//        let device = DeviceManager.share.deviceList.first { item in
-//            item.type == .net
-//        }
-//        var _device: idevice_t? = nil
-//        idevice_new_with_options(&_device, device?.udid.cString(using: .utf8)!, IDEVICE_LOOKUP_USBMUX);
-//        if (ins == nil) {
-//
-//            let config: [String : Any] = [
-//                "bm": 0,
-//                "cpuUsage": true,
-//                "ur": 1000,
-//                "sampleInterval": 1000000000,
-//                "procAttrs": [
-//                    "memVirtualSize", "cpuUsage", "ctxSwitch", "intWakeups", "physFootprint", "memResidentSize", "memAnon", "pid"
-//                ],
-//                "sysAttrs": [
-//                    "vmExtPageCount", "vmFreeCount", "vmPurgeableCount", "vmSpeculativeCount", "physMemSize"
-//                ]
-//            ]
-//            let args = DTXArguments()
-//            args.add(config)
-//
-//            let ins = DTXMessageHandle()
-//            ins.delegate = self
-//            ins.connectInstrumentsService(withDevice: _device!)
-//            ins.response(forServer: "com.apple.instruments.server.services.sysmontap", selector: "setConfig:", args: args)
-//            ins.response(forServer: "com.apple.instruments.server.services.sysmontap", selector: "start", args: nil)
-//
-//            self.ins = ins
-//        }
-//
-//        ins?.requestForReceive()
+        instrument.delegate = self
     }
 
     override var representedObject: Any? {
@@ -73,12 +41,11 @@ class ViewController: NSViewController {
         
         func action() {
             if instrument.isConnected {
-                instrument.response()
                 return
             }
             
             let device = MobileManager.share.deviceList.first { item in
-                if item.type == .net {
+                if item.type == .usb {
                     return true
                 }
                 return false
@@ -89,11 +56,24 @@ class ViewController: NSViewController {
                 return
             }
             
-            if !instrument.isConnected {
-                instrument.start(iDevice)
+            if !instrument.isConnected, instrument.start(iDevice) {
                 instrument.refreshAppProcessList()
+                instrument.cpu()
+                instrument.autoReponse(0.5)
                 return
             }
         }
+    }
+}
+
+extension ViewController: IIntrumentsDelegate {
+    func appProcess(list: [AppProcessItem]) {
+        processList = list
+    }
+    
+    func cpu(info: [[String : Any]]) {
+        print("\n\n==============")
+        print(info)
+        print("============\n\n")
     }
 }

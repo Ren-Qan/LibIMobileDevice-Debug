@@ -6,8 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "DTXArguments.h"
 #import "DTXReceiveObject.h"
+#import "DTXServerModel.h"
 
 #include <libimobiledevice/libimobiledevice.h>
 
@@ -16,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol DTXMessageHandleDelegate <NSObject>
 
-- (void)receiveWithServer:(NSString *)server object:(DTXReceiveObject *)object handle:(DTXMessageHandle *)handle ;
+- (void)responseServer:(DTXServerModel *)server object:(DTXReceiveObject *)object handle:(DTXMessageHandle *)handle ;
 
 @optional
 

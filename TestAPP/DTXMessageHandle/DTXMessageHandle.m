@@ -38,9 +38,11 @@ struct DTXMessagePayloadHeader {
 
 @interface DTXMessageHandle()
 
+/// [server_name : channel]
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSNumber *> *channelMap;
 
-@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSString *> *channelNameMap;
+/// [channel : server_model]
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, DTXServerModel *> *serverMap;
 
 @end
 
@@ -67,11 +69,11 @@ struct DTXMessagePayloadHeader {
     return _channelMap;
 }
 
-- (NSMutableDictionary<NSNumber *,NSString *> *)channelNameMap {
-    if(!_channelNameMap) {
-        _channelNameMap = [NSMutableDictionary dictionary];
+- (NSMutableDictionary<NSNumber *,DTXServerModel *> *)serverMap {
+    if(!_serverMap) {
+        _serverMap = [NSMutableDictionary dictionary];
     }
-    return _channelNameMap;
+    return _serverMap;
 }
 
 // MARK: - Private -
@@ -80,6 +82,14 @@ struct DTXMessagePayloadHeader {
     if ([self.delegate respondsToSelector:@selector(error:handle:)]) {
         [self.delegate error:error handle:self];
     }
+}
+
+- (void)xmlWithPlist:(plist_t)plist {
+    char *xml = NULL;
+    uint32_t len;
+    plist_to_xml(plist, &xml, &len);
+    NSString *str = [NSString stringWithUTF8String:xml];
+    NSLog(@"%@", str);
 }
 
 // MARK: - Setup -
@@ -102,6 +112,8 @@ struct DTXMessagePayloadHeader {
     
     plist_t signatureDic = plist_dict_get_item(mounter_lookup_result, "ImageSignature");
     plist_t signatureArr = plist_array_get_item(signatureDic, 0);
+    
+    [self xmlWithPlist:mounter_lookup_result];
     
     char *signatureString;
     uint64_t signtureLen;
@@ -157,7 +169,11 @@ struct DTXMessagePayloadHeader {
     DTXArguments *args = [[DTXArguments alloc] init];
     [args addObject:par];
     
-    [self sendWithChannel:9 selector:@"_notifyOfPublishedCapabilities:" args:args expectsReply:NO];
+    [self sendWithChannel:9
+                 selector:@"_notifyOfPublishedCapabilities:"
+                     args:args
+             expectsReply:NO
+              serverModel:NULL];
     DTXReceiveObject *result= [self receive];
     
     NSString *string = (NSString *)[result object];
@@ -206,9 +222,8 @@ struct DTXMessagePayloadHeader {
     [arg appendData:[self getByteWithObj:server]];
     
     self.channelMap[server] = @(code);
-    self.channelNameMap[@(code)] = server;
     
-    [self sendWithChannel:0 selector:@"_requestChannelWithCode:identifier:" args:arg expectsReply:YES];
+    [self sendWithChannel:0 selector:@"_requestChannelWithCode:identifier:" args:arg expectsReply:YES serverModel:NULL];
 }
 
 // MARK: - Public -
@@ -220,7 +235,7 @@ struct DTXMessagePayloadHeader {
     _cur_channel_tag = 1;
     _server_dic = NULL;
     _channelMap = NULL;
-    _channelNameMap = NULL;
+    _serverMap = NULL;
     
     if (_connection) {
         idevice_disconnect(_connection);
@@ -249,7 +264,18 @@ struct DTXMessagePayloadHeader {
         return;
     }
     uint32_t channel = object.unsignedIntValue;
-    [self sendWithChannel:channel selector:selector args:args expectsReply:YES];
+    
+    DTXServerModel *model = self.serverMap[@(channel)];
+    if (!model) {
+        model = [[DTXServerModel alloc] init];
+        model.channel = channel;
+        model.server = server;
+        self.serverMap[@(channel)] = model;
+    } else {
+        model.selector = selector;
+    }
+    
+    [self sendWithChannel:channel selector:selector args:args expectsReply:YES serverModel:model];
 }
 
 - (void)responseForReceive {
@@ -265,13 +291,14 @@ struct DTXMessagePayloadHeader {
         channel = UINT32_MAX - result.channel + 1;
     }
     
-    NSString *server = [self.channelNameMap objectForKey:@(channel)];
-    if (!server || server.length <= 0) {
+    DTXServerModel *server = self.serverMap[@(channel)];
+    
+    if (!server) {
         return;
     }
     
-    if ([self.delegate respondsToSelector:@selector(receiveWithServer:object:handle:)]) {
-        [self.delegate receiveWithServer:server object:result handle:self];
+    if ([self.delegate respondsToSelector:@selector(responseServer:object:handle:)]) {
+        [self.delegate responseServer:server object:result handle:self];
     }
 }
 
@@ -284,7 +311,8 @@ struct DTXMessagePayloadHeader {
 - (BOOL)sendWithChannel:(uint32_t)channel
                selector:(NSString *)selector
                    args:(DTXArguments *)args
-           expectsReply:(BOOL)expectsReply {
+           expectsReply:(BOOL)expectsReply
+            serverModel:(DTXServerModel *)model {
     uint32 identifier = _cur_message_tag;
     _cur_message_tag += 1;
     NSData *selData = [self getByteWithObj:selector];
@@ -315,6 +343,11 @@ struct DTXMessagePayloadHeader {
     uint32_t nsent;
     NSData *datas = [argument bytes];
     size_t msglen = datas.length;
+    
+    if (model) {
+        model.identifier = identifier;
+    }
+    
     
     idevice_connection_send(_connection, [datas bytes], (uint32_t)msglen, &nsent);
     
