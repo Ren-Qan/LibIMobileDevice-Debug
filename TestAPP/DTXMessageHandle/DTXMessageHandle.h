@@ -9,7 +9,6 @@
 
 #import "DTXArguments.h"
 #import "DTXReceiveObject.h"
-#import "DTXServerModel.h"
 
 #include <libimobiledevice/libimobiledevice.h>
 
@@ -17,8 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class DTXMessageHandle;
 
 @protocol DTXMessageHandleDelegate <NSObject>
-
-- (void)responseServer:(DTXServerModel *)server object:(DTXReceiveObject *)object handle:(DTXMessageHandle *)handle ;
 
 @optional
 
@@ -30,20 +27,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<DTXMessageHandleDelegate> delegate;
 
-/// 断掉Instrument的socket
 - (void)stopService;
 
 - (BOOL)connectInstrumentsServiceWithDevice:(idevice_t)device;
 
-/// 必须得 connectInstrumentsServiceWithDevice: 返回YES才可以执行
-- (void)requestForServer:(NSString *)server
-                 selector:(NSString *)selector
-                     args:(nullable DTXArguments *)args;
+- (BOOL)isVaildServer:(NSString *)server;
 
-/// 有些Service建立连接后直接读socket的缓存即可
-- (void)responseForReceive;
+- (BOOL)sendWithChannel:(uint32_t)channel
+             identifier:(uint32_t)identifier
+               selector:(NSString *)selector
+                   args:(DTXArguments * _Nullable)args
+           expectsReply:(BOOL)expectsReply;
 
-- (BOOL)isServerBuildSuccessWithName:(NSString *)name;
+- (DTXReceiveObject * _Nullable)receive;
 
 @end
 

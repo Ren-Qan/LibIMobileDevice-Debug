@@ -20,7 +20,6 @@
 		C7183A8A292F23CB006F76AB /* IDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7183A89292F23CB006F76AB /* IDevice.swift */; };
 		C7183A8E292F3BEF006F76AB /* IIntruments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7183A8D292F3BEF006F76AB /* IIntruments.swift */; };
 		C7183A91292F4EEA006F76AB /* IIntrumentsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7183A90292F4EEA006F76AB /* IIntrumentsModels.swift */; };
-		C7183A93292F5023006F76AB /* IIntrumentsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7183A92292F5023006F76AB /* IIntrumentsResolver.swift */; };
 		C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72CB4DE2921E79400291F16 /* AppDelegate.swift */; };
 		C72CB4E12921E79400291F16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72CB4E02921E79400291F16 /* ViewController.swift */; };
 		C72CB4E32921E79600291F16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C72CB4E22921E79600291F16 /* Assets.xcassets */; };
@@ -31,6 +30,9 @@
 		C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */; };
 		C72CB5192921E89600291F16 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5132921E89600291F16 /* libssl.a */; };
 		C73D82CB2927E45F0018B6F9 /* DTXMessageService.mm in Sources */ = {isa = PBXBuildFile; fileRef = C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */; };
+		C76EC3222934997700F2D31D /* IInstrumentsCPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76EC3212934997700F2D31D /* IInstrumentsCPU.swift */; };
+		C76EC3242934999300F2D31D /* IInstrumentsServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76EC3232934999300F2D31D /* IInstrumentsServiceProtocols.swift */; };
+		C76EC3262934AA8000F2D31D /* IInstrumentsBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76EC3252934AA8000F2D31D /* IInstrumentsBaseService.swift */; };
 		C7831C36292C7A81008AD86B /* DTXReceiveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C7831C35292C7A81008AD86B /* DTXReceiveObject.m */; };
 		C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E6291DF5EE0040F03A /* libplist-2.0.a */; };
 		C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */; };
@@ -93,7 +95,6 @@
 		C7B6BDA9292B797F0094D460 /* DTXArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA8292B797F0094D460 /* DTXArguments.m */; };
 		C7E56402292356C500F4418F /* MDUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E56401292356C500F4418F /* MDUtil.m */; };
 		C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */; };
-		C7FD51A02930A35100FD964A /* DTXServerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FD519F2930A35100FD964A /* DTXServerModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -144,7 +145,6 @@
 		C7183A89292F23CB006F76AB /* IDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDevice.swift; sourceTree = "<group>"; };
 		C7183A8D292F3BEF006F76AB /* IIntruments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IIntruments.swift; sourceTree = "<group>"; };
 		C7183A90292F4EEA006F76AB /* IIntrumentsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IIntrumentsModels.swift; sourceTree = "<group>"; };
-		C7183A92292F5023006F76AB /* IIntrumentsResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IIntrumentsResolver.swift; sourceTree = "<group>"; };
 		C72CB4DC2921E79400291F16 /* TestAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C72CB4DE2921E79400291F16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C72CB4E02921E79400291F16 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +160,9 @@
 		C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestAPP-Bridging-Header.h"; sourceTree = "<group>"; };
 		C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DTXMessageService.mm; sourceTree = "<group>"; };
 		C73D82CA2927E45F0018B6F9 /* DTXMessageService.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DTXMessageService.hh; sourceTree = "<group>"; };
+		C76EC3212934997700F2D31D /* IInstrumentsCPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IInstrumentsCPU.swift; sourceTree = "<group>"; };
+		C76EC3232934999300F2D31D /* IInstrumentsServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IInstrumentsServiceProtocols.swift; sourceTree = "<group>"; };
+		C76EC3252934AA8000F2D31D /* IInstrumentsBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IInstrumentsBaseService.swift; sourceTree = "<group>"; };
 		C775A659291DECA9004F8618 /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		C775A65B291DECA9004F8618 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C775A65C291DECA9004F8618 /* opack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opack.h; sourceTree = "<group>"; };
@@ -503,8 +506,6 @@
 		C7F83C192922135200CCBFF8 /* preboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preboard.h; sourceTree = "<group>"; };
 		C7F83C1A2922135200CCBFF8 /* reverse_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reverse_proxy.h; sourceTree = "<group>"; };
 		C7F83C1B2922135200CCBFF8 /* service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service.h; sourceTree = "<group>"; };
-		C7FD519E2930A35100FD964A /* DTXServerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTXServerModel.h; sourceTree = "<group>"; };
-		C7FD519F2930A35100FD964A /* DTXServerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTXServerModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -631,8 +632,10 @@
 			isa = PBXGroup;
 			children = (
 				C7183A8D292F3BEF006F76AB /* IIntruments.swift */,
-				C7183A92292F5023006F76AB /* IIntrumentsResolver.swift */,
+				C76EC3232934999300F2D31D /* IInstrumentsServiceProtocols.swift */,
+				C76EC3252934AA8000F2D31D /* IInstrumentsBaseService.swift */,
 				C7183A90292F4EEA006F76AB /* IIntrumentsModels.swift */,
+				C76EC3202934994600F2D31D /* Services */,
 			);
 			path = Instruments;
 			sourceTree = "<group>";
@@ -738,6 +741,14 @@
 			path = x86;
 			sourceTree = "<group>";
 		};
+		C76EC3202934994600F2D31D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C76EC3212934997700F2D31D /* IInstrumentsCPU.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		C775A657291DECA9004F8618 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,12 +818,10 @@
 			children = (
 				C7B6BDA7292B797F0094D460 /* DTXArguments.h */,
 				C7B6BDA8292B797F0094D460 /* DTXArguments.m */,
-				C7B6BDA4292B786B0094D460 /* DTXMessageHandle.h */,
-				C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */,
 				C7831C34292C7A81008AD86B /* DTXReceiveObject.h */,
 				C7831C35292C7A81008AD86B /* DTXReceiveObject.m */,
-				C7FD519E2930A35100FD964A /* DTXServerModel.h */,
-				C7FD519F2930A35100FD964A /* DTXServerModel.m */,
+				C7B6BDA4292B786B0094D460 /* DTXMessageHandle.h */,
+				C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */,
 			);
 			path = DTXMessageHandle;
 			sourceTree = "<group>";
@@ -1496,11 +1505,12 @@
 				C72CB4E12921E79400291F16 /* ViewController.swift in Sources */,
 				C7831C36292C7A81008AD86B /* DTXReceiveObject.m in Sources */,
 				C7E56402292356C500F4418F /* MDUtil.m in Sources */,
+				C76EC3262934AA8000F2D31D /* IInstrumentsBaseService.swift in Sources */,
+				C76EC3222934997700F2D31D /* IInstrumentsCPU.swift in Sources */,
 				C7B6BDA9292B797F0094D460 /* DTXArguments.m in Sources */,
 				C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */,
-				C7FD51A02930A35100FD964A /* DTXServerModel.m in Sources */,
+				C76EC3242934999300F2D31D /* IInstrumentsServiceProtocols.swift in Sources */,
 				C7183A8A292F23CB006F76AB /* IDevice.swift in Sources */,
-				C7183A93292F5023006F76AB /* IIntrumentsResolver.swift in Sources */,
 				C7183A91292F4EEA006F76AB /* IIntrumentsModels.swift in Sources */,
 				C7183A8E292F3BEF006F76AB /* IIntruments.swift in Sources */,
 			);

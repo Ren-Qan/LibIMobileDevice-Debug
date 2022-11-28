@@ -34,45 +34,7 @@
 
 // MARK: --------------------------------------------------------------------------------
 
-@implementation DTXReceiveObject {
-    NSArray *_array;
-    NSObject *_object;
-    uint32_t _channelCode;
-    uint32_t _identifier;
-    uint32_t _flag;
-}
-
-- (NSArray *)array {
-    return _array;
-}
-
-- (id)object {
-    return _object;
-}
-
-- (uint32_t)channel {
-    return _channelCode;
-}
-
-- (uint32_t)identifier {
-    return _identifier;
-}
-
-- (uint32_t)flag {
-    return _flag;
-}
-
-- (void)setIdentifier:(uint32_t)identifier {
-    _identifier = identifier;
-}
-
-- (void)setChannel:(uint32_t)channel {
-    _channelCode = channel;
-}
-
-- (void)setFlag:(uint32_t)flag {
-    _flag = flag;
-}
+@implementation DTXReceiveObject
 
 - (void)deserializeWithData:(NSData *)data {
     if (data == NULL) {

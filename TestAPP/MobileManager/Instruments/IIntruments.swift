@@ -8,67 +8,44 @@
 import Cocoa
 import LibMobileDevice
 
-enum IIntrumentsServerName: String {
-    case deviceinfo = "com.apple.instruments.server.services.deviceinfo"
-    case sysmontap = "com.apple.instruments.server.services.sysmontap"
-}
-
-protocol IIntrumentsDelegate: NSObjectProtocol {
-    func appProcess(list: [AppProcessItem])
-    
-    func cpu(info: [[String : Any]])
-}
-
 class IIntruments: NSObject {
     // MARK: - Private -
     private lazy var dtxService: DTXMessageHandle = {
         let server = DTXMessageHandle()
-        server.delegate = self
         return server
     }()
     
-    private lazy var queue: OperationQueue = {
+    private lazy var requestQ: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
     
-    private lazy var resolver = IIntrumentsResolver()
-    
-    private var timer: Timer? = nil
+    private lazy var responseQ: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+            
+    private var identifier: UInt32 = 0
     
     // MARK: - Public Getter -
     public private(set) var isConnected = false
-    
-    // MARK: - Public -
-    
-    public weak var delegate: IIntrumentsDelegate? = nil {
-        didSet {
-            resolver.sourceDelegate = delegate
-        }
-    }
-    
-    deinit {
-        timer?.invalidate()
-        timer = nil
-    }
 }
 
 // MARK: - Private -
+
 private extension IIntruments {
-    func request(_ server: IIntrumentsServerName, _ selector: String, _ args: DTXArguments?) {
-        queue.addOperation { [weak self] in
-            self?.dtxService.request(forServer: server.rawValue, selector: selector, args: args)
-        }
+    var nextIdentifier: UInt32 {
+        identifier += 1
+        return identifier
     }
 }
 
 extension IIntruments {
     func stop() {
-        queue.addOperation { [weak self] in
-            self?.isConnected = false
-            self?.dtxService.stopService()
-        }
+        isConnected = false
+        dtxService.stopService()
     }
     
     @discardableResult
@@ -81,61 +58,49 @@ extension IIntruments {
         return isConnected
     }
     
-    func response() {
-        queue.addOperation { [weak self] in
-            self?.dtxService.responseForReceive()
-        }
-    }
-    
-    func autoReponse(_ seconds: TimeInterval) {
-        timer?.invalidate()
-        timer = nil
-        
-        let timer = Timer(timeInterval: seconds, repeats: true) { [weak self] _ in
-            self?.response()
+    func setup(service: IInstrumentsServiceProtocol) -> Bool {
+        if !isConnected {
+            return false
         }
         
-        timer.fire()
-        RunLoop.main.add(timer, forMode: .common)
-        self.timer = timer
-    }
-    
-    func refreshAppProcessList() {
-        let selector = "runningProcesses"
-        request(.deviceinfo, selector, nil)
-    }
-    
-    func cpu() {
-        let config: [String : Any] = [
-            "bm": 0,
-            "cpuUsage": true,
-            "ur": 1000,
-            "sampleInterval": 1000000000,
-            "procAttrs": [
-                "memVirtualSize", "cpuUsage", "ctxSwitch", "intWakeups", "physFootprint", "memResidentSize", "memAnon", "pid"
-            ],
-            "sysAttrs": [
-                "vmExtPageCount", "vmFreeCount", "vmPurgeableCount", "vmSpeculativeCount", "physMemSize"
-            ]
-        ]
-        let args = DTXArguments()
-        args.add(config)
+        if !dtxService.isVaildServer(service.server.rawValue) {
+            return false
+        }
         
-        request(.sysmontap, "setConfig:", args)
-        request(.sysmontap, "start", nil)
-    }
-    
-    func gpu() {
-        
-    }
-}
+        let arg = DTXArguments()
+        arg.appendNum32(Int32(service.server.channel))
+        arg.append_d(service.server.channel)
+        arg.add(service.server.rawValue)
 
-extension IIntruments: DTXMessageHandleDelegate {
-    func responseServer(_ server: DTXServerModel, object: DTXReceiveObject, handle: DTXMessageHandle) {
-        resolver.resolver(server: server, object: object)
+        
+        dtxService.send(withChannel: 0,
+                        identifier: nextIdentifier,
+                        selector: "_requestChannelWithCode:identifier:",
+                        args: arg,
+                        expectsReply: true)
+        let result = dtxService.receive()
+        if let result = result, result.object == nil, result.array == nil {
+            return true
+        }
+        
+        return false
     }
     
-    func error(_ error: String, handle: DTXMessageHandle) {
-        
+    func request(channel: UInt32, selector: String, args: DTXArguments?, expectsReply: Bool) {
+        requestQ.addOperation { [weak self] in
+            if let identifier = self?.nextIdentifier {
+                self?.dtxService.send(withChannel: channel, identifier: identifier, selector: selector, args: args, expectsReply: expectsReply)
+            }
+        }
+    }
+    
+    func response() {
+        responseQ.addOperation { [weak self] in
+            let result = self?.dtxService.receive()
+            if let reuslt = result {
+                print(result)
+            }
+            
+        }
     }
 }

@@ -12,6 +12,8 @@ class ViewController: NSViewController {
     
     lazy var instrument = IIntruments()
     
+    lazy var cpu = IInstrumentsCPU()
+    
     var processList: [AppProcessItem]? = nil
     
     override func viewDidLoad() {
@@ -21,11 +23,11 @@ class ViewController: NSViewController {
         button.frame = .init(origin: .zero, size: .init(width: 200, height: 50))
         view.addSubview(button)
 
+//        instrument.creatService() as? IInstrumentsCPU
+        
         DispatchQueue.global().async {
             MobileManager.share.refreshDeviceList()
         }
-        
-        instrument.delegate = self
     }
 
     override var representedObject: Any? {
@@ -35,45 +37,39 @@ class ViewController: NSViewController {
     }
 
     @objc func getDeviceList() {
+//        print(IInstrumentsServiceName.aw.channel)
+        
         DispatchQueue.global().async {
             action()
+//            self.cpu.response()
         }
         
         func action() {
             if instrument.isConnected {
+                self.cpu.response()
                 return
             }
-            
+
             let device = MobileManager.share.deviceList.first { item in
                 if item.type == .usb {
                     return true
                 }
                 return false
             }
-            
+
             guard let device = device,
                   let iDevice = IDevice(device) else {
                 return
             }
-            
+
             if !instrument.isConnected, instrument.start(iDevice) {
-                instrument.refreshAppProcessList()
-                instrument.cpu()
-                instrument.autoReponse(0.5)
+                cpu.instrumentHandle = instrument
+                self.cpu.start()
+                self.cpu.request(selector: "setConfig:")
+                self.cpu.request(selector: "start")
                 return
             }
         }
     }
 }
 
-extension ViewController: IIntrumentsDelegate {
-    func appProcess(list: [AppProcessItem]) {
-        processList = list
-    }
-    
-    func cpu(info: [[String : Any]]) {
-        print("\n\n==============")
-        print(info)
-        print("============\n\n")
-    }
-}

@@ -11,25 +11,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DTXReceiveObject : NSObject
 
-// MARK: - Setter -
+@property (nonatomic, strong, nullable, readonly) NSArray *array;
 
-- (NSArray *)array;
+@property (nonatomic, strong, nullable, readonly) id object;
 
-- (id)object;
+@property (nonatomic, assign) uint32_t channel;
 
-- (uint32_t)channel;
+@property (nonatomic, assign) uint32_t identifier;
 
-- (uint32_t)identifier;
-
-- (uint32_t)flag;
-
-// MARK: - Setter -
-
-- (void)setIdentifier:(uint32_t)identifier;
-
-- (void)setChannel:(uint32_t)channel;
-
-- (void)setFlag:(uint32_t)flag;
+@property (nonatomic, assign) uint32_t flag;
 
 - (void)deserializeWithData:(NSData *)data;
 

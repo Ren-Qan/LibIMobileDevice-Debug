@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)appendData:(NSData *)data;
 
-- (void)appendInt:(int32_t)num;
+- (void)appendNum32:(int32_t)num;
 
 - (void)appendLong:(int64_t)num;
 

@@ -60,7 +60,7 @@
     [self append_b:data];
 }
 
-- (void)appendInt:(int32_t)num {
+- (void)appendNum32:(int32_t)num {
     [self append_d:10];
     [self append_d:3];
     [self append_d:num];
