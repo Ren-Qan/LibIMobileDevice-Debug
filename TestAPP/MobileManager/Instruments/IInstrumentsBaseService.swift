@@ -10,10 +10,8 @@ import Cocoa
 class IInstrumentsBaseService: NSObject {
     public weak var instrumentHandle: IIntruments? = nil
     
-    public private(set) var current_identifier: UInt32 = 0
-    
-    public var isStartSuccess = false
-    
+    public private(set) var current_identifier: UInt32 = 1
+        
     public var next_identifier: UInt32 {
         current_identifier += 1
         return current_identifier

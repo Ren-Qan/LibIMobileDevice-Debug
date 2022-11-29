@@ -7,17 +7,22 @@
 
 import Cocoa
 
-class IInstrumentsCPU: IInstrumentsBaseService, IInstrumentsServiceProtocol {
+enum IInstrumentCPUArgs: IInstrumentRequestArgsProtocol {
+    case setConfig
     
-}
-
-extension IInstrumentsCPU {
-    var server: IInstrumentsServiceName {
-        return .sysmontap
+    case start
+    
+    var selector: String {
+        switch self {
+            case .setConfig:
+                return "setConfig:"
+            case .start:
+                return "start"
+        }
     }
-        
-    func args(selector: String) -> DTXArguments? {
-        if selector == "setConfig:" {
+    
+    var args: DTXArguments? {
+        if self == .setConfig {
             let config: [String : Any] = [
                 "bm": 0,
                 "cpuUsage": true,
@@ -34,6 +39,24 @@ extension IInstrumentsCPU {
             args.add(config)
             return args
         }
+        
         return nil
+    }
+}
+
+class IInstrumentsCPU: IInstrumentsBaseService  {
+    
+}
+
+extension IInstrumentsCPU: IInstrumentsServiceProtocol {
+    var server: IInstrumentsServiceName {
+        return .sysmontap
+    }
+    
+    func response(_ response: DTXReceiveObject?) {
+        if let result = response?.object {
+            print(result)
+        }
+        
     }
 }

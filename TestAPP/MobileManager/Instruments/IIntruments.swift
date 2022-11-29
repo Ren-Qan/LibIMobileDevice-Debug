@@ -28,6 +28,7 @@ class IIntruments: NSObject {
     }()
             
     private var identifier: UInt32 = 0
+    private var channel_tag: UInt32 = 0
     
     // MARK: - Public Getter -
     public private(set) var isConnected = false
@@ -58,49 +59,44 @@ extension IIntruments {
         return isConnected
     }
     
-    func setup(service: IInstrumentsServiceProtocol) -> Bool {
+    func setup(service: IInstrumentsServiceProtocol) {
         if !isConnected {
-            return false
+            return
         }
         
         if !dtxService.isVaildServer(service.server.rawValue) {
-            return false
+            return
         }
         
         let arg = DTXArguments()
         arg.appendNum32(Int32(service.server.channel))
-        arg.append_d(service.server.channel)
         arg.add(service.server.rawValue)
 
-        
         dtxService.send(withChannel: 0,
                         identifier: nextIdentifier,
                         selector: "_requestChannelWithCode:identifier:",
                         args: arg,
                         expectsReply: true)
-        let result = dtxService.receive()
-        if let result = result, result.object == nil, result.array == nil {
-            return true
-        }
-        
-        return false
     }
     
-    func request(channel: UInt32, selector: String, args: DTXArguments?, expectsReply: Bool) {
+    func request(channel: UInt32,
+                 identifier: UInt32,
+                 selector: String,
+                 args: DTXArguments?,
+                 expectsReply: Bool) {
         requestQ.addOperation { [weak self] in
-            if let identifier = self?.nextIdentifier {
-                self?.dtxService.send(withChannel: channel, identifier: identifier, selector: selector, args: args, expectsReply: expectsReply)
-            }
+            self?.dtxService.send(withChannel: channel,
+                                  identifier: identifier,
+                                  selector: selector,
+                                  args: args,
+                                  expectsReply: expectsReply)
         }
     }
     
-    func response() {
+    func response(_ complete: ((DTXReceiveObject?) -> Void)? = nil) {
         responseQ.addOperation { [weak self] in
             let result = self?.dtxService.receive()
-            if let reuslt = result {
-                print(result)
-            }
-            
+            complete?(result)
         }
     }
 }

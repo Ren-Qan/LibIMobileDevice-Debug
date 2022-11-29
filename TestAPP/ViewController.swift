@@ -41,7 +41,7 @@ class ViewController: NSViewController {
         
         DispatchQueue.global().async {
             action()
-//            self.cpu.response()
+            self.cpu.response()
         }
         
         func action() {
@@ -65,8 +65,8 @@ class ViewController: NSViewController {
             if !instrument.isConnected, instrument.start(iDevice) {
                 cpu.instrumentHandle = instrument
                 self.cpu.start()
-                self.cpu.request(selector: "setConfig:")
-                self.cpu.request(selector: "start")
+                self.cpu.request(arg: IInstrumentCPUArgs.setConfig)
+                self.cpu.request(arg: IInstrumentCPUArgs.start)
                 return
             }
         }

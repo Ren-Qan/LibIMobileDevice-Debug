@@ -7,6 +7,12 @@
 
 import Cocoa
 
+protocol IInstrumentRequestArgsProtocol {
+    var selector: String { get }
+    
+    var args: DTXArguments? { get }
+}
+
 enum IInstrumentsServiceName: String, CaseIterable {
     case sysmontap = "com.apple.instruments.server.services.sysmontap"
         
@@ -25,22 +31,26 @@ enum IInstrumentsServiceName: String, CaseIterable {
     }
 }
 
-protocol IInstrumentsServiceProtocol: NSObjectProtocol {
-    init()
-    
+protocol IInstrumentsServiceProtocol: NSObjectProtocol {    
     var server: IInstrumentsServiceName { get }
+        
+    func response(_ response: DTXReceiveObject?)
+    
+    // MARK: - optional -
     
     var instrument: IIntruments? { get }
-        
+    
+    var identifier: UInt32 { get }
+    
     var expectsReply: Bool { get }
-    
-    func args(selector: String) -> DTXArguments?
-    
-    func request(selector: String)
     
     func start()
     
-    var startSuccess: Bool { get }
+    func request(arg: IInstrumentRequestArgsProtocol)
+    
+    func response()
+    
+    func makeChannel(state: Bool)
 }
 
 extension IInstrumentsServiceProtocol {
@@ -51,40 +61,50 @@ extension IInstrumentsServiceProtocol {
         return nil
     }
     
+    var identifier: UInt32 {
+        guard let service = self as? IInstrumentsBaseService else {
+            return 0
+        }
+        return service.next_identifier
+    }
+    
     var expectsReply: Bool {
         return true
     }
     
-    func request(selector: String) {
-        guard startSuccess else {
-            return
-        }
-        
-        let args = args(selector: selector)
+    func start() {
+        instrument?.setup(service: self)
+    }
+    
+    func request(arg: IInstrumentRequestArgsProtocol) {
+        let args = arg.args
         let channel = server.channel
         
         instrument?
             .request(channel: channel,
-                     selector: selector,
+                     identifier: identifier,
+                     selector: arg.selector,
                      args: args,
                      expectsReply: expectsReply)
     }
     
     func response() {
-        instrument?.response()
-    }
-    
-    func start() {
-        let success = instrument?.setup(service: self) ?? false
-        if let service = self as? IInstrumentsBaseService {
-            service.isStartSuccess = success
+        instrument?.response { [weak self] response in
+            if let response = response,
+               response.channel == 0 {
+                if response.object == nil,
+                   response.array == nil {
+                    self?.makeChannel(state: true)
+                } else {
+                    self?.makeChannel(state: false)
+                }
+            }
+            
+            self?.response(response)
         }
     }
     
-    var startSuccess: Bool {
-        if let success = (self as? IInstrumentsBaseService)?.isStartSuccess {
-            return success
-        }
-        return false
+    func makeChannel(state: Bool) {
+        
     }
 }
