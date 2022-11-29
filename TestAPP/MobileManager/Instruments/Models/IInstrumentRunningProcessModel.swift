@@ -1,13 +1,13 @@
 //
-//  AppProcessItem.swift
+//  IInstrumentRunningProcessModel.swift
 //  TestAPP
 //
-//  Created by 任玉乾 on 2022/11/24.
+//  Created by 任玉乾 on 2022/11/29.
 //
 
 import Cocoa
 
-struct AppProcessItem {
+struct IInstrumentRunningProcessModel {
     var isApplication: Bool? = nil
     var name: String? = nil
     var pid: UInt? = nil

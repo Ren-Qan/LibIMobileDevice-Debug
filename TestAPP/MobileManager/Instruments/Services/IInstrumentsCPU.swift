@@ -39,7 +39,6 @@ enum IInstrumentCPUArgs: IInstrumentRequestArgsProtocol {
             args.add(config)
             return args
         }
-        
         return nil
     }
 }
@@ -57,6 +56,5 @@ extension IInstrumentsCPU: IInstrumentsServiceProtocol {
         if let result = response?.object {
             print(result)
         }
-        
     }
 }
