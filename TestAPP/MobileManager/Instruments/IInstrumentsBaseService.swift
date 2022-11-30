@@ -10,11 +10,11 @@ import Cocoa
 class IInstrumentsBaseService: NSObject {
     public weak var instrumentHandle: IIntruments? = nil
     
-    public private(set) var current_identifier: UInt32 = 1
+    public private(set) var currentIdentifier: UInt32 = 1
         
-    public var next_identifier: UInt32 {
-        current_identifier += 1
-        return current_identifier
+    public var nextIdentifier: UInt32 {
+        currentIdentifier += 1
+        return currentIdentifier
     }
     
     required override init() {

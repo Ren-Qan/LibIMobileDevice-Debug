@@ -7,7 +7,7 @@
 
 import Cocoa
 
-enum IInstrumentCPUArgs: IInstrumentRequestArgsProtocol {
+enum IInstrumentsSysmontapArgs: IInstrumentRequestArgsProtocol {
     case setConfig
     
     case start
@@ -43,11 +43,13 @@ enum IInstrumentCPUArgs: IInstrumentRequestArgsProtocol {
     }
 }
 
-class IInstrumentsCPU: IInstrumentsBaseService  {
+class IInstrumentsSysmontap: IInstrumentsBaseService  {
     
 }
 
-extension IInstrumentsCPU: IInstrumentsServiceProtocol {
+extension IInstrumentsSysmontap: IInstrumentsServiceProtocol {
+    typealias Arg = IInstrumentsSysmontapArgs
+    
     var server: IInstrumentsServiceName {
         return .sysmontap
     }

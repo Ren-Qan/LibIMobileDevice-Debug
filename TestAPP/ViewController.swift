@@ -12,18 +12,16 @@ class ViewController: NSViewController {
     
     lazy var instrument = IIntruments()
     
-    lazy var cpu = IInstrumentsCPU()
+    lazy var sysmontap = IInstrumentsSysmontap()
     
-    var processList: [AppProcessItem]? = nil
-    
+    lazy var deviceInfo = IInstrumentsDeviceInfo()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let button = NSButton(title: "app list", target: self, action: #selector(getDeviceList))
         button.frame = .init(origin: .zero, size: .init(width: 200, height: 50))
         view.addSubview(button)
-
-//        instrument.creatService() as? IInstrumentsCPU
         
         DispatchQueue.global().async {
             MobileManager.share.refreshDeviceList()
@@ -37,16 +35,14 @@ class ViewController: NSViewController {
     }
 
     @objc func getDeviceList() {
-//        print(IInstrumentsServiceName.aw.channel)
-        
         DispatchQueue.global().async {
             action()
-            self.cpu.response()
         }
         
         func action() {
             if instrument.isConnected {
-                self.cpu.response()
+                self.sysmontap.request()
+                self.deviceInfo.request()
                 return
             }
 
@@ -63,10 +59,13 @@ class ViewController: NSViewController {
             }
 
             if !instrument.isConnected, instrument.start(iDevice) {
-                cpu.instrumentHandle = instrument
-                self.cpu.start()
-                self.cpu.request(arg: IInstrumentCPUArgs.setConfig)
-                self.cpu.request(arg: IInstrumentCPUArgs.start)
+                self.sysmontap.start(instrument)
+                self.sysmontap.register(.setConfig)
+                self.sysmontap.register(.start)
+                                
+                self.deviceInfo.start(instrument)
+                self.deviceInfo.register(.runningProcesses)
+                            
                 return
             }
         }

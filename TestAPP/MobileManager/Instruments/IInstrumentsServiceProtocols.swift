@@ -15,6 +15,8 @@ protocol IInstrumentRequestArgsProtocol {
 
 enum IInstrumentsServiceName: String, CaseIterable {
     case sysmontap = "com.apple.instruments.server.services.sysmontap"
+    
+    case deviceinfo = "com.apple.instruments.server.services.deviceinfo"
         
     var channel: UInt32 {
         return UInt32(IInstrumentsServiceName.allCases.firstIndex(of: self)! + 10)
@@ -31,7 +33,9 @@ enum IInstrumentsServiceName: String, CaseIterable {
     }
 }
 
-protocol IInstrumentsServiceProtocol: NSObjectProtocol {    
+protocol IInstrumentsServiceProtocol: NSObjectProtocol {
+    associatedtype Arg : IInstrumentRequestArgsProtocol
+    
     var server: IInstrumentsServiceName { get }
         
     func response(_ response: DTXReceiveObject?)
@@ -44,13 +48,11 @@ protocol IInstrumentsServiceProtocol: NSObjectProtocol {
     
     var expectsReply: Bool { get }
     
-    func start()
+    func start(_ handle: IIntruments?)
     
-    func request(arg: IInstrumentRequestArgsProtocol)
+    func register(_ arg: Arg)
     
-    func response()
-    
-    func makeChannel(state: Bool)
+    func request()    
 }
 
 extension IInstrumentsServiceProtocol {
@@ -65,18 +67,22 @@ extension IInstrumentsServiceProtocol {
         guard let service = self as? IInstrumentsBaseService else {
             return 0
         }
-        return service.next_identifier
+        return service.nextIdentifier
     }
     
     var expectsReply: Bool {
         return true
     }
     
-    func start() {
+    func start(_ handle: IIntruments? = nil) {
+        if let handle = handle,
+           let service = self as? IInstrumentsBaseService {
+            service.instrumentHandle = handle
+        }
         instrument?.setup(service: self)
     }
     
-    func request(arg: IInstrumentRequestArgsProtocol) {
+    func register(_ arg: Arg) {
         let args = arg.args
         let channel = server.channel
         
@@ -88,23 +94,9 @@ extension IInstrumentsServiceProtocol {
                      expectsReply: expectsReply)
     }
     
-    func response() {
+    func request() {
         instrument?.response { [weak self] response in
-            if let response = response,
-               response.channel == 0 {
-                if response.object == nil,
-                   response.array == nil {
-                    self?.makeChannel(state: true)
-                } else {
-                    self?.makeChannel(state: false)
-                }
-            }
-            
             self?.response(response)
         }
-    }
-    
-    func makeChannel(state: Bool) {
-        
     }
 }

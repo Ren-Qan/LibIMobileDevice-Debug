@@ -59,7 +59,7 @@ extension IIntruments {
         return isConnected
     }
     
-    func setup(service: IInstrumentsServiceProtocol) {
+    func setup(service: any IInstrumentsServiceProtocol) {
         if !isConnected {
             return
         }
