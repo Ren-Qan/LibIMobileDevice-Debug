@@ -16,6 +16,7 @@
 #include <libimobiledevice/mobile_image_mounter.h>
 #include <libimobiledevice/service.h>
 
+
 #define REMOTESERVER_SERVICE_NAME "com.apple.instruments.remoteserver.DVTSecureSocketProxy"
 
 struct DTXMessageHeader {
@@ -65,58 +66,9 @@ struct DTXMessagePayloadHeader {
     if (!device) {
         return NO;
     }
-    int error = mobile_image_mounter_start_service(device, &_mounter_client, "INSTRUMENTS");
-    if (error != 0) {
-        [self makeError:@"mounter_start_service_failed"];
-        return NO;
-    }
+    idevice_error_t error = 0;
+    error = idevice_connect(device, 58783, &_connection);
     
-    plist_t mounter_lookup_result;
-    if (mobile_image_mounter_lookup_image(_mounter_client, "Developer", &mounter_lookup_result) != 0) {
-        [self makeError:@"mounter_lookup_image_failed"];
-        return NO;
-    }
-    
-    plist_t signatureDic = plist_dict_get_item(mounter_lookup_result, "ImageSignature");
-    plist_t signatureArr = plist_array_get_item(signatureDic, 0);
-        
-    char *signatureString;
-    uint64_t signtureLen;
-    plist_get_data_val(signatureArr, &signatureString, &signtureLen);
-    
-    plist_free(signatureDic);
-    if (signtureLen <= 0 || signatureString == NULL) {
-        [self makeError:@"not found signature"];
-        return NO;
-    }
-    
-    // upload image
-    if (mobile_image_mounter_upload_image(_mounter_client, "Developer", 9, signatureString, (uint16_t)signtureLen, upload_mounter_callback, NULL) != 0) {
-        [self makeError:@"upload image error"];
-        return NO;
-    }
-    
-    // get imagePath
-    char * image_path = find_image_path(device);
-    if (image_path == NULL) {
-        [self makeError:@"not found imagePath"];
-        return NO;
-    }
-    
-    plist_t result = NULL;
-    if (mobile_image_mounter_mount_image(_mounter_client, image_path, signatureString, signtureLen, "Developer", &result) != 0) {
-        [self makeError:@"mount image failed"];
-        free(image_path);
-        return NO;
-    }
-    
-    free(image_path);
-        
-    // service start
-    if (service_client_factory_start_service(device, REMOTESERVER_SERVICE_NAME, (void **)(&_connection), "Remote", SERVICE_CONSTRUCTOR(constructor_remote_service), NULL) != 0) {
-        [self makeError:@"strat instruments service failed"];
-        return NO;
-    }
     
     if (_connection) {
         return [self instrumentsShakeHand];

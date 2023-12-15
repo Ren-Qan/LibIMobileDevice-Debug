@@ -35,25 +35,26 @@ int main(int argc, const char * argv[]) {
     
     // creat Device
     idevice_t device = NULL;
-    idevice_new(&device, list[0]);
-
-    mobilebackup2_client_t client = NULL;
-    mobilebackup2_error_t error = mobilebackup2_client_start_service(device, &client, "asd");
+    idevice_new_with_options(&device, list[0], IDEVICE_LOOKUP_NETWORK);
     
-    if (error == MOBILEBACKUP2_E_SUCCESS) {
-        printf("\n mobilebackup2 success\n");
-    } else {
-        printf("\n mobilebackup2 error %d\n", error);
+    idevice_connection_t _connection;
+    if (device != NULL) {
+        idevice_error_t error = idevice_connect(device, 58783, &_connection);
+        printf("========\(%d)========\n", error);
     }
     
-    if (client) {
-        mobilebackup2_client_free(client);
+    if (_connection) {
+        printf("========\(successs)========\n");
     }
     
     if (device) {
         idevice_free(device);
     }
-
+    
+    if (_connection) {
+        idevice_disconnect(_connection);
+    }
+    
     printf("\n");
     return 0;
 }

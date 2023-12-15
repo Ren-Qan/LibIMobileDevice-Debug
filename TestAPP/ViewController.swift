@@ -15,6 +15,8 @@ class ViewController: NSViewController {
     lazy var sysmontap = IInstrumentsSysmontap()
     
     lazy var deviceInfo = IInstrumentsDeviceInfo()
+    
+    lazy var bonjour = Bonjour()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +25,12 @@ class ViewController: NSViewController {
         button.frame = .init(origin: .zero, size: .init(width: 200, height: 50))
         view.addSubview(button)
         
+        
         DispatchQueue.global().async {
             MobileManager.share.refreshDeviceList()
         }
+        
+        
     }
 
     override var representedObject: Any? {
@@ -36,39 +41,12 @@ class ViewController: NSViewController {
 
     @objc func getDeviceList() {
         DispatchQueue.global().async {
-            action()
+            self.bonjour.search { service in
+                
+            }
         }
         
-        func action() {
-            if instrument.isConnected {
-                self.sysmontap.request()
-                self.deviceInfo.request()
-                return
-            }
-
-            let device = MobileManager.share.deviceList.first { item in
-                if item.type == .usb {
-                    return true
-                }
-                return false
-            }
-
-            guard let device = device,
-                  let iDevice = IDevice(device) else {
-                return
-            }
-
-            if !instrument.isConnected, instrument.start(iDevice) {
-                self.sysmontap.start(instrument)
-                self.sysmontap.register(.setConfig)
-                self.sysmontap.register(.start)
-                                
-                self.deviceInfo.start(instrument)
-                self.deviceInfo.register(.runningProcesses)
-                            
-                return
-            }
-        }
+        
     }
 }
 

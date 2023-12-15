@@ -29,6 +29,7 @@
 		C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */; };
 		C72CB5192921E89600291F16 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5132921E89600291F16 /* libssl.a */; };
 		C73D82CB2927E45F0018B6F9 /* DTXMessageService.mm in Sources */ = {isa = PBXBuildFile; fileRef = C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */; };
+		C76575B82B2C390400819E3E /* Bonjour.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76575B72B2C390400819E3E /* Bonjour.swift */; };
 		C76EC3222934997700F2D31D /* IInstrumentsSysmontap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76EC3212934997700F2D31D /* IInstrumentsSysmontap.swift */; };
 		C76EC3242934999300F2D31D /* IInstrumentsServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76EC3232934999300F2D31D /* IInstrumentsServiceProtocols.swift */; };
 		C76EC3262934AA8000F2D31D /* IInstrumentsBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76EC3252934AA8000F2D31D /* IInstrumentsBaseService.swift */; };
@@ -92,11 +93,24 @@
 		C7A1E9A7292279FB00C61A84 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A1E9A1292279FB00C61A84 /* libssl.a */; };
 		C7A6D1CD2935E57800721C3A /* IInstrumentsDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6D1CC2935E57800721C3A /* IInstrumentsDeviceInfo.swift */; };
 		C7A6D1D02935E5B700721C3A /* IInstrumentRunningProcessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6D1CF2935E5B700721C3A /* IInstrumentRunningProcessModel.swift */; };
+		C7AE2D362B218C8A0066162D /* InstrumentsXPC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AE2D352B218C8A0066162D /* InstrumentsXPC.m */; };
+		C7AE2D392B218C8A0066162D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AE2D382B218C8A0066162D /* main.m */; };
+		C7AE2D3E2B218C8A0066162D /* InstrumentsXPC.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = C7AE2D322B218C890066162D /* InstrumentsXPC.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C7B6BDA6292B786B0094D460 /* DTXMessageHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */; };
 		C7B6BDA9292B797F0094D460 /* DTXArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA8292B797F0094D460 /* DTXArguments.m */; };
 		C7E56402292356C500F4418F /* MDUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E56401292356C500F4418F /* MDUtil.m */; };
 		C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C7AE2D3C2B218C8A0066162D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C779DC3B291D2D7C0002564C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C7AE2D312B218C890066162D;
+			remoteInfo = InstrumentsXPC;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C716B583291D351E00C93BD6 /* CopyFiles */ = {
@@ -125,6 +139,17 @@
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
+		};
+		C7AE2D2A2B218C040066162D /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+				C7AE2D3E2B218C8A0066162D /* InstrumentsXPC.xpc in Embed XPC Services */,
+			);
+			name = "Embed XPC Services";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -160,6 +185,7 @@
 		C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestAPP-Bridging-Header.h"; sourceTree = "<group>"; };
 		C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DTXMessageService.mm; sourceTree = "<group>"; };
 		C73D82CA2927E45F0018B6F9 /* DTXMessageService.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DTXMessageService.hh; sourceTree = "<group>"; };
+		C76575B72B2C390400819E3E /* Bonjour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bonjour.swift; sourceTree = "<group>"; };
 		C76EC3212934997700F2D31D /* IInstrumentsSysmontap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IInstrumentsSysmontap.swift; sourceTree = "<group>"; };
 		C76EC3232934999300F2D31D /* IInstrumentsServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IInstrumentsServiceProtocols.swift; sourceTree = "<group>"; };
 		C76EC3252934AA8000F2D31D /* IInstrumentsBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IInstrumentsBaseService.swift; sourceTree = "<group>"; };
@@ -475,6 +501,13 @@
 		C7A1E9AF2922818200C61A84 /* headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = headers.h; sourceTree = "<group>"; };
 		C7A6D1CC2935E57800721C3A /* IInstrumentsDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IInstrumentsDeviceInfo.swift; sourceTree = "<group>"; };
 		C7A6D1CF2935E5B700721C3A /* IInstrumentRunningProcessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IInstrumentRunningProcessModel.swift; sourceTree = "<group>"; };
+		C7AE2D322B218C890066162D /* InstrumentsXPC.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = InstrumentsXPC.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7AE2D342B218C8A0066162D /* InstrumentsXPC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstrumentsXPC.h; sourceTree = "<group>"; };
+		C7AE2D352B218C8A0066162D /* InstrumentsXPC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstrumentsXPC.m; sourceTree = "<group>"; };
+		C7AE2D372B218C8A0066162D /* InstrumentsXPCProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstrumentsXPCProtocol.h; sourceTree = "<group>"; };
+		C7AE2D382B218C8A0066162D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C7AE2D3A2B218C8A0066162D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7AE2D3B2B218C8A0066162D /* InstrumentsXPC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InstrumentsXPC.entitlements; sourceTree = "<group>"; };
 		C7B6BDA4292B786B0094D460 /* DTXMessageHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTXMessageHandle.h; sourceTree = "<group>"; };
 		C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTXMessageHandle.m; sourceTree = "<group>"; };
 		C7B6BDA7292B797F0094D460 /* DTXArguments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTXArguments.h; sourceTree = "<group>"; };
@@ -572,6 +605,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C7AE2D2F2B218C890066162D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -647,6 +687,7 @@
 			children = (
 				C72CB4DE2921E79400291F16 /* AppDelegate.swift */,
 				C72CB4E02921E79400291F16 /* ViewController.swift */,
+				C76575B72B2C390400819E3E /* Bonjour.swift */,
 				C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */,
 				C72CB4E22921E79600291F16 /* Assets.xcassets */,
 				C72CB4E42921E79600291F16 /* Main.storyboard */,
@@ -800,6 +841,7 @@
 				C716B586291D351E00C93BD6 /* libusbmuxd */,
 				C7999C7E291E29780040F03A /* libideviceactivation */,
 				C72CB4DD2921E79400291F16 /* TestAPP */,
+				C7AE2D332B218C8A0066162D /* InstrumentsXPC */,
 				C779DC44291D2D7C0002564C /* Products */,
 				C7999CC9291E31FA0040F03A /* Frameworks */,
 			);
@@ -812,6 +854,7 @@
 				C7999C7D291E29780040F03A /* libideviceactivation */,
 				C7999CD7291E3DC50040F03A /* libimobiledevice */,
 				C72CB4DC2921E79400291F16 /* TestAPP.app */,
+				C7AE2D322B218C890066162D /* InstrumentsXPC.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1368,6 +1411,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C7AE2D332B218C8A0066162D /* InstrumentsXPC */ = {
+			isa = PBXGroup;
+			children = (
+				C7AE2D342B218C8A0066162D /* InstrumentsXPC.h */,
+				C7AE2D352B218C8A0066162D /* InstrumentsXPC.m */,
+				C7AE2D372B218C8A0066162D /* InstrumentsXPCProtocol.h */,
+				C7AE2D382B218C8A0066162D /* main.m */,
+				C7AE2D3A2B218C8A0066162D /* Info.plist */,
+				C7AE2D3B2B218C8A0066162D /* InstrumentsXPC.entitlements */,
+			);
+			path = InstrumentsXPC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1395,10 +1451,12 @@
 				C72CB4D82921E79400291F16 /* Sources */,
 				C72CB4D92921E79400291F16 /* Frameworks */,
 				C72CB4DA2921E79400291F16 /* Resources */,
+				C7AE2D2A2B218C040066162D /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C7AE2D3D2B218C8A0066162D /* PBXTargetDependency */,
 			);
 			name = TestAPP;
 			productName = TestAPP;
@@ -1439,6 +1497,23 @@
 			productReference = C7999CD7291E3DC50040F03A /* libimobiledevice */;
 			productType = "com.apple.product-type.tool";
 		};
+		C7AE2D312B218C890066162D /* InstrumentsXPC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7AE2D3F2B218C8A0066162D /* Build configuration list for PBXNativeTarget "InstrumentsXPC" */;
+			buildPhases = (
+				C7AE2D2E2B218C890066162D /* Sources */,
+				C7AE2D2F2B218C890066162D /* Frameworks */,
+				C7AE2D302B218C890066162D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InstrumentsXPC;
+			productName = InstrumentsXPC;
+			productReference = C7AE2D322B218C890066162D /* InstrumentsXPC.xpc */;
+			productType = "com.apple.product-type.xpc-service";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1446,7 +1521,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					C716B584291D351E00C93BD6 = {
@@ -1461,6 +1536,9 @@
 					};
 					C7999CD6291E3DC50040F03A = {
 						CreatedOnToolsVersion = 14.1;
+					};
+					C7AE2D312B218C890066162D = {
+						CreatedOnToolsVersion = 15.0.1;
 					};
 				};
 			};
@@ -1481,6 +1559,7 @@
 				C7999C7C291E29780040F03A /* libideviceactivation */,
 				C7999CD6291E3DC50040F03A /* libimobiledevice */,
 				C72CB4DB2921E79400291F16 /* TestAPP */,
+				C7AE2D312B218C890066162D /* InstrumentsXPC */,
 			);
 		};
 /* End PBXProject section */
@@ -1492,6 +1571,13 @@
 			files = (
 				C72CB4E32921E79600291F16 /* Assets.xcassets in Resources */,
 				C72CB4E62921E79600291F16 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7AE2D302B218C890066162D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1522,6 +1608,7 @@
 				C7A6D1D02935E5B700721C3A /* IInstrumentRunningProcessModel.swift in Sources */,
 				C72CB4DF2921E79400291F16 /* AppDelegate.swift in Sources */,
 				C7A6D1CD2935E57800721C3A /* IInstrumentsDeviceInfo.swift in Sources */,
+				C76575B82B2C390400819E3E /* Bonjour.swift in Sources */,
 				C76EC3242934999300F2D31D /* IInstrumentsServiceProtocols.swift in Sources */,
 				C7183A8A292F23CB006F76AB /* IDevice.swift in Sources */,
 				C7183A8E292F3BEF006F76AB /* IIntruments.swift in Sources */,
@@ -1580,7 +1667,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C7AE2D2E2B218C890066162D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7AE2D392B218C8A0066162D /* main.m in Sources */,
+				C7AE2D362B218C8A0066162D /* InstrumentsXPC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C7AE2D3D2B218C8A0066162D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C7AE2D312B218C890066162D /* InstrumentsXPC */;
+			targetProxy = C7AE2D3C2B218C8A0066162D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C72CB4E42921E79600291F16 /* Main.storyboard */ = {
@@ -1900,6 +2004,59 @@
 			};
 			name = Release;
 		};
+		C7AE2D402B218C8A0066162D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_ENTITLEMENTS = InstrumentsXPC/InstrumentsXPC.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88JVP7LE4V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InstrumentsXPC/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = InstrumentsXPC;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = S.r.InstrumentsXPC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		C7AE2D412B218C8A0066162D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_ENTITLEMENTS = InstrumentsXPC/InstrumentsXPC.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88JVP7LE4V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InstrumentsXPC/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = InstrumentsXPC;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = S.r.InstrumentsXPC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1944,6 +2101,15 @@
 			buildConfigurations = (
 				C7999CDC291E3DC60040F03A /* Debug */,
 				C7999CDD291E3DC60040F03A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7AE2D3F2B218C8A0066162D /* Build configuration list for PBXNativeTarget "InstrumentsXPC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7AE2D402B218C8A0066162D /* Debug */,
+				C7AE2D412B218C8A0066162D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
