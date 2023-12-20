@@ -32,6 +32,7 @@ extension MobileManager {
         let listPoint = UnsafeMutablePointer<UnsafeMutablePointer<idevice_info_t?>?>.allocate(capacity: 1)
         let count = UnsafeMutablePointer<Int32>.allocate(capacity: 1)
 
+        
         idevice_get_device_list_extended(listPoint, count)
 
         let len = Int(count.pointee)
@@ -40,7 +41,18 @@ extension MobileManager {
         (0 ..< len).forEach { i in
             if let device = list?[i]?.pointee,
                let udid = StringLiteralType(utf8String: device.udid) {
-                let item = DeviceItem(udid: udid, type: device.conn_type == CONNECTION_USBMUXD ? .usb : .net)
+                var data: Data? = nil
+                if device.conn_data != nil {
+                    let len = Int(device.conn_data.load(fromByteOffset: 0, as: UInt8.self))
+                    data = Data(count: len)
+                    (0 ..< len).forEach { i in
+                        data?[i] = device.conn_data.load(fromByteOffset: 0, as: UInt8.self)
+                    }
+                }
+                let type: DeviceConnectType = device.conn_type == CONNECTION_USBMUXD ? .usb : .net
+                let item = DeviceItem(udid: udid,
+                                      type: type,
+                                      data: data)
                 devices.append(item)
             }
         }

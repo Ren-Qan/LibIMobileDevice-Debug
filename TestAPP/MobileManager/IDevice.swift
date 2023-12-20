@@ -23,8 +23,9 @@ enum DeviceConnectType {
 }
 
 struct DeviceItem {
-    var udid: String = ""
-    var type = DeviceConnectType.usb
+    let udid: String
+    let type: DeviceConnectType
+    let data: Data?
 }
 
 class IDevice: NSObject {
@@ -32,7 +33,7 @@ class IDevice: NSObject {
     public private(set) var deviceItem: DeviceItem? = nil
 
     convenience init?(_ udid: String, _ type: DeviceConnectType) {
-        self.init(.init(udid: udid, type: type))
+        self.init(.init(udid: udid, type: type, data: nil))
     }
     
     convenience init?(_ item: DeviceItem) {
@@ -58,7 +59,7 @@ class IDevice: NSObject {
 // MARK: - Public -
 extension IDevice {
     func reset(_ udid: String, _ type: DeviceConnectType) {
-        reset(.init(udid: udid, type: type))
+        reset(.init(udid: udid, type: type, data: nil))
     }
     
     func reset(_ item: DeviceItem) {

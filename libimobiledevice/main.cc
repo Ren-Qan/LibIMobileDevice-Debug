@@ -17,6 +17,7 @@
 int main(int argc, const char * argv[]) {
     char ** list = NULL;
     int count = 0;
+    idevice_set_debug_level(1);
     
     idevice_error_t state = idevice_get_device_list(&list, &count);
     
@@ -35,9 +36,9 @@ int main(int argc, const char * argv[]) {
     
     // creat Device
     idevice_t device = NULL;
-    idevice_new_with_options(&device, list[0], IDEVICE_LOOKUP_NETWORK);
+    idevice_new_with_options(&device, list[0], IDEVICE_LOOKUP_USBMUX);
     
-    idevice_connection_t _connection;
+    idevice_connection_t _connection = NULL;
     if (device != NULL) {
         idevice_error_t error = idevice_connect(device, 58783, &_connection);
         printf("========\(%d)========\n", error);
