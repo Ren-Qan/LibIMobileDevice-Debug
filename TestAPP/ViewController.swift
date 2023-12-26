@@ -7,6 +7,7 @@
 
 import Cocoa
 import LibMobileDevice
+import XPC
 
 class ViewController: NSViewController {
     
@@ -38,6 +39,10 @@ class ViewController: NSViewController {
         DispatchQueue.global().async {
             self.rsd.start()
         }
+    }
+    
+    func xpcTest() {
+        XPCSession(xpcService: "")
     }
 }
 

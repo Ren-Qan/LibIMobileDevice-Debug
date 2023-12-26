@@ -26,7 +26,9 @@ class Bonjour: NSObject {
         
         browser.stop()
         browser.schedule(in: .main, forMode: .common)
-        browser.searchForServices(ofType: "_rdlink._tcp.", inDomain: "local.")
+//        let type = "_rdlink._tcp."
+        let type = "_remoted._tcp."
+        browser.searchForServices(ofType: type, inDomain: "local.")
     }
 }
 
@@ -34,13 +36,11 @@ extension Bonjour: NetServiceBrowserDelegate  {
     func netServiceBrowser(_ browser: NetServiceBrowser, 
                            didFind service: NetService,
                            moreComing: Bool) {
-        if moreComing {
-            browser.stop()
-            self.service?.stop()
-            self.service = service
-            self.service?.delegate = self
-            self.service?.resolve(withTimeout: 20)
-        }
+        browser.stop()
+        self.service?.stop()
+        self.service = service
+        self.service?.delegate = self
+        self.service?.resolve(withTimeout: 20)
     }
 }
 
