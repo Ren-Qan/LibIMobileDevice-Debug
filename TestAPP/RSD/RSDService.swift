@@ -24,25 +24,38 @@ extension RSDService {
 }
 
 extension RSDService {
-    fileprivate func connect(_ service: NetService) {
-        guard let data = service.addresses?.first,
-              let ipv6String = dataToIPv6String(data),
-              let ipv6 = IPv6Address(ipv6String),
-              let hostName = service.hostName,
-              let port = NWEndpoint.Port(rawValue: UInt16(service.port)) else { return }
+    fileprivate func connect1(_ netService: NetService) {
         
-        let host = NWEndpoint.Host.ipv6(ipv6)
-        let connection = NWConnection(host: host, port: port, using: .quic(alpn: []))
-        self.connection = connection
-        connection.stateUpdateHandler = { state in
-            print(state)
+    }
+    
+    fileprivate func connect(_ netService: NetService) {
+        if let serviceAddress = netService.addresses?.first {
+            serviceAddress.withUnsafeBytes { (pointer: UnsafeRawBufferPointer) -> Void in
+                guard let addr = pointer.baseAddress?.assumingMemoryBound(to: sockaddr_in6.self) else { return }
+                var add = addr.pointee.sin6_addr
+                var addressStr = [CChar](repeating: 0, count: Int(INET6_ADDRSTRLEN))
+                inet_ntop(AF_INET6, &add, &addressStr, socklen_t(INET6_ADDRSTRLEN))
+
+                let ipString = String(cString: addressStr)
+                let params = NWParameters.tcp
+                let endpoint = NWEndpoint.hostPort(host: NWEndpoint.Host(ipString), port: NWEndpoint.Port(rawValue: UInt16(netService.port))!)
+                self.connection = NWConnection(to: endpoint, using: params)
+            }
         }
-        connection.start(queue: .global())
-        
-        
-        
-        let http2Magic: Data = "PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n".data(using: .utf8)!
-        self.send(http2Magic)
+
+        // 设置状态更新
+        connection?.stateUpdateHandler = { newState in
+            print(newState)
+            switch(newState) {
+            // Handle changes in connection state.
+            case .ready: print("Ready to send")
+            case .failed(let error): print("Failed with error \(error)")
+            default: break
+            }
+        }
+
+        // 启动连接
+        connection?.start(queue: .main)
     }
  
 //    private func send(paylod: HTTP2Frame.FramePayload) {
