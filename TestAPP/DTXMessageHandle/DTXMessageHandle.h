@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (DTXReceiveObject * _Nullable)receive;
 
+- (NSData *)handshakeData;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -36,8 +36,7 @@ extension Bonjour: NetServiceBrowserDelegate  {
     func netServiceBrowser(_ browser: NetServiceBrowser, 
                            didFind service: NetService,
                            moreComing: Bool) {
-        browser.stop()
-        self.service?.stop()
+//        self.service?.stop()
         self.service = service
         self.service?.delegate = self
         self.service?.resolve(withTimeout: 20)
@@ -47,7 +46,6 @@ extension Bonjour: NetServiceBrowserDelegate  {
 extension Bonjour: NetServiceDelegate {
     func netServiceDidResolveAddress(_ sender: NetService) {
         self.search?(sender)
-        print(sender)
         self.search = nil
         self.isInSearch = false
     }

@@ -77,6 +77,22 @@ struct DTXMessagePayloadHeader {
     return NO;
 }
 
+- (NSData *)handshakeData {
+    NSDictionary * par = @{
+        @"com.apple.private.DTXBlockCompression" : [NSNumber numberWithLongLong:2],
+        @"com.apple.private.DTXConnection" : [NSNumber numberWithLongLong:1]
+    };
+    
+    DTXArguments *args = [[DTXArguments alloc] init];
+    [args addObject:par];
+    
+    return [self dataWithChannel:9
+                      identifier:10000
+                        selector:@"_notifyOfPublishedCapabilities:"
+                            args:args
+                    expectsReply:NO];
+}
+
 - (BOOL)instrumentsShakeHand {
     NSDictionary * par = @{
         @"com.apple.private.DTXBlockCompression" : [NSNumber numberWithLongLong:2],
@@ -145,6 +161,42 @@ struct DTXMessagePayloadHeader {
 }
 
 // MARK: Send Message / Receive Message
+
+- (NSData *)dataWithChannel:(uint32_t)channel
+             identifier:(uint32_t)identifier
+               selector:(NSString *)selector
+                   args:(DTXArguments *)args
+           expectsReply:(BOOL)expectsReply {
+    
+    NSData *selData = [self getByteWithObj:selector];
+    NSData *argData = [args getArgBytes];
+    
+    struct DTXMessagePayloadHeader pheader;
+    pheader.flags = 0x2 | (expectsReply ? 0x1000 : 0);
+    pheader.auxiliaryLength = (uint32)(argData.length);
+    pheader.totalLength = argData.length + selData.length;
+    
+    struct DTXMessageHeader mheader;
+    mheader.magic = 0x1F3D5B79;
+    mheader.cb = sizeof(struct DTXMessageHeader);
+    mheader.fragmentId = 0;
+    mheader.fragmentCount = 1;
+    mheader.length = (uint32_t)(sizeof(pheader) + pheader.totalLength);
+    mheader.identifier = (uint32_t)identifier;
+    mheader.conversationIndex = 0;
+    mheader.channelCode = channel;
+    mheader.expectsReply = (expectsReply ? 1 : 0);
+    
+    DTXArguments *argument = [[DTXArguments alloc] init];
+    [argument append_v:&mheader len:sizeof(mheader)];
+    [argument append_v:&pheader len:sizeof(pheader)];
+    [argument append_b:argData];
+    [argument append_b:selData];
+    
+    uint32_t nsent;
+    NSData *datas = [argument bytes];
+    return datas;
+}
 
 - (BOOL)sendWithChannel:(uint32_t)channel
              identifier:(uint32_t)identifier
