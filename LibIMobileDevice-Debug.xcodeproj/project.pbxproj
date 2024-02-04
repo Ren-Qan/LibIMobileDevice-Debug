@@ -119,6 +119,8 @@
 		C7ED71F82B5F7895003C087F /* NIOHTTP2 in Frameworks */ = {isa = PBXBuildFile; productRef = C7ED71F72B5F7895003C087F /* NIOHTTP2 */; };
 		C7ED71FB2B5F9A57003C087F /* NIOHTTP2 in Frameworks */ = {isa = PBXBuildFile; productRef = C7ED71FA2B5F9A57003C087F /* NIOHTTP2 */; };
 		C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */; };
+		C7F9E1812B6F652F0010C837 /* HTTP2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9E1802B6F652F0010C837 /* HTTP2.swift */; };
+		C7F9E1832B6F90B70010C837 /* XPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9E1822B6F90B70010C837 /* XPC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -543,6 +545,8 @@
 		C7F83C192922135200CCBFF8 /* preboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preboard.h; sourceTree = "<group>"; };
 		C7F83C1A2922135200CCBFF8 /* reverse_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reverse_proxy.h; sourceTree = "<group>"; };
 		C7F83C1B2922135200CCBFF8 /* service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service.h; sourceTree = "<group>"; };
+		C7F9E1802B6F652F0010C837 /* HTTP2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP2.swift; sourceTree = "<group>"; };
+		C7F9E1822B6F90B70010C837 /* XPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -705,6 +709,8 @@
 				C72CB4DE2921E79400291F16 /* AppDelegate.swift */,
 				C72CB4E02921E79400291F16 /* ViewController.swift */,
 				C70BA8112B5E71A4003B0632 /* Connection.swift */,
+				C7F9E1822B6F90B70010C837 /* XPC.swift */,
+				C7F9E1802B6F652F0010C837 /* HTTP2.swift */,
 				C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */,
 				C72CB4E22921E79600291F16 /* Assets.xcassets */,
 				C72CB4E42921E79600291F16 /* Main.storyboard */,
@@ -1673,6 +1679,7 @@
 				C7831C36292C7A81008AD86B /* DTXReceiveObject.m in Sources */,
 				C7E56402292356C500F4418F /* MDUtil.m in Sources */,
 				C76A639E2B3168D700D5F104 /* RSDService.swift in Sources */,
+				C7F9E1812B6F652F0010C837 /* HTTP2.swift in Sources */,
 				C76EC3262934AA8000F2D31D /* IInstrumentsBaseService.swift in Sources */,
 				C76EC3222934997700F2D31D /* IInstrumentsSysmontap.swift in Sources */,
 				C7B6BDA9292B797F0094D460 /* DTXArguments.m in Sources */,
@@ -1684,6 +1691,7 @@
 				C76EC3242934999300F2D31D /* IInstrumentsServiceProtocols.swift in Sources */,
 				C7183A8A292F23CB006F76AB /* IDevice.swift in Sources */,
 				C7183A8E292F3BEF006F76AB /* IIntruments.swift in Sources */,
+				C7F9E1832B6F90B70010C837 /* XPC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,11 +7,6 @@
 
 import CoreFoundation
 import Network
-import NIO
-import NIOHTTP2
-import Darwin
-import NIOPosix
-import SwiftUI
 //import
 
 class Connection: NSObject {
@@ -19,65 +14,6 @@ class Connection: NSObject {
     var connection: NWConnection? = nil
     
     lazy var dtx = DTXMessageHandle()
-}
-
-extension Connection {
-    func xpc(_ ip: String) {
-    }
-}
-
-extension Connection {
-    func nio(_ ip: String) {
-    
-    }
-}
-
-extension Connection {
-    func build(_ ip: String) {
-        self.connection?.forceCancel()
-        self.connection = nil
-
-        guard let address = IPv6Address(ip), let port = NWEndpoint.Port(rawValue: 58783) else { return }
-        let endpoint = NWEndpoint.hostPort(host: .ipv6(address), port: port)
-        let connection = NWConnection(to: endpoint, using: .quic(alpn: []))
-        connection.start(queue: .main)
-        connection.stateUpdateHandler = { state in
-            print(state)
-        }
-        
-        let HTTP2_MAGIC = "PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n".data(using: .utf8)!
-        send(HTTP2_MAGIC)
-        
-        let frame = HTTP2Frame(streamID: .init(0), payload: .settings(
-            .settings(
-                [HTTP2Setting(parameter: .maxConcurrentStreams, value: 100),
-                 HTTP2Setting(parameter: .initialWindowSize,value: 1048576)])
-        ))
-        
-        
-        let handle = NIOHTTP2Handler(mode: .client)
-        
-        
-        connection.receiveMessage { content, contentContext, isComplete, error in
-            if let content, error == nil {
-                print(content)
-            }
-        }
-        
-//        connection.requestEstablishmentReport(queue: .global()) { report in
-//            print(report)
-//        }
-        
-        self.connection = connection
-    }
-    
-    func send(_ data: Data?) {
-        connection?.send(content: data, completion: .contentProcessed({ error in
-            if let error {
-                print("sendError - \(error)")
-            }
-        }))
-    }
 }
 
 extension Connection {
@@ -144,84 +80,34 @@ extension Connection: NetServiceDelegate {
             let interfaceName = String(cString: ifNameBuffer)
             let address = String(cString: ipStringBuffer) + "%" + interfaceName
             print(address)
-            self.host(address, 58783)
+            self.connection(address, 58783)
         }
     }
     
-    func host(_ host: String, _ port: UInt16) {
-        let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
-        let bootstrap = ClientBootstrap(group: group)
-            .channelOption(ChannelOptions.Types.SocketOption(level: SOL_SOCKET, name: SO_REUSEADDR), value: 1)
-            .channelInitializer { channel in
-                channel.configureHTTP2Pipeline(mode: .client) { streamChannel in
-                    streamChannel.pipeline.addHandler(TH())
-                }.map { _ in }
+    func connection(_ host: String, _ port: UInt16) {
+        self.connection?.forceCancel()
+        let connection = NWConnection(to: .hostPort(host: .ipv6(.init(host)!), port: .init(rawValue: port)!), using: .quic(alpn: []))
+        connection.start(queue: .main)
+        connection.stateUpdateHandler = { state in
+            print(state)
+        }
+         
+        self.send(HTTP2.Magic)
+        self.send(HTTP2.Frame.Settings([
+            .MAX_CONCURRENT_STREAMS(100),
+            .INITIAL_WINDOW_SIZE(1048576),
+        ]).serialize())
+        self.send(HTTP2.Frame.WindowUpdate(983041).serialize())
+        self.send(HTTP2.Frame.Headers().flag("END_HEADERS").serialize())
+        
+        self.connection = connection
+    }
+    
+    func send(_ data: Data?) {
+        connection?.send(content: data, completion: .contentProcessed({ error in
+            if let error {
+                print("sendError - \(error)")
             }
-
-        defer {
-            try! group.syncShutdownGracefully()
-        }
-        
-        let connectionFuture = bootstrap.connect(host: host, port: Int(port))
-
-        connectionFuture.whenFailure { error in
-            print("Failed to connect: \(error)")
-        }
-
-        _ = try! connectionFuture.wait()
-        print("Successfully connected to \(host):\(port)")
-        
-        
-        connectionFuture.whenSuccess { channel in
-            do {
-                let multiplexer = try channel.pipeline.syncOperations.handler(type: HTTP2StreamMultiplexer.self)
-                multiplexer.createStreamChannel(promise: nil) { streamChannel in
-                    streamChannel.pipeline.addHandler(TH())
-                }
-                
-                // Create reply channel
-                multiplexer.createStreamChannel(promise: nil) { streamChannel in
-                    streamChannel.pipeline.addHandler(TH())
-                }
-                
-                let initialSettingsFrame = HTTP2Frame(streamID: .rootStream, payload: .settings(
-                    .settings(
-                        [HTTP2Setting(parameter: .maxConcurrentStreams, value: 100),
-                         HTTP2Setting(parameter: .initialWindowSize,value: 1048576)])
-                ))
-                channel.writeAndFlush(initialSettingsFrame, promise: nil)
-
-                let windowUpdateFrame = HTTP2Frame(streamID: .rootStream, payload: .windowUpdate(windowSizeIncrement: 983041))
-                channel.writeAndFlush(windowUpdateFrame, promise: nil)
-                
-                channel.writeAndFlush(<#T##data: NIOAny##NIOAny#>, promise: <#T##EventLoopPromise<Void>?#>)
-                
-                channel.read()
-                
-//                let headersFrame = HTTP2Frame(streamID: 1, payload: .settings(.settings([.init(parameter: ., value: <#T##Int#>)])))
-//                channel.writeAndFlush(headersFrame, promise: nil)
-                
-            } catch {
-                
-            }
-        }
-        
+        }))
     }
 }
-
-class TH: ChannelHandler {
-    func handlerAdded(context: ChannelHandlerContext) {
-        print(#function)
-        print(context)
-    }
-
-    /// Called when this `ChannelHandler` is removed from the `ChannelPipeline`.
-    ///
-    /// - parameters:
-    ///     - context: The `ChannelHandlerContext` which this `ChannelHandler` belongs to.
-    func handlerRemoved(context: ChannelHandlerContext) {
-        print(#function)
-        print(context)
-    }
-}
-
