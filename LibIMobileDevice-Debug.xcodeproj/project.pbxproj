@@ -43,6 +43,7 @@
 		C734A8AE2B62500F00433248 /* _NIOFileSystem in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8AD2B62500F00433248 /* _NIOFileSystem */; };
 		C734A8B02B62500F00433248 /* _NIOFileSystemFoundationCompat in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8AF2B62500F00433248 /* _NIOFileSystemFoundationCompat */; };
 		C73D82CB2927E45F0018B6F9 /* DTXMessageService.mm in Sources */ = {isa = PBXBuildFile; fileRef = C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */; };
+		C76446972B709D160089C5CE /* XPC+Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76446962B709D160089C5CE /* XPC+Structure.swift */; };
 		C76575B82B2C390400819E3E /* Bonjour.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76575B72B2C390400819E3E /* Bonjour.swift */; };
 		C76A638C2B315B5100D5F104 /* T17App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A638B2B315B5100D5F104 /* T17App.swift */; };
 		C76A638E2B315B5100D5F104 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A638D2B315B5100D5F104 /* ContentView.swift */; };
@@ -186,6 +187,7 @@
 		C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestAPP-Bridging-Header.h"; sourceTree = "<group>"; };
 		C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DTXMessageService.mm; sourceTree = "<group>"; };
 		C73D82CA2927E45F0018B6F9 /* DTXMessageService.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DTXMessageService.hh; sourceTree = "<group>"; };
+		C76446962B709D160089C5CE /* XPC+Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XPC+Structure.swift"; sourceTree = "<group>"; };
 		C76575B72B2C390400819E3E /* Bonjour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bonjour.swift; sourceTree = "<group>"; };
 		C76A63892B315B5000D5F104 /* T17.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = T17.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C76A638B2B315B5100D5F104 /* T17App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T17App.swift; sourceTree = "<group>"; };
@@ -710,6 +712,7 @@
 				C72CB4E02921E79400291F16 /* ViewController.swift */,
 				C70BA8112B5E71A4003B0632 /* Connection.swift */,
 				C7F9E1822B6F90B70010C837 /* XPC.swift */,
+				C76446962B709D160089C5CE /* XPC+Structure.swift */,
 				C7F9E1802B6F652F0010C837 /* HTTP2.swift */,
 				C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */,
 				C72CB4E22921E79600291F16 /* Assets.xcassets */,
@@ -1690,6 +1693,7 @@
 				C76575B82B2C390400819E3E /* Bonjour.swift in Sources */,
 				C76EC3242934999300F2D31D /* IInstrumentsServiceProtocols.swift in Sources */,
 				C7183A8A292F23CB006F76AB /* IDevice.swift in Sources */,
+				C76446972B709D160089C5CE /* XPC+Structure.swift in Sources */,
 				C7183A8E292F3BEF006F76AB /* IIntruments.swift in Sources */,
 				C7F9E1832B6F90B70010C837 /* XPC.swift in Sources */,
 			);

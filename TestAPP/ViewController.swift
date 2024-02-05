@@ -46,3 +46,10 @@ class ViewController: NSViewController {
 }
 
 
+extension Data {
+    @discardableResult
+    mutating func add(_ data: Data) -> Self {
+        self.append(data)
+        return self
+    }
+}

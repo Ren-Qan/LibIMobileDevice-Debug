@@ -5,46 +5,21 @@
 //  Created by 任玉乾 on 2024/1/22.
 //
 
-import CoreFoundation
+import AppKit
 import Network
-//import
+
+let ROOT_CHANNEL: UInt64 = 1
+let REPLY_CHANNEL: UInt64 = 3
 
 class Connection: NSObject {
+    lazy var wrapper = XPC.Adopter()
     lazy var bonjour = Bonjour()
     var connection: NWConnection? = nil
     
-    lazy var dtx = DTXMessageHandle()
-}
-
-extension Connection {
-    func interfaces() {
-        var ifaddr : UnsafeMutablePointer<ifaddrs>?
-
-        guard getifaddrs(&ifaddr) == 0 else { return }
-        guard let firstAddr = ifaddr else { return }
-
-        for ptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
-            let flags = Int32(ptr.pointee.ifa_flags)
-            let addr = ptr.pointee.ifa_addr.pointee
-                        
-            if (flags & (IFF_UP|IFF_RUNNING|IFF_LOOPBACK)) == (IFF_UP|IFF_RUNNING) {
-                if addr.sa_family == UInt8(AF_INET) || addr.sa_family == UInt8(AF_INET6) {
-                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-                    if getnameinfo(ptr.pointee.ifa_addr, 
-                                   socklen_t(addr.sa_len),
-                                   &hostname, socklen_t(hostname.count),
-                                   nil, socklen_t(0),
-                                   NI_NUMERICHOST) == 0 {
-                        if let address = String(cString: hostname, encoding: .utf8) {
-                            print("interface: \(String(cString: ptr.pointee.ifa_name)), address: \(address)")
-                        }
-                    }
-                }
-            }
-        }
-
-        freeifaddrs(ifaddr)
-    }
+    lazy var message_id_map: [UInt64 : UInt64] = [:]
+    
+    var root_message_id = 0
+    var reply_message_id = 0
 }
 
 extension Connection: NetServiceDelegate {
@@ -86,7 +61,8 @@ extension Connection: NetServiceDelegate {
     
     func connection(_ host: String, _ port: UInt16) {
         self.connection?.forceCancel()
-        let connection = NWConnection(to: .hostPort(host: .ipv6(.init(host)!), port: .init(rawValue: port)!), using: .quic(alpn: []))
+        let connection = NWConnection(to: .hostPort(host: .ipv6(.init(host)!), port: .init(rawValue: port)!), using: .tcp)
+        self.connection = connection
         connection.start(queue: .main)
         connection.stateUpdateHandler = { state in
             print(state)
@@ -97,10 +73,58 @@ extension Connection: NetServiceDelegate {
             .MAX_CONCURRENT_STREAMS(100),
             .INITIAL_WINDOW_SIZE(1048576),
         ]).serialize())
-        self.send(HTTP2.Frame.WindowUpdate(983041).serialize())
-        self.send(HTTP2.Frame.Headers().flag("END_HEADERS").serialize())
         
-        self.connection = connection
+        self.send(HTTP2.Frame.WindowUpdate(983041)
+            .serialize())
+        
+        self.send(HTTP2.Frame.Headers()
+            .flag("END_HEADERS")
+            .streamId(Int(ROOT_CHANNEL))
+            .serialize()
+        )
+                
+        self.send(HTTP2.Frame.Datas(self.wrapper.creat(root_message_id, [:]))
+            .serialize()
+        )
+        
+        let paylod = XPC.Payload(XPC._NULL())
+        let message = XPC.Message(0, paylod)
+        let wrapper = XPC.Wrapper(.init(rawValue: 0x201), message)
+        self.send(HTTP2.Frame.Datas(wrapper.bytes())
+            .streamId(Int(ROOT_CHANNEL))
+            .serialize()
+        )
+        
+        self.root_message_id += 1
+        self.send(HTTP2.Frame.Headers()
+            .streamId(Int(REPLY_CHANNEL))
+            .flag("END_HEADERS")
+            .serialize()
+        )
+        
+        let _payload = XPC.Payload(XPC._NULL())
+        let _message = XPC.Message(REPLY_CHANNEL, _payload)
+        let _wrapper = XPC.Wrapper([.initHandshake, .alwaysSet], _message)
+        self.send(HTTP2.Frame.Datas(_wrapper.bytes())
+            .serialize()
+        )
+                
+        self.send(HTTP2.Frame.Settings([]).flag("ACK").serialize())
+    }
+
+    func receiveFrame() {
+        
+    }
+    
+    func receive(_ count: Int) {
+        connection?.receive(minimumIncompleteLength: count, maximumLength: .max) { content, contentContext, isComplete, error in
+            
+            print("isComplete:\(isComplete)")
+            
+            if let error = error {
+                print(error)
+            }
+        }
     }
     
     func send(_ data: Data?) {
@@ -109,5 +133,29 @@ extension Connection: NetServiceDelegate {
                 print("sendError - \(error)")
             }
         }))
+    }
+}
+
+extension String {
+    func data(_ alignment: Int) -> Data {
+        guard var data = self.data(using: .utf8) else { return Data() }
+        let remainder = data.count % alignment
+        if remainder == 0 {
+            return data
+        }
+        
+        let padding = alignment - remainder
+        for _ in 0 ..< padding {
+            data.append(0)
+        }
+        return data
+    }
+}
+
+extension Data {
+    @discardableResult
+    func code(_ closure: (Self) -> Void) -> Self {
+        closure(self)
+        return self
     }
 }

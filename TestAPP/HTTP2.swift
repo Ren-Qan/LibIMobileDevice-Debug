@@ -32,6 +32,7 @@ protocol HTTP2FrameProtocol: AnyObject {
     
     func serializeBody() -> Data
     func flag(_ name: String) -> Self
+    func streamId(_ id: Int) -> Self
 }
 
 extension HTTP2FrameProtocol {
@@ -45,6 +46,11 @@ extension HTTP2FrameProtocol {
         }) {
             self.flags.append(item)
         }
+        return self
+    }
+    
+    func streamId(_ id: Int) -> Self {
+        self.stream_id = id
         return self
     }
     
