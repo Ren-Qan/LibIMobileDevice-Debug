@@ -44,6 +44,8 @@
 		C734A8B02B62500F00433248 /* _NIOFileSystemFoundationCompat in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8AF2B62500F00433248 /* _NIOFileSystemFoundationCompat */; };
 		C73D82CB2927E45F0018B6F9 /* DTXMessageService.mm in Sources */ = {isa = PBXBuildFile; fileRef = C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */; };
 		C76446972B709D160089C5CE /* XPC+Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76446962B709D160089C5CE /* XPC+Structure.swift */; };
+		C76446992B70D7BA0089C5CE /* XPC+Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76446982B70D7BA0089C5CE /* XPC+Tool.swift */; };
+		C764469B2B70DBB20089C5CE /* HTTP2+Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C764469A2B70DBB20089C5CE /* HTTP2+Tool.swift */; };
 		C76575B82B2C390400819E3E /* Bonjour.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76575B72B2C390400819E3E /* Bonjour.swift */; };
 		C76A638C2B315B5100D5F104 /* T17App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A638B2B315B5100D5F104 /* T17App.swift */; };
 		C76A638E2B315B5100D5F104 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A638D2B315B5100D5F104 /* ContentView.swift */; };
@@ -55,6 +57,8 @@
 		C76EC3242934999300F2D31D /* IInstrumentsServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76EC3232934999300F2D31D /* IInstrumentsServiceProtocols.swift */; };
 		C76EC3262934AA8000F2D31D /* IInstrumentsBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76EC3252934AA8000F2D31D /* IInstrumentsBaseService.swift */; };
 		C7831C36292C7A81008AD86B /* DTXReceiveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C7831C35292C7A81008AD86B /* DTXReceiveObject.m */; };
+		C78CDB522B70DD7400F80B93 /* HTTP2+Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78CDB512B70DD7400F80B93 /* HTTP2+Flag.swift */; };
+		C78CDB542B70DDB800F80B93 /* HTTP2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78CDB532B70DDB800F80B93 /* HTTP2.swift */; };
 		C79998EB291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E6291DF5EE0040F03A /* libplist-2.0.a */; };
 		C79998EC291DF5EF0040F03A /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */; };
 		C79998ED291DF5EF0040F03A /* libplist-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79998E9291DF5EF0040F03A /* libplist-2.0.a */; };
@@ -120,8 +124,8 @@
 		C7ED71F82B5F7895003C087F /* NIOHTTP2 in Frameworks */ = {isa = PBXBuildFile; productRef = C7ED71F72B5F7895003C087F /* NIOHTTP2 */; };
 		C7ED71FB2B5F9A57003C087F /* NIOHTTP2 in Frameworks */ = {isa = PBXBuildFile; productRef = C7ED71FA2B5F9A57003C087F /* NIOHTTP2 */; };
 		C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */; };
-		C7F9E1812B6F652F0010C837 /* HTTP2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9E1802B6F652F0010C837 /* HTTP2.swift */; };
-		C7F9E1832B6F90B70010C837 /* XPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9E1822B6F90B70010C837 /* XPC.swift */; };
+		C7F9E1812B6F652F0010C837 /* HTTP2+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9E1802B6F652F0010C837 /* HTTP2+Frame.swift */; };
+		C7F9E1832B6F90B70010C837 /* XPC+Adopter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9E1822B6F90B70010C837 /* XPC+Adopter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -188,6 +192,8 @@
 		C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DTXMessageService.mm; sourceTree = "<group>"; };
 		C73D82CA2927E45F0018B6F9 /* DTXMessageService.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DTXMessageService.hh; sourceTree = "<group>"; };
 		C76446962B709D160089C5CE /* XPC+Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XPC+Structure.swift"; sourceTree = "<group>"; };
+		C76446982B70D7BA0089C5CE /* XPC+Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XPC+Tool.swift"; sourceTree = "<group>"; };
+		C764469A2B70DBB20089C5CE /* HTTP2+Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTP2+Tool.swift"; sourceTree = "<group>"; };
 		C76575B72B2C390400819E3E /* Bonjour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bonjour.swift; sourceTree = "<group>"; };
 		C76A63892B315B5000D5F104 /* T17.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = T17.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C76A638B2B315B5100D5F104 /* T17App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T17App.swift; sourceTree = "<group>"; };
@@ -213,6 +219,8 @@
 		C775A662291DECA9004F8618 /* tlv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tlv.h; sourceTree = "<group>"; };
 		C7831C34292C7A81008AD86B /* DTXReceiveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTXReceiveObject.h; sourceTree = "<group>"; };
 		C7831C35292C7A81008AD86B /* DTXReceiveObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTXReceiveObject.m; sourceTree = "<group>"; };
+		C78CDB512B70DD7400F80B93 /* HTTP2+Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTP2+Flag.swift"; sourceTree = "<group>"; };
+		C78CDB532B70DDB800F80B93 /* HTTP2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP2.swift; sourceTree = "<group>"; };
 		C79998E6291DF5EE0040F03A /* libplist-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist-2.0.a"; sourceTree = "<group>"; };
 		C79998E7291DF5EE0040F03A /* libimobiledevice-glue-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libimobiledevice-glue-1.0.a"; sourceTree = "<group>"; };
 		C79998E9291DF5EF0040F03A /* libplist-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libplist-2.0.a"; sourceTree = "<group>"; };
@@ -547,8 +555,8 @@
 		C7F83C192922135200CCBFF8 /* preboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preboard.h; sourceTree = "<group>"; };
 		C7F83C1A2922135200CCBFF8 /* reverse_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reverse_proxy.h; sourceTree = "<group>"; };
 		C7F83C1B2922135200CCBFF8 /* service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service.h; sourceTree = "<group>"; };
-		C7F9E1802B6F652F0010C837 /* HTTP2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP2.swift; sourceTree = "<group>"; };
-		C7F9E1822B6F90B70010C837 /* XPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPC.swift; sourceTree = "<group>"; };
+		C7F9E1802B6F652F0010C837 /* HTTP2+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTP2+Frame.swift"; sourceTree = "<group>"; };
+		C7F9E1822B6F90B70010C837 /* XPC+Adopter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XPC+Adopter.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -711,9 +719,13 @@
 				C72CB4DE2921E79400291F16 /* AppDelegate.swift */,
 				C72CB4E02921E79400291F16 /* ViewController.swift */,
 				C70BA8112B5E71A4003B0632 /* Connection.swift */,
-				C7F9E1822B6F90B70010C837 /* XPC.swift */,
+				C7F9E1822B6F90B70010C837 /* XPC+Adopter.swift */,
 				C76446962B709D160089C5CE /* XPC+Structure.swift */,
-				C7F9E1802B6F652F0010C837 /* HTTP2.swift */,
+				C76446982B70D7BA0089C5CE /* XPC+Tool.swift */,
+				C78CDB532B70DDB800F80B93 /* HTTP2.swift */,
+				C78CDB512B70DD7400F80B93 /* HTTP2+Flag.swift */,
+				C7F9E1802B6F652F0010C837 /* HTTP2+Frame.swift */,
+				C764469A2B70DBB20089C5CE /* HTTP2+Tool.swift */,
 				C72CB51A2921E92000291F16 /* TestAPP-Bridging-Header.h */,
 				C72CB4E22921E79600291F16 /* Assets.xcassets */,
 				C72CB4E42921E79600291F16 /* Main.storyboard */,
@@ -1676,13 +1688,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C78CDB542B70DDB800F80B93 /* HTTP2.swift in Sources */,
 				C7183A88292F210E006F76AB /* MobileManager.swift in Sources */,
 				C7B6BDA6292B786B0094D460 /* DTXMessageHandle.m in Sources */,
 				C72CB4E12921E79400291F16 /* ViewController.swift in Sources */,
 				C7831C36292C7A81008AD86B /* DTXReceiveObject.m in Sources */,
 				C7E56402292356C500F4418F /* MDUtil.m in Sources */,
 				C76A639E2B3168D700D5F104 /* RSDService.swift in Sources */,
-				C7F9E1812B6F652F0010C837 /* HTTP2.swift in Sources */,
+				C764469B2B70DBB20089C5CE /* HTTP2+Tool.swift in Sources */,
+				C7F9E1812B6F652F0010C837 /* HTTP2+Frame.swift in Sources */,
 				C76EC3262934AA8000F2D31D /* IInstrumentsBaseService.swift in Sources */,
 				C76EC3222934997700F2D31D /* IInstrumentsSysmontap.swift in Sources */,
 				C7B6BDA9292B797F0094D460 /* DTXArguments.m in Sources */,
@@ -1694,8 +1708,10 @@
 				C76EC3242934999300F2D31D /* IInstrumentsServiceProtocols.swift in Sources */,
 				C7183A8A292F23CB006F76AB /* IDevice.swift in Sources */,
 				C76446972B709D160089C5CE /* XPC+Structure.swift in Sources */,
+				C78CDB522B70DD7400F80B93 /* HTTP2+Flag.swift in Sources */,
 				C7183A8E292F3BEF006F76AB /* IIntruments.swift in Sources */,
-				C7F9E1832B6F90B70010C837 /* XPC.swift in Sources */,
+				C76446992B70D7BA0089C5CE /* XPC+Tool.swift in Sources */,
+				C7F9E1832B6F90B70010C837 /* XPC+Adopter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

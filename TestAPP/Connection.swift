@@ -67,12 +67,12 @@ extension Connection: NetServiceDelegate {
         connection.stateUpdateHandler = { state in
             print(state)
         }
-         
+        
         self.send(HTTP2.Magic)
-        self.send(HTTP2.Frame.Settings([
-            .MAX_CONCURRENT_STREAMS(100),
-            .INITIAL_WINDOW_SIZE(1048576),
-        ]).serialize())
+        self.send(HTTP2.Frame.Settings([.MAX_CONCURRENT_STREAMS(100),
+                                        .INITIAL_WINDOW_SIZE(1048576)])
+            .serialize()
+        )
         
         self.send(HTTP2.Frame.WindowUpdate(983041)
             .serialize())
@@ -87,13 +87,11 @@ extension Connection: NetServiceDelegate {
             .serialize()
         )
         
-        let paylod = XPC.Payload(XPC._NULL())
-        let message = XPC.Message(0, paylod)
-        let wrapper = XPC.Wrapper(.init(rawValue: 0x201), message)
-        self.send(HTTP2.Frame.Datas(wrapper.bytes())
-            .streamId(Int(ROOT_CHANNEL))
-            .serialize()
-        )
+        self.send(HTTP2.Frame.Datas().xpc(.creat { make in
+            make.object(XPC._NULL())
+                .message(0)
+                .flags(.init(rawValue: 0x201))
+        }).streamId(Int(ROOT_CHANNEL)).serialize())
         
         self.root_message_id += 1
         self.send(HTTP2.Frame.Headers()
@@ -102,14 +100,16 @@ extension Connection: NetServiceDelegate {
             .serialize()
         )
         
-        let _payload = XPC.Payload(XPC._NULL())
-        let _message = XPC.Message(REPLY_CHANNEL, _payload)
-        let _wrapper = XPC.Wrapper([.initHandshake, .alwaysSet], _message)
-        self.send(HTTP2.Frame.Datas(_wrapper.bytes())
+        self.send(HTTP2.Frame.Datas(XPC.Wrapper.data { make in
+            make.object(XPC._NULL())
+            make.message(REPLY_CHANNEL)
+            make.flags([.initHandshake, .alwaysSet])
+        }).serialize())
+
+        self.send(HTTP2.Frame.Settings([])
+            .flag("ACK")
             .serialize()
         )
-                
-        self.send(HTTP2.Frame.Settings([]).flag("ACK").serialize())
     }
 
     func receiveFrame() {
