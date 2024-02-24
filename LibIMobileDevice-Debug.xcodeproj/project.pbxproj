@@ -29,19 +29,6 @@
 		C72CB5172921E89600291F16 /* libimobiledevice-glue-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5112921E89600291F16 /* libimobiledevice-glue-1.0.a */; };
 		C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5122921E89600291F16 /* libusbmuxd-2.0.a */; };
 		C72CB5192921E89600291F16 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72CB5132921E89600291F16 /* libssl.a */; };
-		C734A8982B62500F00433248 /* NIO in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8972B62500F00433248 /* NIO */; };
-		C734A89A2B62500F00433248 /* NIOConcurrencyHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8992B62500F00433248 /* NIOConcurrencyHelpers */; };
-		C734A89C2B62500F00433248 /* NIOCore in Frameworks */ = {isa = PBXBuildFile; productRef = C734A89B2B62500F00433248 /* NIOCore */; };
-		C734A89E2B62500F00433248 /* NIOEmbedded in Frameworks */ = {isa = PBXBuildFile; productRef = C734A89D2B62500F00433248 /* NIOEmbedded */; };
-		C734A8A02B62500F00433248 /* NIOFoundationCompat in Frameworks */ = {isa = PBXBuildFile; productRef = C734A89F2B62500F00433248 /* NIOFoundationCompat */; };
-		C734A8A22B62500F00433248 /* NIOHTTP1 in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8A12B62500F00433248 /* NIOHTTP1 */; };
-		C734A8A42B62500F00433248 /* NIOPosix in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8A32B62500F00433248 /* NIOPosix */; };
-		C734A8A62B62500F00433248 /* NIOTLS in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8A52B62500F00433248 /* NIOTLS */; };
-		C734A8A82B62500F00433248 /* NIOTestUtils in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8A72B62500F00433248 /* NIOTestUtils */; };
-		C734A8AA2B62500F00433248 /* NIOWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8A92B62500F00433248 /* NIOWebSocket */; };
-		C734A8AC2B62500F00433248 /* _NIOConcurrency in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8AB2B62500F00433248 /* _NIOConcurrency */; };
-		C734A8AE2B62500F00433248 /* _NIOFileSystem in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8AD2B62500F00433248 /* _NIOFileSystem */; };
-		C734A8B02B62500F00433248 /* _NIOFileSystemFoundationCompat in Frameworks */ = {isa = PBXBuildFile; productRef = C734A8AF2B62500F00433248 /* _NIOFileSystemFoundationCompat */; };
 		C73D82CB2927E45F0018B6F9 /* DTXMessageService.mm in Sources */ = {isa = PBXBuildFile; fileRef = C73D82C92927E45F0018B6F9 /* DTXMessageService.mm */; };
 		C76446972B709D160089C5CE /* XPC+Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76446962B709D160089C5CE /* XPC+Structure.swift */; };
 		C76446992B70D7BA0089C5CE /* XPC+Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76446982B70D7BA0089C5CE /* XPC+Tool.swift */; };
@@ -121,8 +108,6 @@
 		C7B6BDA6292B786B0094D460 /* DTXMessageHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA5292B786B0094D460 /* DTXMessageHandle.m */; };
 		C7B6BDA9292B797F0094D460 /* DTXArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B6BDA8292B797F0094D460 /* DTXArguments.m */; };
 		C7E56402292356C500F4418F /* MDUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E56401292356C500F4418F /* MDUtil.m */; };
-		C7ED71F82B5F7895003C087F /* NIOHTTP2 in Frameworks */ = {isa = PBXBuildFile; productRef = C7ED71F72B5F7895003C087F /* NIOHTTP2 */; };
-		C7ED71FB2B5F9A57003C087F /* NIOHTTP2 in Frameworks */ = {isa = PBXBuildFile; productRef = C7ED71FA2B5F9A57003C087F /* NIOHTTP2 */; };
 		C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F83C002921FF5100CCBFF8 /* libimobiledevice-1.0.a */; };
 		C7F9E1812B6F652F0010C837 /* HTTP2+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9E1802B6F652F0010C837 /* HTTP2+Frame.swift */; };
 		C7F9E1832B6F90B70010C837 /* XPC+Adopter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9E1822B6F90B70010C837 /* XPC+Adopter.swift */; };
@@ -575,31 +560,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C734A8A02B62500F00433248 /* NIOFoundationCompat in Frameworks */,
 				C7A1E9A2292279FB00C61A84 /* libcrypto.a in Frameworks */,
 				C72CB5182921E89600291F16 /* libusbmuxd-2.0.a in Frameworks */,
-				C734A8B02B62500F00433248 /* _NIOFileSystemFoundationCompat in Frameworks */,
-				C734A8A22B62500F00433248 /* NIOHTTP1 in Frameworks */,
 				C7A1E9A5292279FB00C61A84 /* libimobiledevice-glue-1.0.a in Frameworks */,
-				C734A89E2B62500F00433248 /* NIOEmbedded in Frameworks */,
 				C72CB5172921E89600291F16 /* libimobiledevice-glue-1.0.a in Frameworks */,
-				C734A89C2B62500F00433248 /* NIOCore in Frameworks */,
-				C734A8AE2B62500F00433248 /* _NIOFileSystem in Frameworks */,
-				C7ED71F82B5F7895003C087F /* NIOHTTP2 in Frameworks */,
 				C7A1E9A4292279FB00C61A84 /* libimobiledevice-1.0.a in Frameworks */,
 				C72CB5192921E89600291F16 /* libssl.a in Frameworks */,
 				C7A1E9A6292279FB00C61A84 /* libusbmuxd-2.0.a in Frameworks */,
-				C7ED71FB2B5F9A57003C087F /* NIOHTTP2 in Frameworks */,
-				C734A89A2B62500F00433248 /* NIOConcurrencyHelpers in Frameworks */,
-				C734A8982B62500F00433248 /* NIO in Frameworks */,
 				C72CB5142921E89600291F16 /* libcrypto.a in Frameworks */,
-				C734A8A42B62500F00433248 /* NIOPosix in Frameworks */,
-				C734A8AA2B62500F00433248 /* NIOWebSocket in Frameworks */,
-				C734A8A82B62500F00433248 /* NIOTestUtils in Frameworks */,
 				C72CB5152921E89600291F16 /* libplist-2.0.a in Frameworks */,
 				C7A1E9A7292279FB00C61A84 /* libssl.a in Frameworks */,
-				C734A8A62B62500F00433248 /* NIOTLS in Frameworks */,
-				C734A8AC2B62500F00433248 /* _NIOConcurrency in Frameworks */,
 				C7A1E9A3292279FB00C61A84 /* libplist-2.0.a in Frameworks */,
 				C7F83C012921FF5100CCBFF8 /* libimobiledevice-1.0.a in Frameworks */,
 			);
@@ -1526,21 +1496,6 @@
 			);
 			name = TestAPP;
 			packageProductDependencies = (
-				C7ED71F72B5F7895003C087F /* NIOHTTP2 */,
-				C7ED71FA2B5F9A57003C087F /* NIOHTTP2 */,
-				C734A8972B62500F00433248 /* NIO */,
-				C734A8992B62500F00433248 /* NIOConcurrencyHelpers */,
-				C734A89B2B62500F00433248 /* NIOCore */,
-				C734A89D2B62500F00433248 /* NIOEmbedded */,
-				C734A89F2B62500F00433248 /* NIOFoundationCompat */,
-				C734A8A12B62500F00433248 /* NIOHTTP1 */,
-				C734A8A32B62500F00433248 /* NIOPosix */,
-				C734A8A52B62500F00433248 /* NIOTLS */,
-				C734A8A72B62500F00433248 /* NIOTestUtils */,
-				C734A8A92B62500F00433248 /* NIOWebSocket */,
-				C734A8AB2B62500F00433248 /* _NIOConcurrency */,
-				C734A8AD2B62500F00433248 /* _NIOFileSystem */,
-				C734A8AF2B62500F00433248 /* _NIOFileSystemFoundationCompat */,
 			);
 			productName = TestAPP;
 			productReference = C72CB4DC2921E79400291F16 /* TestAPP.app */;
@@ -1637,8 +1592,6 @@
 			);
 			mainGroup = C779DC3A291D2D7C0002564C;
 			packageReferences = (
-				C7ED71F92B5F9A57003C087F /* XCRemoteSwiftPackageReference "swift-nio-http2" */,
-				C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */,
 			);
 			productRefGroup = C779DC44291D2D7C0002564C /* Products */;
 			projectDirPath = "";
@@ -1861,8 +1814,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
 					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
+					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
@@ -1904,8 +1857,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
 					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/arm64",
+					"$(PROJECT_DIR)/TestAPP/LibIMobileDevice/Libraries/x86",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
@@ -2249,102 +2202,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-nio.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.62.0;
-			};
-		};
-		C7ED71F92B5F9A57003C087F /* XCRemoteSwiftPackageReference "swift-nio-http2" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-nio-http2.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.30.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		C734A8972B62500F00433248 /* NIO */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = NIO;
-		};
-		C734A8992B62500F00433248 /* NIOConcurrencyHelpers */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = NIOConcurrencyHelpers;
-		};
-		C734A89B2B62500F00433248 /* NIOCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = NIOCore;
-		};
-		C734A89D2B62500F00433248 /* NIOEmbedded */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = NIOEmbedded;
-		};
-		C734A89F2B62500F00433248 /* NIOFoundationCompat */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = NIOFoundationCompat;
-		};
-		C734A8A12B62500F00433248 /* NIOHTTP1 */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = NIOHTTP1;
-		};
-		C734A8A32B62500F00433248 /* NIOPosix */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = NIOPosix;
-		};
-		C734A8A52B62500F00433248 /* NIOTLS */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = NIOTLS;
-		};
-		C734A8A72B62500F00433248 /* NIOTestUtils */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = NIOTestUtils;
-		};
-		C734A8A92B62500F00433248 /* NIOWebSocket */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = NIOWebSocket;
-		};
-		C734A8AB2B62500F00433248 /* _NIOConcurrency */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = _NIOConcurrency;
-		};
-		C734A8AD2B62500F00433248 /* _NIOFileSystem */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = _NIOFileSystem;
-		};
-		C734A8AF2B62500F00433248 /* _NIOFileSystemFoundationCompat */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C734A8962B62500F00433248 /* XCRemoteSwiftPackageReference "swift-nio" */;
-			productName = _NIOFileSystemFoundationCompat;
-		};
-		C7ED71F72B5F7895003C087F /* NIOHTTP2 */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = NIOHTTP2;
-		};
-		C7ED71FA2B5F9A57003C087F /* NIOHTTP2 */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C7ED71F92B5F9A57003C087F /* XCRemoteSwiftPackageReference "swift-nio-http2" */;
-			productName = NIOHTTP2;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C779DC3B291D2D7C0002564C /* Project object */;
 }
